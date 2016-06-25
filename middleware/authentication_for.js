@@ -9,6 +9,7 @@ module.exports = function(conf) {
 
         if (session.isLogged) {
           Model.find(session.userId).then(function(user) {
+            console.log('** athentication for middleware', user);
             req.currentUser = user;
             return cb(req, res, next);
           }, function() {

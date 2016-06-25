@@ -1,8 +1,9 @@
 module.exports = function(models) {
-  var User = models.User;
+  var Client = models.Client;
 
   return {
     index: function(scope) {
+      scope.currentUser = scope.session.currentUser;
     },
 
     internal: function(scope) {

@@ -5,19 +5,19 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
-      
+
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-          
+
     link(rel='stylesheet', href='/bower_components/fullcalendar/dist/fullcalendar.print.css' media="print")
     link(rel='stylesheet', href='/bower_components/fullcalendar/dist/fullcalendar.css')
     script(src="/bower_components/moment/moment.js")
     script(src='/bower_components/fullcalendar/dist/fullcalendar.js')
     script(src='/bower_components/fullcalendar/dist/lang/pt-br.js')
-      
+
     link(rel='stylesheet', href='/bower_components/datetimepicker/jquery.datetimepicker.css')
     script(src="/bower_components/datetimepicker/jquery.datetimepicker.js")
-    
+
     != js("app")
 
   body
@@ -31,31 +31,18 @@ html
             span.icon-bar
           a.navbar-brand(href='/')
             p
-              strong TOS
+              strong Systenis - Loja Virtual
         #collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
-            li
-              a(href='/cliente/clientes/new') Cadastre-se
-            li
-              a(href='/cliente/sessions/new') Login
+            if !!currentUser
+              li
+                a(href='/') Olá #{currentUser['nome']}
+              li
+                a(href='/cliente/sessions/delete') Sair
+            else
+              li
+                a(href='/cliente/clientes/new') Cadastre-se
+              li
+                a(href='/cliente/sessions/new') Login
 
-    nav.navbar.navbar-inverse.navbar-fixed-bottom
-      .container
-        .navbar-header
-          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#collapse-2', aria-expanded='false')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-        #collapse-2.collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar
-            li
-              a(href='/') Home
-            li
-              a(href='#') Contato
-            li
-              a(href='#') Sobre nós
-            li
-              a(href='/internal') Internal
-   
     block content

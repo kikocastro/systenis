@@ -1,4 +1,7 @@
 extends ../layout
 
 block content
-  h1.text-center Bem-vindo(a) ao Sistema de Timesheets de Ordens de Serviço (TOS)
+  h1.text-center
+    if !!currentUser
+      = currentUser.name
+    | Systenis Loja Virtual

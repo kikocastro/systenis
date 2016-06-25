@@ -14,6 +14,7 @@ module.exports = function(models) {
               return reject();
             }
             session.isLogged = true;
+            session.currentUser = users[0];
             session.userId = users[0].id;
             resolve(users[0]);
           },function(err) {
@@ -26,6 +27,7 @@ module.exports = function(models) {
         return q.Promise(function(resolve, reject) {
           session.userId = null;
           session.isLogged = false;
+          session.currentUser = null;
 
           return resolve();
         });

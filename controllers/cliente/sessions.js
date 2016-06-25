@@ -11,7 +11,7 @@ module.exports = function(models, services) {
       var session = req.session;
 
       return Authentication.login(email, password, session).then(function(cliente) {
-        res.redirect("/cliente");
+        res.redirect("/");
       }, function() {
         // Authentication fail
         res.redirect("/cliente/sessions/new");
@@ -19,9 +19,9 @@ module.exports = function(models, services) {
     },
     delete: function(req, res, next) {
       var session = req.session;
-
+      console.log('** saiu', session)
       return Authentication.logout(session).then(function() {
-        res.redirect("/cliente/sessions/new");
+        res.redirect("/");
       });
     }
   };

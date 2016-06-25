@@ -1,12 +1,14 @@
 module.exports = function(db, BasicDao) {
   var fields = [
 		"nome",
+		"sobrenome",
 		"telefone",
+		"sexo",
 		"email",
-		"endereco",
 		"cpf",
+		"rg",
 		"password"
 	];
 
-  return new BasicDao({tableName: "users", fieldNames: fields, db: db, discriminator: "cliente"});
+  return new BasicDao({tableName: "clientes", fieldNames: fields, db: db});
 };

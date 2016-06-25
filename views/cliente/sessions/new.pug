@@ -1,7 +1,7 @@
 extends ../../layout
 
 block content
-  h1.text-center Login
+  h1.text-center Entrar
   .container
     form.form-horizontal(action="/cliente/sessions/" method="POST")
       .form-group
@@ -11,13 +11,7 @@ block content
       .form-group
         label.col-sm-2.control-label(for='inputPassword') Password
         .col-sm-10
-          input#inputPassword.form-control(type='password', name="cliente[password]", placeholder='Password')
+          input#inputPassword.form-control(type='password', name="cliente[password]", placeholder='Senha')
       .form-group
         .col-sm-offset-2.col-sm-10
-          .checkbox
-            label
-              input(type='checkbox')
-              |  Remember me
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          button.btn.btn-default(type='submit') Sign in
+          button.btn.btn-default(type='submit') Entrar

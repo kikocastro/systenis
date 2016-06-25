@@ -7,18 +7,9 @@ module.exports = function(conf) {
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
 
-  /*
-  *
-  * Cliente
-  *
-  */
-  app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.lista));
-  app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.lista));
-  app.get("/cliente/agendamentos/index", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
-  app.post("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.create));
-  app.get("/cliente/agendamentos/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.show));
-  app.get("/cliente/agendamentos/cancelar/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.cancelar));
-
+  ////////////////////
+  // Cliente
+  ////////////////////
 
   // Sign up
   app.get("/cliente/clientes/new", controllers.Cliente.Clientes.new);
@@ -30,72 +21,6 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/cliente/sessions/delete", controllers.Cliente.Sessions.delete);
-
-
-  /*
-  *
-  * Admin
-  *
-  */
-
-  app.get("/admin/sessions/new", controllers.Admin.Sessions.new);
-  app.post("/admin/sessions/", controllers.Admin.Sessions.create);
-
-  //Logoff
-  app.get("/admin/sessions/delete", controllers.Admin.Sessions.delete);
-
-  app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
-
-  app.get("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.index));
-  app.get("/admin/clientes/new", AuthenticationAdmin(controllers.Admin.Clientes.new));
-  app.post("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.create));
-  app.get("/admin/clientes/:id", AuthenticationAdmin(controllers.Admin.Clientes.show));
-
-  app.get("/admin/gerentes", AuthenticationAdmin(controllers.Admin.Gerentes.index));
-  app.get("/admin/gerentes/new", AuthenticationAdmin(controllers.Admin.Gerentes.new));
-  app.post("/admin/gerentes", AuthenticationAdmin(controllers.Admin.Gerentes.create));
-  app.get("/admin/gerentes/:id", AuthenticationAdmin(controllers.Admin.Gerentes.show));
-
-  app.get("/admin/tecnicos", AuthenticationAdmin(controllers.Admin.Tecnicos.index));
-  app.get("/admin/tecnicos/new", AuthenticationAdmin(controllers.Admin.Tecnicos.new));
-  app.post("/admin/tecnicos", AuthenticationAdmin(controllers.Admin.Tecnicos.create));
-  app.get("/admin/tecnicos/:id", AuthenticationAdmin(controllers.Admin.Tecnicos.show));
-
-  app.get("/admin/caixas", AuthenticationAdmin(controllers.Admin.Caixas.index));
-  app.get("/admin/caixas/new", AuthenticationAdmin(controllers.Admin.Caixas.new));
-  app.post("/admin/caixas", AuthenticationAdmin(controllers.Admin.Caixas.create));
-  app.get("/admin/caixas/:id", AuthenticationAdmin(controllers.Admin.Caixas.show));
-
-  app.get("/admin/atendentes", AuthenticationAdmin(controllers.Admin.Atendentes.index));
-  app.get("/admin/atendentes/new", AuthenticationAdmin(controllers.Admin.Atendentes.new));
-  app.post("/admin/atendentes", AuthenticationAdmin(controllers.Admin.Atendentes.create));
-  app.get("/admin/atendentes/:id", AuthenticationAdmin(controllers.Admin.Atendentes.show));
-
-  app.get("/admin/tipos-de-veiculo", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.index));
-  app.get("/admin/tipos-de-veiculo/new", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.new));
-  app.post("/admin/tipos-de-veiculo", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.create));
-  app.get("/admin/tipos-de-veiculo/:id", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.show));
-
-  app.get("/admin/tipos-de-peca", AuthenticationAdmin(controllers.Admin.TiposDePeca.index));
-  app.get("/admin/tipos-de-peca/new", AuthenticationAdmin(controllers.Admin.TiposDePeca.new));
-  app.post("/admin/tipos-de-peca", AuthenticationAdmin(controllers.Admin.TiposDePeca.create));
-  app.get("/admin/tipos-de-peca/:id", AuthenticationAdmin(controllers.Admin.TiposDePeca.show));
-
-  app.get("/admin/tipos-de-servico", AuthenticationAdmin(controllers.Admin.TiposDeServico.index));
-  app.get("/admin/tipos-de-servico/new", AuthenticationAdmin(controllers.Admin.TiposDeServico.new));
-  app.post("/admin/tipos-de-servico", AuthenticationAdmin(controllers.Admin.TiposDeServico.create));
-  app.get("/admin/tipos-de-servico/:id", AuthenticationAdmin(controllers.Admin.TiposDeServico.show));
-
-  app.get("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.index));
-  app.get("/admin/ordens-de-servico/new", AuthenticationAdmin(controllers.Admin.OrdensDeServico.new));
-  app.post("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.create));
-  app.get("/admin/ordens-de-servico/:id", AuthenticationAdmin(controllers.Admin.OrdensDeServico.show));
-  app.get("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.edit_execution));
-  app.post("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.update_execution));
-
-
-  app.get("/admin/relatorios", AuthenticationAdmin(controllers.Admin.Relatorios.index));
-  app.get("/admin/relatorios/agendamentos", AuthenticationAdmin(controllers.Admin.Relatorios.agendamentos));
 
 
 };
