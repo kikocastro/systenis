@@ -3,10 +3,6 @@ module.exports = function(conf) {
   var app = conf.app;
   var AuthenticationAdmin = conf.middleware.AuthenticationFor("Admin");
   var AuthenticationCliente = conf.middleware.AuthenticationFor("Cliente");
-  var AuthenticationAtendente = conf.middleware.AuthenticationFor("Atendente");
-  var AuthenticationGerente = conf.middleware.AuthenticationFor("Gerente");
-  var AuthenticationCaixa = conf.middleware.AuthenticationFor("Caixa");
-  var AuthenticationTecnico = conf.middleware.AuthenticationFor("Tecnico");
 
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
@@ -101,94 +97,5 @@ module.exports = function(conf) {
   app.get("/admin/relatorios", AuthenticationAdmin(controllers.Admin.Relatorios.index));
   app.get("/admin/relatorios/agendamentos", AuthenticationAdmin(controllers.Admin.Relatorios.agendamentos));
 
-  /*
-  *
-  * Gerente
-  *
-  */
 
-  //Sign in
-  app.get("/gerente/sessions/new", controllers.Gerente.Sessions.new);
-  app.post("/gerente/sessions", controllers.Gerente.Sessions.create);
-
-  //Logoff
-  app.get("/gerente/sessions/delete", controllers.Gerente.Sessions.delete);
-
-  app.get("/gerente/", AuthenticationGerente(controllers.Gerente.Agenda.index));
-  app.get("/gerente/agenda", AuthenticationGerente(controllers.Gerente.Agenda.index));
-  app.get("/gerente/agenda/:id", AuthenticationGerente(controllers.Gerente.Agenda.show));
-
-  app.get("/gerente/ordens-de-servico", AuthenticationGerente(controllers.Gerente.OrdensDeServico.index));
-  app.get("/gerente/ordens-de-servico/new", AuthenticationGerente(controllers.Gerente.OrdensDeServico.new));
-  app.post("/gerente/ordens-de-servico", AuthenticationGerente(controllers.Gerente.OrdensDeServico.create));
-  app.get("/gerente/ordens-de-servico/:id", AuthenticationGerente(controllers.Gerente.OrdensDeServico.show));
-  app.get("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.edit_execution));
-  app.post("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.update_execution));
-  app.get("/gerente/ordens-de-servico/:id/authorize", AuthenticationGerente(controllers.Gerente.OrdensDeServico.authorize));
-
-  /*
-  *
-  * Atendente
-  *
-  */
-
-  //Sign in
-  app.get("/atendente/sessions/new", controllers.Atendente.Sessions.new);
-  app.post("/atendente/sessions", controllers.Atendente.Sessions.create);
-
-  //Logoff
-  app.get("/atendente/sessions/delete", controllers.Atendente.Sessions.delete);
-
-  //Home
-  app.get("/atendente/", AuthenticationAtendente(controllers.Atendente.Clientes.index));
-
-  //Manipular Cliente
-  app.get("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.index));
-  app.get("/atendente/clientes/new", AuthenticationAtendente(controllers.Atendente.Clientes.new));
-  app.post("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.create));
-  app.get("/atendente/clientes/:id", AuthenticationAtendente(controllers.Atendente.Clientes.show));
-  app.get("/atendente/clientes/:id/agendamentos", AuthenticationAtendente(controllers.Atendente.AgendamentosDoCliente.index));
-
-  //Agendamentos
-  app.get("/atendente/agendamentos/index", AuthenticationAtendente(controllers.Atendente.Agendamentos.index));
-  app.post("/atendente/agendamentos", AuthenticationAtendente(controllers.Atendente.Agendamentos.create));
-  app.get("/atendente/agendamentos/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.show));
-  app.get("/atendente/agendamentos/cancelar/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.cancelar));
-
-  /*
-  *
-  * Tecnico
-  *
-  */
-
-  //Sign in
-  app.get("/tecnico/sessions/new", controllers.Tecnico.Sessions.new);
-  app.post("/tecnico/sessions", controllers.Tecnico.Sessions.create);
-
-  //Logoff
-  app.get("/tecnico/sessions/delete", controllers.Tecnico.Sessions.delete);
-
-  app.get("/tecnico/", AuthenticationTecnico(controllers.Tecnico.Agenda.index));
-  app.get("/tecnico/agenda", AuthenticationTecnico(controllers.Tecnico.Agenda.index));
-  app.get("/tecnico/ordens-de-servico/:id", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.show));
-  app.get("/tecnico/ordens-de-servico/:id/doing", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.doing));
-  app.get("/tecnico/ordens-de-servico/:id/done", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.done));
-
-  /*
-  *
-  * Caixa
-  *
-  */
-
-  //Sign in
-  app.get("/caixa/sessions/new", controllers.Caixa.Sessions.new);
-  app.post("/caixa/sessions", controllers.Caixa.Sessions.create);
-
-  //Logoff
-  app.get("/caixa/sessions/delete", controllers.Caixa.Sessions.delete);
-
-  app.get("/caixa/", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.index));
-  app.get("/caixa/ordens-de-servico", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.index));
-  app.get("/caixa/ordens-de-servico/:id", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.show));
-  app.get("/caixa/ordens-de-servico/:id/pay", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.pay));
 };

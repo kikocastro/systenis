@@ -5,7 +5,7 @@ exports.up = function(pgm) {
     email: "'admin@tos.com'",
     endereco: "'Rua da amargura'",
     cpf: "'111.111.111-11'",
-    password: "'admin'",
+    password: "'123123'",
     tipo: "'admin'"
   };
   pgm.sql('INSERT INTO users (nome, telefone, email, endereco, cpf, password, tipo) VALUES ({nome}, {telefone}, {email}, {endereco}, {cpf}, {password}, {tipo});', admin);
