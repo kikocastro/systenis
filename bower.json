@@ -1,9 +1,9 @@
 {
-  "name": "tos",
+  "name": "systenis",
   "version": "0.0.0",
-  "homepage": "https://github.com/joao-marinho/tos",
+  "homepage": "https://github.com/kikocastro/systenis",
   "authors": [
-    "JoaoB <joao.batista665@gmail.com>"
+    "Group2"
   ],
   "license": "MIT",
   "ignore": [
