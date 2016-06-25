@@ -39,3 +39,9 @@ ECMDERR Failed to execute "git ls-remote --tags --heads git://github.com/twbs/bo
 ```
 git config --global url."https://".insteadOf git://
 ```
+
+## Migrations
+
+Para rodar migration:
+
+```node_modules/node-pg-migrate/bin/pg-migrate create CreateUsers```
