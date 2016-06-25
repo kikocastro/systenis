@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('tos:server');
+var debug = require('debug')('systenis:server');
 var http = require('http');
 
 /**
