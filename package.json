@@ -16,7 +16,7 @@
     "express": "~4.12.4",
     "express-session": "^1.11.3",
     "get-parameter-names": "^0.2.0",
-    "jade": "~1.9.2",
+    "pug": "*",
     "lodash": "^3.10.0",
     "moment": "^2.10.5",
     "morgan": "~1.5.3",
