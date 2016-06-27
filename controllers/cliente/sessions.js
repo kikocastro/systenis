@@ -19,7 +19,6 @@ module.exports = function(models, services) {
     },
     delete: function(req, res, next) {
       var session = req.session;
-      console.log('** saiu', session)
       return Authentication.logout(session).then(function() {
         res.redirect("/");
       });
