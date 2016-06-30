@@ -1,29 +1,31 @@
 extends ../layout
 
+block page_title
+  | Clientes
+
 block main_content
-  a(href="/intranet/clientes/new") Cadastrar novo cliente
-  table.table.table-striped
-    thead
-      tr
-        th ID
-        th Nome
-        th Telefone
-        th Email
-        th CPF
-        th Ações
-    tbody
-      each cliente in clientes
-        tr
-          th(scope="row")= cliente.id
-          td= cliente.nome
-          td= cliente.telefone
-          td= cliente.email
-          td= cliente.cpf
-          td
-            a(href="/intranet/clientes/" + cliente.id) Ver
-            | &nbsp;&nbsp;
-            a(href="/intranet/clientes/" + cliente.id + "/edit") Editar
-            | &nbsp;&nbsp;
-            a(href="/intranet/clientes/" + cliente.id + "/delete") Remover
-
-
+  .heading
+    a.btn.btn-template-main.btn-md(href="/intranet/clientes/new") Cadastrar novo cliente
+  .row
+    #customer-orders.col-md-12
+      .box
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th ID
+                th Nome
+                th Email
+                th CPF
+                th Ações
+            tbody
+              each cliente in clientes
+                tr
+                  th= cliente.id
+                  td= cliente.nome
+                  td= cliente.email
+                  td= cliente.cpf
+                  td
+                    a.btn.btn-template-main.btn-sm(href="/intranet/clientes/" + cliente.id) Ver
+                    a.btn.btn-template-main.btn-sm(href="/intranet/clientes/" + cliente.id + "/edit") Editar
+                    a.btn.btn-template-main.btn-sm(href="/intranet/clientes/" + cliente.id + "/delete") Remover

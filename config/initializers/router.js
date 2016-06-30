@@ -36,11 +36,11 @@ module.exports = function(conf) {
 
   // clientes
   app.get("/intranet/clientes", AuthenticationFuncionario(controllers.Funcionario.Clientes.index));
-  app.get("/intranet/clientes/new", AuthenticationFuncionario(controllers.Funcionario.Clientes.new));
   app.post("/intranet/clientes", AuthenticationFuncionario(controllers.Funcionario.Clientes.create));
+  app.get("/intranet/clientes/new", AuthenticationFuncionario(controllers.Funcionario.Clientes.new));
   app.get("/intranet/clientes/:id", AuthenticationFuncionario(controllers.Funcionario.Clientes.show));
-  app.get("/intranet/clientes/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Clientes.edit));
   app.post("/intranet/clientes/:id", AuthenticationFuncionario(controllers.Funcionario.Clientes.update));
+  app.get("/intranet/clientes/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Clientes.edit));
   app.get("/intranet/clientes/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Clientes.destroy));
 
 

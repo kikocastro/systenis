@@ -1,27 +1,23 @@
-.form-group
-  .col-sm-10
+.col-sm-12
+  .form-group
     input#inputId.form-control(type='hidden', name="cliente[id]", value=(cliente ? cliente.id : null))
 
-.form-group
-  label.col-sm-2.control-label(for='inputNome') Nome
-  .col-sm-10
+.col-sm-6.text-left
+  .form-group
+    label(for='inputNome') Nome
     input#inputNome.form-control(type='text', name="cliente[nome]", value=(cliente ? cliente.nome : null), placeholder='Nome', required)
 
-.form-group
-  label.col-sm-2.control-label(for='inputNome') Sobrenome
-  .col-sm-10
+.col-sm-6.text-left
+  .form-group
+    label(for='inputSobrenome') Sobrenome
     input#inputSobrenome.form-control(type='text', name="cliente[sobrenome]", value=(cliente ? cliente.sobrenome : null), placeholder='Sobrenome', required)
 
-.form-group
-  label.col-sm-2.control-label(for='inputEmail') Email
-  .col-sm-10
+.col-sm-6.text-left
+  .form-group
+    label(for='inputEmail') Email
     input#inputEmail.form-control(type='email', name="cliente[email]", value=(cliente ? cliente.email : null), placeholder='Email', required)
 
-.form-group
-  label.col-sm-2.control-label(for='inputCpf') CPF
-  .col-sm-10
+.col-sm-6.text-left
+  .form-group
+    label(for='inputCpf') CPF
     input#inputCpf.form-control(type='text', name="cliente[cpf]", value=(cliente ? cliente.cpf : null), placeholder='CPF', required)
-
-.form-group
-  .col-sm-offset-2.col-sm-10
-    button.btn.btn-default(type='submit') Salvar
