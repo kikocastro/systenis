@@ -35,12 +35,7 @@ html
             .row
               .col-xs-12
                 .login
-                  a(href='#', data-toggle='modal', data-target='#login-modal')
-                    i.fa.fa-sign-in
-                    span.hidden-xs.text-uppercase Cadastrar
-                  a(href='customer-register.html')
-                    i.fa.fa-user
-                    span.hidden-xs.text-uppercase Entrar
+                  block nav_menu
 
         .navbar-affixed-top(data-spy='affix', data-offset-top='200')
           #navbar.navbar.navbar-default.yamm(role='navigation')
@@ -57,12 +52,7 @@ html
               // /.navbar-header
               #navigation.navbar-collapse.collapse
                 ul.nav.navbar-nav.navbar-right
-                  li
-                    a(href='#') Home
-                  li
-                    a(href='#') Meus pedidos
-                  li
-                    a(href='#') Meu perfil
+                  block main_menu
 
       #heading-breadcrumbs
         .container

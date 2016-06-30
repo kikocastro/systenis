@@ -21,7 +21,7 @@ module.exports = function(models, services) {
       var session = req.session;
 
       return Authentication.logout(session).then(function() {
-        res.redirect("/intranet");
+        res.redirect("/intranet/");
       });
     }
   };
