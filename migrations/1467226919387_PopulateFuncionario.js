@@ -8,7 +8,7 @@ exports.up = function(pgm) {
     cpf: "'999999999-00'",
     rg: "'999999999'",
     data_de_nascimento: "'1989-01-08'",
-    password: "'123123123'",
+    password: "'123123'",
     carteira_de_trabalho: "'123'",
     data_de_inicio_do_contrato: "'2015-04-02'",
     papel: "'admin'"

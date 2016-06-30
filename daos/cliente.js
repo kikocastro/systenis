@@ -1,6 +1,5 @@
 module.exports = function(db, BasicDao) {
   var fields = [
-		"id",
 		"nome",
 		"sobrenome",
 		"password",

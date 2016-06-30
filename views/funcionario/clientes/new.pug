@@ -1,0 +1,14 @@
+extends ../layout
+
+block main_content
+
+  h1.text-center Cadastrar novo cliente
+
+  form.form-horizontal(action="/intranet/clientes/", method="POST")
+
+    include partials/form.jade
+
+    button.btn.btn-default
+      a(href="/intranet/clientes/") Voltar
+
+

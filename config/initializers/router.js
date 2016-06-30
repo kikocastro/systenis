@@ -1,11 +1,10 @@
 module.exports = function(conf) {
   var controllers = conf.controllers;
   var app = conf.app;
-  var AuthenticationAdmin = conf.middleware.AuthenticationFor("Admin");
   var AuthenticationCliente = conf.middleware.AuthenticationFor("Cliente");
+  var AuthenticationFuncionario = conf.middleware.AuthenticationFor("Funcionario");
 
   app.get("/", controllers.Public.index);
-  app.get("/internal", controllers.Public.internal);
 
   ////////////////////
   // Cliente
@@ -21,6 +20,28 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/cliente/sessions/delete", controllers.Cliente.Sessions.delete);
+
+  ////////////////////
+  // Funcionario
+  ////////////////////
+
+  //Sign in
+  app.get("/intranet", controllers.Funcionario.Sessions.new);
+  app.post("/funcionario/sessions", controllers.Funcionario.Sessions.create);
+
+  // Logoff
+  app.get("/funcionario/sessions/delete", controllers.Funcionario.Sessions.delete);
+
+  // Intranet
+
+  // clientes
+  app.get("/intranet/clientes", AuthenticationFuncionario(controllers.Funcionario.Clientes.index));
+  app.get("/intranet/clientes/new", AuthenticationFuncionario(controllers.Funcionario.Clientes.new));
+  app.post("/intranet/clientes", AuthenticationFuncionario(controllers.Funcionario.Clientes.create));
+  app.get("/intranet/clientes/:id", AuthenticationFuncionario(controllers.Funcionario.Clientes.show));
+  app.get("/intranet/clientes/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Clientes.edit));
+  app.post("/intranet/clientes/:id", AuthenticationFuncionario(controllers.Funcionario.Clientes.update));
+  app.get("/intranet/clientes/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Clientes.destroy));
 
 
 };

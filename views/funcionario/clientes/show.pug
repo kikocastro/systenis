@@ -1,0 +1,28 @@
+extends ../layout
+
+block main_content
+  strong ID:
+  =cliente.id
+  br
+
+  strong Nome:
+  =cliente.nome
+  br
+
+  strong Telefone:
+  =cliente.telefone
+  br
+
+  strong Email:
+  =cliente.email
+  br
+
+  strong cpf:
+  =cliente.cpf
+  br
+
+  a(href="/intranet/clientes/" + cliente.id + "/edit") Editar
+  | &nbsp; &nbsp;
+  a(href="/intranet/clientes/" + cliente.id + "/delete") Remover
+  | &nbsp; &nbsp;
+  a(href="/intranet/clientes/") Voltar

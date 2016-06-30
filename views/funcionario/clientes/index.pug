@@ -1,7 +1,7 @@
 extends ../layout
 
 block main_content
-  a(href="/admin/clientes/new") Cadastrar novo cliente
+  a(href="/intranet/clientes/new") Cadastrar novo cliente
   table.table.table-striped
     thead
       tr
@@ -20,6 +20,10 @@ block main_content
           td= cliente.email
           td= cliente.cpf
           td
-            a(href="/admin/clientes/"+cliente.id) Ver
+            a(href="/intranet/clientes/" + cliente.id) Ver
+            | &nbsp;&nbsp;
+            a(href="/intranet/clientes/" + cliente.id + "/edit") Editar
+            | &nbsp;&nbsp;
+            a(href="/intranet/clientes/" + cliente.id + "/delete") Remover
 
-  
+

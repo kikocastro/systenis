@@ -1,0 +1,13 @@
+extends ../layout
+
+block main_content
+
+  h1.text-center Editar cliente
+
+  form.form-horizontal(action="/intranet/clientes/" + cliente.id, method="POST")
+
+    include partials/form.jade
+
+  a(href="/intranet/clientes/") Voltar
+
+

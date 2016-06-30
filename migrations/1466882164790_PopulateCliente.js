@@ -9,7 +9,7 @@ exports.up = function(pgm) {
     rg: "'123123123'",
     telefone: "'12345678'",
     data_de_nascimento: "'1989-01-08'",
-    password: "'123123123'"
+    password: "'123123'"
   };
   pgm.sql('INSERT INTO clientes (nome, sobrenome, telefone, sexo, email, cpf, rg, password) VALUES ({nome}, {sobrenome}, {telefone}, {sexo}, {email}, {cpf}, {rg}, {password});', cliente);
 
