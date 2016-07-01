@@ -1,0 +1,43 @@
+.col-sm-12
+  .form-group
+    input#inputId.form-control(type='hidden', name="produto[id]", value=(produto ? produto.id : null))
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputNome') Nome
+    input#inputNome.form-control(type='text', name="produto[nome]", value=(produto ? produto.nome : null), placeholder='Nome', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputCores') Cores
+    input#inputCores.form-control(type='text', name="produto[cores]", value=(produto ? produto.cores : null), placeholder='Cores')
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputFabricante') Fabricante
+    input#inputFabricante.form-control(type='text', name="produto[fabricante]", value=(produto ? produto.fabricante : null), placeholder='Fabricante', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputPeso') Peso
+    input#inputPeso.form-control(type='number', name="produto[peso]", value=(produto ? produto.peso : null), placeholder='Peso')
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputQuantidade') Quantidade no estoque
+    input#inputQuantidade.form-control(type='number', name="produto[quantidade_estoque]", value=(produto ? produto.quantidade_estoque : null), placeholder='Quantidade no estoque', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputTamanho') Tamanho
+    input#inputTamanho.form-control(type='number', name="produto[tamanho]", value=(produto ? produto.tamanho : null), placeholder='Tamanho', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputPreco') Preço
+    input#inputPreco.form-control(type='number', name="produto[preco]", value=(produto ? produto.preco : null), placeholder='Preço', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputImagem') URL da Imagem
+    input#inputImagem.form-control(type='text', name="produto[imagem]", value=(produto ? produto.imagem : null), placeholder='URL da Imagem', required)

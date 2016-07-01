@@ -1,4 +1,4 @@
-extends ../layout
+extends ../funcionario_layout
 
 block page_title
   | Clientes
@@ -10,23 +10,22 @@ block main_content
         .heading
           h2 Detalhes do cliente
       .col-md-8.col-md-offset-2
-        form(action="/intranet/clientes/" + cliente.id, method="POST")
-          .row
-            .col-sm-6.col-md-offset-3.text-left
-              p.lead ID: #{cliente.id}
-              p.lead Nome: #{cliente.nome}
-              p.lead Sobrenome: #{cliente.sobrenome}
-              p.lead Telefone: #{cliente.telefone}
-              p.lead CPF: #{cliente.cpf}
+        .row
+          .col-sm-6.col-md-offset-3.text-left
+            p.lead ID: #{cliente.id}
+            p.lead Nome: #{cliente.nome}
+            p.lead Sobrenome: #{cliente.sobrenome}
+            p.lead Telefone: #{cliente.telefone}
+            p.lead CPF: #{cliente.cpf}
 
-              a.btn.btn-template-main(href="/intranet/clientes/")
-                i.fa.fa-toggle-left
-                |  Voltar
-              | &nbsp; &nbsp;
-              a.btn.btn-template-main(href="/intranet/clientes/" + cliente.id + "/edit")
-                i.fa.fa-pencil-square-o
-                |  Editar
-              | &nbsp; &nbsp;
-              a.btn.btn-template-main(href="/intranet/clientes/" + cliente.id + "/delete")
-                i.fa.fa-trash-o
-                |  Remover
+            a.btn.btn-template-main(href="/intranet/clientes/")
+              i.fa.fa-toggle-left
+              |  Voltar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/clientes/" + cliente.id + "/edit")
+              i.fa.fa-pencil-square-o
+              |  Editar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/clientes/" + cliente.id + "/delete")
+              i.fa.fa-trash-o
+              |  Remover

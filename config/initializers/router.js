@@ -48,5 +48,13 @@ module.exports = function(conf) {
   app.get("/intranet/clientes/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Clientes.edit));
   app.get("/intranet/clientes/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Clientes.destroy));
 
+  // produtos
+  app.get("/intranet/produtos", AuthenticationFuncionario(controllers.Funcionario.Produtos.index));
+  app.post("/intranet/produtos", AuthenticationFuncionario(controllers.Funcionario.Produtos.create));
+  app.get("/intranet/produtos/new", AuthenticationFuncionario(controllers.Funcionario.Produtos.new));
+  app.get("/intranet/produtos/:id", AuthenticationFuncionario(controllers.Funcionario.Produtos.show));
+  app.post("/intranet/produtos/:id", AuthenticationFuncionario(controllers.Funcionario.Produtos.update));
+  app.get("/intranet/produtos/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Produtos.edit));
+  app.get("/intranet/produtos/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Produtos.destroy));
 
 };

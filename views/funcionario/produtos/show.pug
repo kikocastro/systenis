@@ -1,0 +1,36 @@
+extends ../funcionario_layout
+
+block page_title
+  | Produtos
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Detalhes do produto
+      .col-md-8.col-md-offset-2
+        .row
+          .col-sm-6.text-left
+            p.lead ID: #{produto.id}
+            p.lead Nome: #{produto.nome}
+            p.lead Cores: #{produto.cores}
+            p.lead Fabricante: #{produto.fabricante}
+            p.lead Peso com Embalagem: #{produto.peso}
+            p.lead Tamanho: #{produto.tamanho}
+            p.lead Preço: #{produto.preco}
+          .col-sm-6
+            .image
+              img.img-responsive(src=produto.imagem)
+        .row
+          a.btn.btn-template-main(href="/intranet/produtos/")
+            i.fa.fa-toggle-left
+            |  Voltar
+          | &nbsp; &nbsp;
+          a.btn.btn-template-main(href="/intranet/produtos/" + produto.id + "/edit")
+            i.fa.fa-pencil-square-o
+            |  Editar
+          | &nbsp; &nbsp;
+          a.btn.btn-template-main(href="/intranet/produtos/" + produto.id + "/delete")
+            i.fa.fa-trash-o
+            |  Remover
