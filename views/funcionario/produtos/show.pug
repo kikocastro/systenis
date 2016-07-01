@@ -12,7 +12,8 @@ block main_content
       .col-md-8.col-md-offset-2
         .row
           .col-sm-6.col-md-offset-3.text-left
-            p.lead img(src="http://" + produto.imagem, max-width='300px')
+            .image
+              img.img-responsive(src=produto.imagem)
             p.lead ID: #{produto.id}
             p.lead Nome: #{produto.nome}
             p.lead Cores: #{produto.cores}
