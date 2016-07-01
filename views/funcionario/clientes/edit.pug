@@ -1,13 +1,26 @@
 extends ../layout
 
+block page_title
+  | Clientes
+
 block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Edite os dados do cliente
+      .col-md-8.col-md-offset-2
+        form(action="/intranet/clientes/" + cliente.id, method="POST")
+          .row
+            include partials/form.jade
 
-  h1.text-center Editar cliente
-
-  form.form-horizontal(action="/intranet/clientes/" + cliente.id, method="POST")
-
-    include partials/form.jade
-
-  a(href="/intranet/clientes/") Voltar
-
+            .col-sm-12.text-right
+              button.btn.btn-default
+                a(href="/intranet/clientes/")
+                i.fa.fa-close
+                |  Cancelar
+              | &nbsp; &nbsp;
+              button.btn.btn-template-main(type='submit')
+                i.fa.fa-save
+                |  Criar
 

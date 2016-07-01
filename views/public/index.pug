@@ -1,7 +1,10 @@
-extends ../layout
+extends ../main_layout
 
-block content
+include ../partials/menus.jade
+
+block page_title
+  | Seja bem-vindo(a)
+
+block main_content
   h1.text-center
-    if !!currentUser
-      = currentUser.name
-    | Systenis Loja Virtual
+   | produtos ...

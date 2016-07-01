@@ -1,5 +1,21 @@
-extends ../layout_with_menu
+extends ../main_layout
 
-block logout_button
-  li
-    a(href='/funcionarios/sessions/delete') Sair
+block nav_menu
+  if !!currentUser
+    a(href="#")
+      i.fa.fa-user
+      span.hidden-xs.text-uppercase Olá #{currentUser['nome']}
+    a(href='/funcionarios/sessions/delete')
+      i.fa.fa-sign-out
+      span.hidden-xs.text-uppercase Sair
+  else
+    | &nbsp;
+
+block main_menu
+  if !!currentUser
+    li
+      a(href='/intranet/clientes') Clientes
+    li
+      a(href='#') Funcionários
+    li
+      a(href='#') Pedidos
