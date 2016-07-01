@@ -6,6 +6,7 @@ module.exports = function(conf) {
 
   app.get("/", controllers.Public.index);
   app.get("/produtos/:id", controllers.Public.show);
+  app.get("/carrinho", controllers.Public.carrinho);
 
   ////////////////////
   // Cliente

@@ -6,6 +6,8 @@ module.exports = function(models) {
       scope.currentUser = scope.session.currentUser;
     },
     show: function(scope) {
+    },
+    carrinho: function(scope) {
     }
 
   };
