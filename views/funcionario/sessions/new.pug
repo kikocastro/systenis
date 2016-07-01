@@ -12,14 +12,14 @@ block main_content
       .col-md-8.col-md-offset-2
         form(action="/funcionario/sessions/" method="POST")
           .row
-            .col-sm-6.text-left
+            .col-sm-6.col-md-offset-3.text-left
               .form-group
                 label(for='inputEmail') Email
                 input#inputEmail.form-control(type='email', name="funcionario[email]", placeholder='Email', required)
-            .col-sm-6.text-left
+            .col-sm-6.col-md-offset-3.text-left
               .form-group
                 label(for='inputSenha') Senha
                 input#inputSenha.form-control(type='password', name="funcionario[password]", placeholder='Senha', required)
-            .col-sm-12.text-right
+            .col-sm-6.col-md-offset-3.text-right
               button.btn.btn-default(type='submit')
                 |  Entrar

@@ -9,9 +9,7 @@ block nav_menu
       i.fa.fa-sign-out
       span.hidden-xs.text-uppercase Sair
   else
-    a(href='/funcionarios/sessions/new')
-      i.fa.fa-sign-in
-      span.hidden-xs.text-uppercase Entrar
+    | &nbsp;
 
 block main_menu
   if !!currentUser
