@@ -1,0 +1,46 @@
+extends ../main_layout
+
+include ../partials/menus.jade
+
+block page_title
+  | Detalhes do produto
+
+block main_content
+  .content
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          #productMain.row
+            .col-sm-6
+              #mainImage
+                img.img-responsive(src='/img/detailbig1.jpg', alt='')
+            .col-sm-6
+              .box
+                form(action="/carinho/update/:produto_id")
+                  .col-md-6
+                    .sizes
+                      h4 Tamanho
+                      .form-group
+                        select#tamanho.form-control
+                          option(value='36') 36
+                          option(value='38') 38
+                          option(value='40') 40
+                  .col-md-6
+                    .sizes
+                      h4 Cor
+                      .form-group
+                        select#tamanho.form-control
+                          option(value='vermelho') vermelho
+                          option(value='azul') azul
+                          option(value='branco e preto') branco e preto
+                    p &nbsp;
+                  p.price R$ 124,00
+
+                  p.text-center
+                    button.btn.btn-template-main(type='submit')
+                      i.fa.fa-shopping-cart
+                      |  Comprar
+              h4 Descrição do produto
+              p
+                | White lace top, woven, has a round neck, short sleeves, has knitted lining attached
+

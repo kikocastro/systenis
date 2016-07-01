@@ -5,8 +5,7 @@ module.exports = function(models) {
     index: function(scope) {
       scope.currentUser = scope.session.currentUser;
     },
-
-    internal: function(scope) {
+    show: function(scope) {
     }
 
   };

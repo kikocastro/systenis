@@ -17,6 +17,10 @@ block nav_menu
 block main_menu
   li
     a(href='/intranet/clientes') Home
+  li
+    a(href='/intranet/clientes')
+      i.fa.fa-shopping-cart
+      | Carrinho (1)
   if !!currentUser
     li
       a(href='#') Pedidos

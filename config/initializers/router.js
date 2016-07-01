@@ -5,6 +5,7 @@ module.exports = function(conf) {
   var AuthenticationFuncionario = conf.middleware.AuthenticationFor("Funcionario");
 
   app.get("/", controllers.Public.index);
+  app.get("/produtos/:id", controllers.Public.show);
 
   ////////////////////
   // Cliente
