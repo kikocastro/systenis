@@ -11,17 +11,18 @@ block main_content
           #productMain.row
             .col-sm-6
               #mainImage
-                img.img-responsive(src='/img/detailbig1.jpg', alt='')
+                img.img-responsive(src=produto.imagem, alt='')
             .col-sm-6
-              h2 Tênis Naiqui
+              h2=produto.nome
               .box
                 h4 Descrição do produto
-                p
-                  | White lace top, woven, has a round neck, short sleeves, has knitted lining attached
+                p Fabricante: #{produto.fabricante}
+                p Cores: #{produto.cores}
+                p Peso com Embalagem: #{produto.peso} Kg
                 p.price R$ 124,00
 
                 form(action="/carinho/6")
-                  .col-md-6
+                  .col-md-6.col-md-offset-3
                     .sizes
                       h4 Tamanho
                       .form-group
@@ -29,14 +30,6 @@ block main_content
                           option(value='36') 36
                           option(value='38') 38
                           option(value='40') 40
-                  .col-md-6
-                    .sizes
-                      h4 Cor
-                      .form-group
-                        select#tamanho.form-control
-                          option(value='vermelho') vermelho
-                          option(value='azul') azul
-                          option(value='branco e preto') branco e preto
                     p &nbsp;
 
                   p.text-center

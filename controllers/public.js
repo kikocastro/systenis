@@ -11,6 +11,11 @@ module.exports = function(models) {
       });
     },
     show: function(scope) {
+      var produtoId = scope.params.id;
+
+      return Produto.find(produtoId).then(function(produto) {
+        scope.produto = produto;
+      });
     },
     createCarrinho: function(scope) {
     },
