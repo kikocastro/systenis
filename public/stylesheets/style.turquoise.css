@@ -2304,6 +2304,7 @@ fieldset[disabled] .btn-template-primary.active {
 .product:hover .buttons {
   clear: both;
   position: absolute;
+  display: inherit;
   top: 0;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -3529,7 +3530,7 @@ a.list-group-item.active > .badge,
 /*!
  * Yamm!3 - Yet another megamenu for Bootstrap 3
  * http://geedmo.github.com/yamm3
- * 
+ *
  * @geedmo - Licensed under the MIT license
  */
 .yamm .nav,

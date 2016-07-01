@@ -20,8 +20,9 @@ block main_content
                     p.subtitle= produto.fabricante
                 p.price R$ #{produto.preco}
               .buttons
-                a.btn.btn-default(href="/produtos/1")
-                  | View detail
-                a.btn.btn-template-main(href="shop-basket.html")
+                a.btn.btn-default(href="/produtos/" + produto.id)
+                  | Ver detalhes
+                br
+                a.btn.btn-template-main(href="#")
                   i.fa.fa-shopping-cart
-                    | Add to cart
+                    | Comprar
