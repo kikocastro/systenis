@@ -15,7 +15,13 @@ block main_content
               #mainImage
                 img.img-responsive(src='/img/detailbig1.jpg', alt='')
             .col-sm-6
+              h2 Tênis Naiqui
               .box
+                h4 Descrição do produto
+                p
+                  | White lace top, woven, has a round neck, short sleeves, has knitted lining attached
+                p.price R$ 124,00
+
                 form(action="/carinho/update/:produto_id")
                   .col-md-6
                     .sizes
@@ -34,13 +40,13 @@ block main_content
                           option(value='azul') azul
                           option(value='branco e preto') branco e preto
                     p &nbsp;
-                  p.price R$ 124,00
 
                   p.text-center
-                    button.btn.btn-template-main(type='submit')
+                    a.btn.btn-default(href="/")
+                      i.fa.fa-gift
+                      |  Voltar à lista
+                    | &nbsp;
+                    button.btn.btn-success(type='submit')
                       i.fa.fa-shopping-cart
                       |  Comprar
-              h4 Descrição do produto
-              p
-                | White lace top, woven, has a round neck, short sleeves, has knitted lining attached
 
