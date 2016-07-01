@@ -1,23 +1,24 @@
-extends ../layout
-
 block nav_menu
   if !!currentUser
     a(href="#")
       i.fa.fa-user
       span.hidden-xs.text-uppercase Olá #{currentUser['nome']}
-    a(href='/funcionarios/sessions/delete')
+    a(href='/cliente/sessions/delete')
       i.fa.fa-sign-out
       span.hidden-xs.text-uppercase Sair
   else
-    a(href='/funcionarios/sessions/new')
+    a(href='/cliente/cliente/new')
+      i.fa.fa-plus
+      span.hidden-xs.text-uppercase Cadastrar
+    a(href='/cliente/sessions/new')
       i.fa.fa-sign-in
       span.hidden-xs.text-uppercase Entrar
 
 block main_menu
+  li
+    a(href='/intranet/clientes') Home
   if !!currentUser
     li
-      a(href='/intranet/clientes') Clientes
-    li
-      a(href='#') Funcionários
-    li
       a(href='#') Pedidos
+    li
+      a(href='#') Perfil
