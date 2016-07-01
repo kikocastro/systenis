@@ -1,39 +1,33 @@
-  extends ../funcionario_layout
+extends ../funcionario_layout
 
-  block page_title
-    | Produtos
+block page_title
+  | Produtos
 
-  block main_content
-    .heading
-      a.btn.btn-template-main.btn-md(href="/intranet/produtos/new") Cadastrar novo produto
-    .row
-      #customer-orders.col-md-12
-        .box
-          .table-responsive
-            table.table.table-hover
-              thead
+block main_content
+  .heading
+    a.btn.btn-template-main.btn-md(href="/intranet/produtos/new") Cadastrar novo produto
+  .row
+    #customer-orders.col-md-12
+      .box
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th ID
+                th Nome
+                th Fabricante
+                th Quantidade em Estoque
+                th Preço
+                th Ações
+            tbody
+              each produto in produtos
                 tr
-                  th ID
-                  th Imagem
-                  th Nome
-                  th Cores
-                  th Fabricante
-                  th Peso com Embalagem
-                  th Tamanho
-                  th Preço
-                  th Ações
-              tbody
-                each produto in produtos
-                  tr
-                    th= produto.id
-                    td= img(src=produto.imagem, max-width='150px')
-                    td= produto.nome
-                    td= produto.cores
-                    td= produto.fabricante
-                    td= produto.peso + "kg"
-                    td= produto.tamanho
-                    td= "R$" + produto.preco
-                    td
-                      a.btn.btn-template-main.btn-sm(href="/intranet/produtos/" + produto.id) Ver
-                      a.btn.btn-template-main.btn-sm(href="/intranet/produtos/" + produto.id + "/edit") Editar
-                      a.btn.btn-template-main.btn-sm(href="/intranet/produtos/" + produto.id + "/delete") Remover
+                  th= produto.id
+                  td= produto.nome
+                  td= produto.fabricante
+                  td= produto.quantidade_estoque
+                  td= "R$ " + produto.preco
+                  td
+                    a.btn.btn-template-main.btn-sm(href="/intranet/produtos/" + produto.id) Ver
+                    a.btn.btn-template-main.btn-sm(href="/intranet/produtos/" + produto.id + "/edit") Editar
+                    a.btn.btn-template-main.btn-sm(href="/intranet/produtos/" + produto.id + "/delete") Remover
