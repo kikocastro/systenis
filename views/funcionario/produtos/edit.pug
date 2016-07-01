@@ -1,22 +1,22 @@
 extends ../layout
 
 block page_title
-  | Clientes
+  | Produtos
 
 block main_content
   section
     .row.text-center
       .col-md-12
         .heading
-          h2 Edite os dados do cliente
+          h2 Edite os dados do produto
       .col-md-8.col-md-offset-2
-        form(action="/intranet/clientes/" + cliente.id, method="POST")
+        form(action="/intranet/produtos/" + produto.id, method="POST")
           .row
             include partials/form.jade
 
             .col-sm-12.text-right
               button.btn.btn-default
-                a(href="/intranet/clientes/")
+                a(href="/intranet/produtos/")
                 i.fa.fa-close
                 |  Cancelar
               | &nbsp; &nbsp;
