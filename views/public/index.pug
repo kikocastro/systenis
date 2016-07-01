@@ -6,5 +6,22 @@ block page_title
   | Seja bem-vindo(a)
 
 block main_content
-  h1.text-center
-   | produtos ...
+  .content
+    .container
+      .row.products
+        .col-md-3.col-sm-4
+          .product
+            .image
+              a(href="shop-detail.html")
+                img.img-responsive.image1(src="img/product1.jpg")
+            .text
+              h3
+                a(href="shop-detail.html")
+                  | Fur coat with very but very very long name
+              p.price $143.00
+            .buttons
+              a.btn.btn-default(href="shop-detail.html")
+                | View detail
+              a.btn.btn-template-main(href="shop-basket.html")
+                i.fa.fa-shopping-cart
+                  | Add to cart
