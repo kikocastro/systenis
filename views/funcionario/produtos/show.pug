@@ -10,26 +10,25 @@ block main_content
         .heading
           h2 Detalhes do produto
       .col-md-8.col-md-offset-2
-        form(action="/intranet/produtos/" + produto.id, method="POST")
-          .row
-            .col-sm-6.col-md-offset-3.text-left
-              p.lead img(src="http://" + produto.imagem, max-width='300px')
-              p.lead ID: #{produto.id}
-              p.lead Nome: #{produto.nome}
-              p.lead Cores: #{produto.cores}
-              p.lead Fabricante: #{produto.fabricante}
-              p.lead Peso com Embalagem: #{produto.peso}
-              p.lead Tamanho: #{produto.tamanho}
-              p.lead Preço: #{produto.preco}
+        .row
+          .col-sm-6.col-md-offset-3.text-left
+            p.lead img(src="http://" + produto.imagem, max-width='300px')
+            p.lead ID: #{produto.id}
+            p.lead Nome: #{produto.nome}
+            p.lead Cores: #{produto.cores}
+            p.lead Fabricante: #{produto.fabricante}
+            p.lead Peso com Embalagem: #{produto.peso}
+            p.lead Tamanho: #{produto.tamanho}
+            p.lead Preço: #{produto.preco}
 
-              a.btn.btn-template-main(href="/intranet/produtos/")
-                i.fa.fa-toggle-left
-                |  Voltar
-              | &nbsp; &nbsp;
-              a.btn.btn-template-main(href="/intranet/produtos/" + produto.id + "/edit")
-                i.fa.fa-pencil-square-o
-                |  Editar
-              | &nbsp; &nbsp;
-              a.btn.btn-template-main(href="/intranet/produtos/" + produto.id + "/delete")
-                i.fa.fa-trash-o
-                |  Remover
+            a.btn.btn-template-main(href="/intranet/produtos/")
+              i.fa.fa-toggle-left
+              |  Voltar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/produtos/" + produto.id + "/edit")
+              i.fa.fa-pencil-square-o
+              |  Editar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/produtos/" + produto.id + "/delete")
+              i.fa.fa-trash-o
+              |  Remover
