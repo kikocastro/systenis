@@ -7,7 +7,13 @@ module.exports = function(models) {
     },
     show: function(scope) {
     },
+    createCarrinho: function(scope) {
+    },
     carrinho: function(scope) {
+    },
+    updateCarrinho: function(scope) {
+    },
+    destroyCarrinho: function(scope) {
     }
 
   };
