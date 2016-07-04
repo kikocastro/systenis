@@ -9,7 +9,7 @@ module.exports = function(models) {
       var cliente = req.body.cliente;
 
       return Cliente.create(cliente).then(function(cliente) {
-        res.redirect("/cliente/");
+        res.redirect("/cliente/sessions/new");
       }, function(err) {
         next(err);
       });
