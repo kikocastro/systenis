@@ -2244,6 +2244,8 @@ fieldset[disabled] .btn-template-primary.active {
 }
 .product .image {
   overflow: hidden;
+  min-height: 254px;
+  max-height: 255px;
 }
 .product .image img {
   -webkit-transition: all 0.2s ease-out;
