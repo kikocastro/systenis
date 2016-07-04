@@ -26,6 +26,12 @@ module.exports = function(conf) {
   //Logoff
   app.get("/cliente/sessions/delete", controllers.Cliente.Sessions.delete);
 
+  //Perfil
+  app.get("/cliente/perfil", AuthenticationCliente(controllers.Cliente.Perfil.show));
+  app.get("/cliente/perfil/edit", AuthenticationCliente(controllers.Cliente.Perfil.edit));
+  app.post("/cliente/perfil", AuthenticationCliente(controllers.Cliente.Perfil.update));
+
+
   ////////////////////
   // Funcionario
   ////////////////////
@@ -38,6 +44,11 @@ module.exports = function(conf) {
   app.get("/funcionario/sessions/delete", controllers.Funcionario.Sessions.delete);
 
   // Intranet
+
+  // perfil
+  app.get("/intranet/perfil", AuthenticationFuncionario(controllers.Funcionario.Perfil.show));
+  app.get("/intranet/perfil/edit", AuthenticationFuncionario(controllers.Funcionario.Perfil.edit));
+  app.post("/intranet/perfil", AuthenticationFuncionario(controllers.Funcionario.Perfil.update));
 
   // clientes
   app.get("/intranet/clientes", AuthenticationFuncionario(controllers.Funcionario.Clientes.index));

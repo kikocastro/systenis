@@ -1,0 +1,73 @@
+extends ../layout
+
+block page_title
+  | Perfil
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Editar dados cadastrais
+      .col-md-8.col-md-offset-2
+        form(action="/cliente/perfil", method="POST")
+          .row
+            .col-sm-12
+              .form-group
+                input#inputId.form-control(type='hidden', name="cliente[id]", value=(cliente ? cliente.id : null))
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputNome') Nome
+                input#inputNome.form-control(type='text', name="cliente[nome]", value=(cliente ? cliente.nome : null), placeholder='Nome', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputSobrenome') Sobrenome
+                input#inputSobrenome.form-control(type='text', name="cliente[sobrenome]", value=(cliente ? cliente.sobrenome : null), placeholder='Sobrenome', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputSenha') Senha
+                input#inputSenha.form-control(type='password', name="cliente[password]", value=(cliente ? cliente.password : null), placeholder='Senha', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputEmail') Email
+                input#inputEmail.form-control(type='email', name="cliente[email]", value=(cliente ? cliente.email : null), placeholder='Email', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputCpf') CPF
+                input#inputCpf.form-control(type='text', name="cliente[cpf]", value=(cliente ? cliente.cpf : null), placeholder='CPF', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputRg') RG
+                input#inputRg.form-control(type='text', name="cliente[rg]", value=(cliente ? cliente.rg : null), placeholder='RG')
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputTelefone') Telefone
+                input#inputTelefone.form-control(type='text', name="cliente[telefone]", value=(cliente ? cliente.telefone : null), placeholder='Telefone')
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputData') Data de Nascimento
+                input#inputData.form-control(type='date', name="cliente[data_de_nascimento]", value=(cliente ? cliente.data_de_nascimento : null), placeholder='Data de Nascimento')
+
+            .col-sm-6.text-left
+              label(for='inputSexo') Sexo
+                .form-group
+                    select#sexo.form-control
+                      option(name="cliente[sexo]", value='Feminino') Feminino
+                      option(name="cliente[sexo]", value='Masculino') Masculino
+
+            .col-sm-12.text-right
+              a.btn.btn-default(href="/cliente/perfil")
+                i.fa.fa-close
+                |  Cancelar
+              | &nbsp; &nbsp;
+              button.btn.btn-template-main(type='submit')
+                i.fa.fa-save
+                |  Salvar
