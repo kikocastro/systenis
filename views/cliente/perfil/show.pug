@@ -1,32 +1,29 @@
 extends ../layout
 
+block page_title
+  | Perfil
+
 block main_content
-  strong Nome:
-  =cliente.nome
-  br
-
-  strong Sobrenome:
-  =cliente.sobrenome
-  br
-
-  strong Telefone:
-  =cliente.telefone
-  br
-
-  strong Email:
-  =cliente.email
-  br
-
-  strong cpf:
-  =cliente.cpf
-  br
-
-  strong rg:
-  =cliente.cpf
-  br
-
-  strong sexo:
-  =cliente.sexo
-  br
-
-
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Dados cadastrais
+      .col-md-8.col-md-offset-2
+        .row
+          .col-sm-6.text-left
+            p.lead Nome: #{cliente.nome}
+            p.lead Sobrenome: #{cliente.sobrenome}
+            p.lead Email: #{cliente.email}
+            p.lead CPF: #{cliente.cpf}
+            p.lead RG: #{cliente.rg}
+            p.lead Telefone: #{cliente.telefone}
+            p.lead Data de Nascimento: #{cliente.data_de_nascimento}
+        .row
+          a.btn.btn-template-main(href="/")
+            i.fa.fa-toggle-left
+            |  Voltar
+          | &nbsp; &nbsp;
+          a.btn.btn-template-main(href="/cliente/perfil/edit/")
+            i.fa.fa-pencil-square-o
+            |  Editar

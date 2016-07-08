@@ -1,6 +1,6 @@
 block nav_menu
   if !!currentUser
-    a(href="#")
+    a(href="/cliente/perfil")
       i.fa.fa-user
       span.hidden-xs.text-uppercase Olá #{currentUser['nome']}
     a(href='/cliente/sessions/delete')
@@ -25,4 +25,4 @@ block main_menu
     li
       a(href='#') Pedidos
     li
-      a(href='#') Perfil
+      a(href='/cliente/perfil') Perfil
