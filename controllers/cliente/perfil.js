@@ -1,3 +1,5 @@
+var _ = require("lodash");
+
 module.exports = function(models) {
   var Cliente = models.Cliente;
 
@@ -5,7 +7,7 @@ module.exports = function(models) {
     show: function(scope) {
       scope.cliente = scope.session.currentUser;
     },
-    update: function(req, res) {
+    update: function(req, res, next) {
       var editedCliente = req.body.cliente;
       var permittedParams = getPermittedParams();
 
@@ -22,8 +24,8 @@ module.exports = function(models) {
           res.redirect("/cliente/perfil");
         });
     },
-    edit: function(req, res, next) {
-      scope.cliente = req.session.currentUser;
+    edit: function(scope) {
+      scope.cliente = scope.session.currentUser;
     }
   };
 };
