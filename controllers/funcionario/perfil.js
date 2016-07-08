@@ -1,3 +1,5 @@
+var _ = require("lodash");
+
 module.exports = function(models) {
   var Funcionario = models.Funcionario;
 
@@ -22,8 +24,8 @@ module.exports = function(models) {
           res.redirect("/intranet/perfil");
         });
     },
-    edit: function(req, res, next) {
-      scope.cliente = req.session.currentUser;
+    edit: function(scope) {
+      scope.cliente = scope.session.currentUser;
     }
   };
 };
