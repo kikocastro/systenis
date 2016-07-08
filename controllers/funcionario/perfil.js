@@ -2,8 +2,8 @@ module.exports = function(models) {
   var Funcionario = models.Funcionario;
 
   return {
-    show: function(req, res, next) {
-      scope.funcionario = req.session.currentUser;
+    show: function(scope) {
+      scope.funcionario = scope.session.currentUser;
     },
     update: function(req, res) {
       var editedFuncionario = req.body.funcionario;
