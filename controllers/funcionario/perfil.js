@@ -12,7 +12,7 @@ module.exports = function(models) {
       var permittedParams = getPermittedParams();
 
       return Funcionario.find(editedFuncionario.id)
-        .then(function(cliente) {
+        .then(function(funcionario) {
 
           _.each(permittedParams, function(param) {
             funcionario[param] = editedFuncionario[param];
@@ -20,7 +20,7 @@ module.exports = function(models) {
 
           return funcionario.save();
         })
-        .then(function(funcionario) {
+        .then(function() {
           res.redirect("/intranet/perfil");
         });
     },
