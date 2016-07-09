@@ -10,6 +10,8 @@ module.exports = function(daos, BasicModel, models) {
     var Carrinho = models().Carrinho;
     var Item = models().Item;
 
+    console.log("setting carrinho");
+    
     return Carrinho.where({cliente_id: self.id})
     .then(function(carrinho) {
       var carrinho = _.first(carrinho);

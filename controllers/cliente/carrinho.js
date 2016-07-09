@@ -3,6 +3,7 @@ var _ = require("lodash");
 module.exports = function(models) {
   var Carrinho = models.Carrinho;
   var Item = models.Item;
+  var Cliente = models.Cliente;
 
   return {
     update: function(req, res) {
@@ -10,12 +11,22 @@ module.exports = function(models) {
       var produtoId = req.params.produto_id;
       var quantidade = req.params.quantidade;
 
-      return Carrinho.where({cliente_id: currentUser.id})
-        .then(function(carrinho) {
-          return _.first(carrinho);
+      return Cliente.find(currentUser.id)
+        .then(function(cliente) {
+          cliente.carrinho = currentUser.carrinho;
+          currentUser = cliente;
+          return currentUser.carrinho;
         })
         .then(function(carrinho) {
-          return Item.findOrCreate(carrinho.id, produtoId);
+          var item = _.find(carrinho.itens, function(item) {
+            return item.productoId === produtoId;
+          });
+
+          if(!!item) {
+            return item;
+          } else {
+            return Item.findOrCreate(carrinho.id, produtoId);
+          }
         })
         .then(function(item) {
           if(quantidade) {
@@ -28,7 +39,13 @@ module.exports = function(models) {
           return item.save();
         })
         .then(function(item) {
-          updateCurrentUserCarrinho(currentUser, item);
+          console.log("@@@1", currentUser, item);
+          return currentUser.setCarrinho();
+        })
+        .then(function(cliente) {
+          req.session.currentUser = cliente;
+          console.log("@@@2");
+
           res.redirect("/carrinho");
         });
     },

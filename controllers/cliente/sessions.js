@@ -2,8 +2,6 @@ var _ = require('lodash');
 
 module.exports = function(models, services) {
   var Authentication = services.AuthenticationFor("Cliente");
-  var Item = models.Item;
-  var Carrinho = models.Carrinho;
 
   return {
     new: function(scope) {
@@ -25,6 +23,7 @@ module.exports = function(models, services) {
           return cliente.setCarrinho();
         })
         .then(function(cliente) {
+          console.log("Created session. cliente:", cliente);
           res.redirect("/");
         });
       
