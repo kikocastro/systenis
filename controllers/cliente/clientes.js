@@ -1,6 +1,5 @@
 module.exports = function(models) {
   var Cliente = models.Cliente;
-  var Carrinho = models.Carrinho;
 
   return {
     new: function(scope) {
