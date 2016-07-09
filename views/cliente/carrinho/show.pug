@@ -1,4 +1,4 @@
-extends ./layout
+extends ../layout
 
 block page_title
   | Carrinho de Compras
@@ -8,7 +8,7 @@ block main_content
     .container
       .row
         .col-md-12
-          p.text-muted.lead Você possui #{totalItens} ítem(s) em seu carrinho.
+          p.text-muted.lead Você possui #{carrinho.totalItens} ítem(s) em seu carrinho.
         #basket.col-md-9.clearfix
           .box
             form(method='post', action='shop-checkout1.html')
@@ -19,41 +19,29 @@ block main_content
                       th(colspan='2') Produto
                       th Quantidade
                       th Preço unitário
-                      th Disconto
+                      th Desconto
                       th(colspan='2') Total
                   tbody
-                    tr
-                      td
-                        a(href='#')
-                          img(src='img/detailsquare.jpg', alt='White Blouse Armani')
-                      td
-                        a(href='#') White Blouse Armani
-                      td
-                        input.form-control(type='number', value='2')
-                      td $123.00
-                      td $0.00
-                      td $246.00
-                      td
-                        a(href='#')
-                          i.fa.fa-trash-o
-                    tr
-                      td
-                        a(href='#')
-                          img(src='img/basketsquare.jpg', alt='Black Blouse Armani')
-                      td
-                        a(href='#') Black Blouse Armani
-                      td
-                        input.form-control(type='number', value='1')
-                      td $200.00
-                      td $0.00
-                      td $200.00
-                      td
-                        a(href='#')
-                          i.fa.fa-trash-o
+                    each item in itens
+                      tr
+                        td
+                          a(href='#')
+                            img(src=item.produto.imagem)
+                        td
+                          a(href='#')= item.produto.nome
+                        td
+                          input#inputQuantidade.form-control(type='number', name="item[quantidade]", value=item.quantidade, required)
+
+                        td R$ #{item.produto.preco}
+                        td R$ 0.00
+                        td R$ #{item.total}
+                        td
+                          a(href='#')
+                            i.fa.fa-trash-o
                   tfoot
                     tr
                       th(colspan='5') Total
-                      th(colspan='2') R$446.00
+                      th(colspan='2') R$ #{totalDaCompra}
               .box-footer
                 .pull-left
                   a.btn.btn-default(href='/')

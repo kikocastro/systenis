@@ -1,8 +1,8 @@
 block nav_menu
-  if !!currentUser
+  if !!session.currentUser
     a(href="#")
       i.fa.fa-user
-      span.hidden-xs.text-uppercase Olá #{currentUser['nome']}
+      span.hidden-xs.text-uppercase Olá #{session.currentUser['nome']}
     a(href='/cliente/sessions/delete')
       i.fa.fa-sign-out
       span.hidden-xs.text-uppercase Sair
@@ -17,9 +17,9 @@ block nav_menu
 block main_menu
   li
     a(href='/') Home
-  if !!currentUser
+  if !!session.currentUser
     li
-      a(href='/carrinho')
+      a(href='/cliente/carrinho')
         i.fa.fa-shopping-cart
         | Carrinho (#{session.currentUser.carrinho.totalItens})
     li

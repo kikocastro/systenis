@@ -19,17 +19,19 @@ block main_content
                 p Fabricante: #{produto.fabricante}
                 p Cores: #{produto.cores}
                 p Peso com Embalagem: #{produto.peso} Kg
+                p Tamanho: #{produto.tamanho}
                 p.price R$ 124,00
 
-                form(action="/carinho/6")
+                form(action="/cliente/carrinho/update", method="POST")
                   .col-md-6.col-md-offset-3
                     .sizes
-                      h4 Tamanho
                       .form-group
-                        select#tamanho.form-control
-                          option(value='36') 36
-                          option(value='38') 38
-                          option(value='40') 40
+                        input#inputId.form-control(type='hidden', name="carrinho[produto_id]", value=produto.id)
+                      //.form-group
+                      //  select#tamanho.form-control(value=produto.tamanho)
+                      //    option(value='36') 36
+                      //    option(value='38') 38
+                      //    option(value='40') 40
                     p &nbsp;
 
                   p.text-center

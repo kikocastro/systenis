@@ -23,9 +23,9 @@ module.exports = function(conf) {
   app.get("/cliente/sessions/delete", controllers.Cliente.Sessions.delete);
 
   // carrinho
-  app.get("/carrinho", AuthenticationCliente(controllers.Cliente.Carrinho.show));
-  app.post("/carrinho/create", AuthenticationCliente(controllers.Cliente.Carrinho.create));
-  app.get("/carrinho/update/:produto_id", AuthenticationCliente(controllers.Cliente.Carrinho.update));
+  app.get("/cliente/carrinho", AuthenticationCliente(controllers.Cliente.Carrinho.show));
+  app.post("/cliente/carrinho/create", AuthenticationCliente(controllers.Cliente.Carrinho.create));
+  app.post("/cliente/carrinho/update", AuthenticationCliente(controllers.Cliente.Carrinho.update));
   
   ////////////////////
   // Funcionario

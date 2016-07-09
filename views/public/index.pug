@@ -10,19 +10,13 @@ block main_content
         each produto in produtos
           .col-md-3.col-sm-4
             .product
-              .image
-                a(href="/produtos/" + produto.id)
-                  img.img-responsive.image1(src=produto.imagem)
-              .text
-                h3
+              a(href="/produtos/" + produto.id)
+                .image
                   a(href="/produtos/" + produto.id)
-                    p= produto.nome
-                    p.subtitle= produto.fabricante
-                p.price R$ #{produto.preco}
-              .buttons
-                a.btn.btn-default(href="/produtos/" + produto.id)
-                  | Ver detalhes
-                br
-                a.btn.btn-template-main(href="/carrinho/update/" + produto.id)
-                  i.fa.fa-shopping-cart
-                    | Comprar
+                    img.img-responsive.image1(src=produto.imagem)
+                .text
+                  h3
+                    a(href="/produtos/" + produto.id)
+                      p= produto.nome
+                      p.subtitle= produto.fabricante
+                  p.price R$ #{produto.preco}

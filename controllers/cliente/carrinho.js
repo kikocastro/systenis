@@ -1,15 +1,18 @@
 var _ = require("lodash");
 
 module.exports = function(models) {
-  var Carrinho = models.Carrinho;
   var Item = models.Item;
   var Cliente = models.Cliente;
+  var Produto = models.Produto;
 
   return {
     update: function(req, res) {
+      console.log("@@@ UPDATE", req.body);
+
       var currentUser = req.session.currentUser;
-      var produtoId = req.params.produto_id;
-      var quantidade = req.params.quantidade;
+      var produtoId = req.body.carrinho.produto_id;
+      var quantidade = req.body.carrinho.quantidade;
+
 
       return Cliente.find(currentUser.id)
         .then(function(cliente) {
@@ -39,44 +42,38 @@ module.exports = function(models) {
           return item.save();
         })
         .then(function(item) {
-          console.log("@@@1", currentUser, item);
           return currentUser.setCarrinho();
         })
         .then(function(cliente) {
-          req.session.currentUser = cliente;
-          console.log("@@@2");
-
-          res.redirect("/carrinho");
+          req.session.currentUser.carrinho = cliente.carrinho;
+          res.redirect("/cliente/carrinho");
         });
     },
     show: function(scope) {
-      var clienteId = scope.session.currentUser.id;
-
+      scope.carrinho = scope.session.currentUser.carrinho;
+      scope.itens = scope.carrinho.itens;
+      scope.produtos = [];
       
-
+      var produto_ids = _.map(scope.itens, function(item) {
+        return {id: item.produto_id};
+      });
+      
+      return Produto.where(produto_ids)
+        .then(function(produtos) {
+          _.each(scope.itens, function(item) {
+            item.produto = _.find(produtos, {id: item.produto_id});
+            item.total = item.produto.preco * item.quantidade;
+          });
+          scope.totalDaCompra = _.sum(_.map(scope.itens, 'total'));
+        });
     },
     destroy: function(req, res, next) {
-      // return Carrinho.where({cliente_id: req.currentUser.id})
-      //   .then(function(cliente) {
-      //     return carrinho.delete();
-      //   })
-      //   .then(function(cliente) {
-      //     res.redirect("/intranet/clientes/");
-      //   });
+
     }
 
   };
 
 };
 
-///////////////
-// Helpers
-///////////////
 
-function updateCurrentUserCarrinho(currentUser, updatedItem) {
-  _.each(currentUser.carrinho.itens, function(item) {
-    if(item.id === updatedItem.id) {
-      item = updatedItem;
-    }
-  });
-}
+
