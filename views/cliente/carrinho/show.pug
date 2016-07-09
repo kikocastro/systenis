@@ -1,0 +1,89 @@
+extends ./layout
+
+block page_title
+  | Carrinho de Compras
+
+block main_content
+  .content
+    .container
+      .row
+        .col-md-12
+          p.text-muted.lead Você possui #{totalItens} ítem(s) em seu carrinho.
+        #basket.col-md-9.clearfix
+          .box
+            form(method='post', action='shop-checkout1.html')
+              .table-responsive
+                table.table
+                  thead
+                    tr
+                      th(colspan='2') Produto
+                      th Quantidade
+                      th Preço unitário
+                      th Disconto
+                      th(colspan='2') Total
+                  tbody
+                    tr
+                      td
+                        a(href='#')
+                          img(src='img/detailsquare.jpg', alt='White Blouse Armani')
+                      td
+                        a(href='#') White Blouse Armani
+                      td
+                        input.form-control(type='number', value='2')
+                      td $123.00
+                      td $0.00
+                      td $246.00
+                      td
+                        a(href='#')
+                          i.fa.fa-trash-o
+                    tr
+                      td
+                        a(href='#')
+                          img(src='img/basketsquare.jpg', alt='Black Blouse Armani')
+                      td
+                        a(href='#') Black Blouse Armani
+                      td
+                        input.form-control(type='number', value='1')
+                      td $200.00
+                      td $0.00
+                      td $200.00
+                      td
+                        a(href='#')
+                          i.fa.fa-trash-o
+                  tfoot
+                    tr
+                      th(colspan='5') Total
+                      th(colspan='2') R$446.00
+              .box-footer
+                .pull-left
+                  a.btn.btn-default(href='/')
+                    i.fa.fa-chevron-left
+                    |  Continuar comprando
+                .pull-right
+                  button.btn.btn-default
+                    i.fa.fa-refresh
+                    |  Atualizar carrinho
+                  button.btn.btn-template-main(type='submit')
+                    | Finalizar compra
+                    i.fa.fa-chevron-right
+        .col-md-3
+          #order-summary.box
+            .box-header
+              h3 Pedido
+            p.text-muted
+              | Shipping and additional costs are calculated based on the values you have entered.
+            .table-responsive
+              table.table
+                tbody
+                  tr
+                    td Order subtotal
+                    th $446.00
+                  tr
+                    td Shipping and handling
+                    th $10.00
+                  tr
+                    td Tax
+                    th $0.00
+                  tr.total
+                    td Total
+                    th $456.00

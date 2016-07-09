@@ -5,12 +5,12 @@ module.exports = function(models) {
   var Item = models.Item;
 
   return {
-    update: function(scope) {
-      var clienteId = scope.session.currentUser.id;
-      var produtoId = scope.params.produto_id;
-      var quantidade;
+    update: function(req, res) {
+      var currentUser = req.session.currentUser;
+      var produtoId = req.params.produto_id;
+      var quantidade = req.params.quantidade;
 
-      return Carrinho.where({cliente_id: clienteId})
+      return Carrinho.where({cliente_id: currentUser.id})
         .then(function(carrinho) {
           return _.first(carrinho);
         })
@@ -28,11 +28,14 @@ module.exports = function(models) {
           return item.save();
         })
         .then(function(item) {
-          console.log("### item", item);
+          updateCurrentUserCarrinho(currentUser, item);
           res.redirect("/carrinho");
         });
     },
-    show: function(req, res, next) {
+    show: function(scope) {
+      var clienteId = scope.session.currentUser.id;
+
+      
 
     },
     destroy: function(req, res, next) {
@@ -48,3 +51,15 @@ module.exports = function(models) {
   };
 
 };
+
+///////////////
+// Helpers
+///////////////
+
+function updateCurrentUserCarrinho(currentUser, updatedItem) {
+  _.each(currentUser.carrinho.itens, function(item) {
+    if(item.id === updatedItem.id) {
+      item = updatedItem;
+    }
+  });
+}

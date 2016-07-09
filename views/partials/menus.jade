@@ -17,11 +17,11 @@ block nav_menu
 block main_menu
   li
     a(href='/') Home
-  li
-    a(href='/carrinho')
-      i.fa.fa-shopping-cart
-      | Carrinho
   if !!currentUser
+    li
+      a(href='/carrinho')
+        i.fa.fa-shopping-cart
+        | Carrinho (#{session.currentUser.carrinho.totalItens})
     li
       a(href='#') Pedidos
     li
