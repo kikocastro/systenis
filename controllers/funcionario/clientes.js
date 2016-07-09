@@ -44,9 +44,6 @@ module.exports = function(models) {
 
       return Cliente.create(cliente)
         .then(function(cliente) {
-          return Carrinho.create({cliente_id: cliente.id});
-        })
-        .then(function(){
           res.redirect("/intranet/clientes/" + cliente.id);
         });
     },
