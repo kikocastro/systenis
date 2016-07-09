@@ -22,20 +22,9 @@ module.exports = function(models, services) {
           res.redirect("/cliente/sessions/new");
         })
         .then(function(cliente) {
-          return Carrinho.where({cliente_id: cliente.id});
+          return cliente.setCarrinho();
         })
-        .then(function(carrinho) {
-          var carrinho = _.first(carrinho);
-
-          req.session.currentUser.carrinho = carrinho || {};
-
-          return Item.where({carrinho_id: carrinho.id});
-        })
-        .then(function(itens) {
-          req.session.currentUser.carrinho.itens = itens;
-          req.session.currentUser.carrinho.totalItens = _.sum(_.map(itens, 'quantidade'));
-        })
-        .then(function() {
+        .then(function(cliente) {
           res.redirect("/");
         });
       
