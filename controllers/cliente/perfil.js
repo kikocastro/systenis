@@ -7,9 +7,10 @@ module.exports = function(models) {
     show: function(scope) {
       scope.cliente = scope.session.currentUser;
     },
-    update: function(req, res, next) {
+    update: function(req, res, next, scope) {
       var editedCliente = req.body.cliente;
       var permittedParams = getPermittedParams();
+      scope.session.currentUser = editedCliente;
 
       return Cliente.find(editedCliente.id)
         .then(function(cliente) {

@@ -7,9 +7,10 @@ module.exports = function(models) {
     show: function(scope) {
       scope.funcionario = scope.session.currentUser;
     },
-    update: function(req, res) {
+    update: function(req, res, next, scope) {
       var editedFuncionario = req.body.funcionario;
       var permittedParams = getPermittedParams();
+      scope.session.currentUser = editedFuncionario;
 
       return Funcionario.find(editedFuncionario.id)
         .then(function(funcionario) {
@@ -25,7 +26,7 @@ module.exports = function(models) {
         });
     },
     edit: function(scope) {
-      scope.cliente = scope.session.currentUser;
+      scope.funcionario = scope.session.currentUser;
     }
   };
 };

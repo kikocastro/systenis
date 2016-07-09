@@ -64,9 +64,10 @@ block main_content
             .col-sm-6.text-left
               label(for='inputSexo') Sexo
                 .form-group
-                    select#sexo.form-control
-                      option(name="funcionario[sexo]", value='Feminino') Feminino
-                      option(name="funcionario[sexo]", value='Masculino') Masculino
+                    select#inputSexo.form-control(name="funcionario[sexo]", placeholder='Sexo')
+                      option(value='') Selecione
+                      option(value='feminino') Feminino
+                      option(value='masculino') Masculino
 
             .col-sm-12.text-right
               a.btn.btn-default(href="/intranet/perfil")
