@@ -25,8 +25,8 @@ module.exports = function(conf) {
   // carrinho
   app.get("/carrinho", AuthenticationCliente(controllers.Public.carrinho));
   app.post("/carrinho/create", AuthenticationCliente(controllers.Cliente.Carrinho.create));
-  // app.post("/carrinho/update/:produto_id", controllers.Public.updateCarrinho);
-
+  app.get("/carrinho/update/:produto_id", AuthenticationCliente(controllers.Cliente.Carrinho.update));
+  
   ////////////////////
   // Funcionario
   ////////////////////

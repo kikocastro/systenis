@@ -1,26 +1,36 @@
 var _ = require("lodash");
 
 module.exports = function(models) {
-  var Cliente = models.Cliente;
   var Carrinho = models.Carrinho;
+  var Item = models.Item;
 
   return {
-    update: function(req, res) {
-      // var editedCliente = req.body.cliente;
-      // var permittedParams = getPermittedParams();
+    update: function(scope) {
+      var clienteId = scope.session.currentUser.id;
+      var produtoId = scope.params.produto_id;
+      var quantidade;
 
-      // return Cliente.find(editedCliente.id)
-      //   .then(function(cliente) {
-
-      //     _.each(permittedParams, function(param) {
-      //       cliente[param] = editedCliente[param];
-      //     });
-
-      //     return cliente.save();
-      //   })
-      //   .then(function(cliente) {
-      //     res.redirect("/intranet/clientes/" + cliente.id);
-      //   });
+      return Carrinho.where({cliente_id: clienteId})
+        .then(function(carrinho) {
+          return _.first(carrinho);
+        })
+        .then(function(carrinho) {
+          return Item.findOrCreate(carrinho.id, produtoId);
+        })
+        .then(function(item) {
+          if(quantidade) {
+            // chart is being updated
+            item.quantidade = quantidade;
+          } else {
+            // client clicked on button buy again
+            item.quantidade += 1;
+          }
+          return item.save();
+        })
+        .then(function(item) {
+          console.log("### item", item);
+          res.redirect("/carrinho");
+        });
     },
     show: function(req, res, next) {
 
@@ -38,16 +48,3 @@ module.exports = function(models) {
   };
 
 };
-
-///////////////
-// Helpers
-///////////////
-
-function getPermittedParams() {
-
-  var permittedParams = [
-    "cliente_id"
-  ];
-
-  return permittedParams;
-}
