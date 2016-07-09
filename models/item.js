@@ -11,7 +11,7 @@ module.exports = function(daos, BasicModel) {
       if(result.rows.length == 0) {
         // If not found, it's the first time a client is clicking on buy button, therefore, 
         // quantity must be 1
-        return self.create({carrinho_id: carrinhoId, produto_id: produtoId, quantidade: 1});
+        return self.create({carrinho_id: carrinhoId, produto_id: produtoId, quantidade: 0});
       }
       else {
         var item = new Item(result.rows[0]);

@@ -7,12 +7,10 @@ module.exports = function(models) {
 
   return {
     update: function(req, res) {
-      console.log("@@@ UPDATE", req.body);
 
       var currentUser = req.session.currentUser;
       var produtoId = req.body.carrinho.produto_id;
       var quantidade = req.body.carrinho.quantidade;
-
 
       return Cliente.find(currentUser.id)
         .then(function(cliente) {
@@ -39,6 +37,7 @@ module.exports = function(models) {
             // client clicked on button buy again
             item.quantidade += 1;
           }
+
           return item.save();
         })
         .then(function(item) {
@@ -53,12 +52,18 @@ module.exports = function(models) {
       scope.carrinho = scope.session.currentUser.carrinho;
       scope.itens = scope.carrinho.itens;
       scope.produtos = [];
-      
+
       var produto_ids = _.map(scope.itens, function(item) {
         return {id: item.produto_id};
       });
-      
-      return Produto.where(produto_ids)
+
+      return Cliente.find(scope.currentUser.id)
+        .then(function(cliente) {
+          return cliente.setCarrinho();
+        })
+        .then(function(cliente) {
+          return Produto.where(produto_ids)
+        })
         .then(function(produtos) {
           _.each(scope.itens, function(item) {
             item.produto = _.find(produtos, {id: item.produto_id});

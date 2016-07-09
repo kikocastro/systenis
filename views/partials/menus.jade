@@ -18,10 +18,11 @@ block main_menu
   li
     a(href='/') Home
   if !!session.currentUser
-    li
-      a(href='/cliente/carrinho')
-        i.fa.fa-shopping-cart
-        | Carrinho (#{session.currentUser.carrinho.totalItens})
+    if !!session.currentUser.carrinho.itens.length
+      li
+        a(href='/cliente/carrinho')
+          i.fa.fa-shopping-cart
+          | Carrinho (#{session.currentUser.carrinho.totalItens})
     li
       a(href='#') Pedidos
     li

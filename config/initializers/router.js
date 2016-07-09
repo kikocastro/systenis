@@ -27,6 +27,9 @@ module.exports = function(conf) {
   app.post("/cliente/carrinho/create", AuthenticationCliente(controllers.Cliente.Carrinho.create));
   app.post("/cliente/carrinho/update", AuthenticationCliente(controllers.Cliente.Carrinho.update));
   
+  // item
+  app.get("/cliente/itens/:id/delete", AuthenticationCliente(controllers.Cliente.Item.destroy));
+  
   ////////////////////
   // Funcionario
   ////////////////////

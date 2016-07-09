@@ -28,15 +28,15 @@ block main_content
                           a(href='#')
                             img(src=item.produto.imagem)
                         td
-                          a(href='#')= item.produto.nome
+                          a(href='/produtos/' + item.produto.id)= item.produto.nome
                         td
-                          input#inputQuantidade.form-control(type='number', name="item[quantidade]", value=item.quantidade, required)
+                          input#inputQuantidade.form-control(type='number', name="item[quantidade]", value=item.quantidade, min="1", required)
 
                         td R$ #{item.produto.preco}
                         td R$ 0.00
                         td R$ #{item.total}
                         td
-                          a(href='#')
+                          a(href='/cliente/itens/' + item.id + '/delete')
                             i.fa.fa-trash-o
                   tfoot
                     tr
