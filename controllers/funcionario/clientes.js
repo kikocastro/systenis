@@ -42,12 +42,13 @@ module.exports = function(models) {
 
       cliente.password = generatePassword();
 
-      return Cliente.create(cliente).then(function(cliente) {
-        res.redirect("/intranet/clientes/" + cliente.id);
-
-      }, function(err) {
-        next(err);
-      });
+      return Cliente.create(cliente)
+        .then(function(cliente) {
+          return Carrinho.create({cliente_id: cliente.id});
+        })
+        .then(function(){
+          res.redirect("/intranet/clientes/" + cliente.id);
+        });
     },
     show: function(scope) {
       var clienteId = scope.params.id;

@@ -13,9 +13,9 @@ module.exports = function(models) {
       .then(function(cliente) {
         return Carrinho.create({cliente_id: cliente.id});
       })
-      .then(function(a){
+      .then(function(){
         res.redirect("/cliente/sessions/new");
-      })
+      });
     }
 
   };
