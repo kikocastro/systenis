@@ -1,38 +1,37 @@
 extends ../layout
 
+block page_title
+  | Cadastro
+
 block main_content
-
-  h1.text-center Cadastro
-
-  h2.text-center Insira seus dados.
-
-  form.form-horizontal(action="/cliente/clientes/" method="POST")
-
-    .form-group
-      label.col-sm-2.control-label(for='inputNome') Nome
-      .col-sm-10
-        input#inputNome.form-control(type='text', name="cliente[nome]", placeholder='Nome')
-
-    .form-group
-      label.col-sm-2.control-label(for='inputNome') Sobrenome
-      .col-sm-10
-        input#inputSobrenome.form-control(type='text', name="cliente[sobrenome]", placeholder='Sobrenome')
-
-    .form-group
-      label.col-sm-2.control-label(for='inputEmail') Email
-      .col-sm-10
-        input#inputEmail.form-control(type='email', name="cliente[email]", placeholder='Email')
-
-    .form-group
-      label.col-sm-2.control-label(for='inputCpf') CPF
-      .col-sm-10
-        input#inputCpf.form-control(type='text', name="cliente[cpf]", placeholder='CPF')
-
-    .form-group
-      label.col-sm-2.control-label(for='inputPassword') Senha
-      .col-sm-10
-        input#inputPassword.form-control(type='password', name="cliente[password]", placeholder='Senha')
-
-    .form-group
-      .col-sm-offset-2.col-sm-10
-        button.btn.btn-default(type='submit') Cadastrar
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Insira seus dados
+      .col-md-8.col-md-offset-2
+        form(action="/cliente/clientes/" method="POST")
+          .row
+            .col-sm-6.col-md-offset-3.text-left
+              .form-group
+                label(for='inputNome') Nome
+                input#inputNome.form-control(type='text', name="cliente[nome]", placeholder='Nome', required)
+            .col-sm-6.col-md-offset-3.text-left
+              .form-group
+                label(for='inputSobrenome') Sobrenome
+                input#inputSobrenome.form-control(type='text', name="cliente[sobrenome]", placeholder='Sobrenome', required)
+            .col-sm-6.col-md-offset-3.text-left
+              .form-group
+                label(for='inputEmail') Email
+                input#inputEmail.form-control(type='email', name="cliente[email]", placeholder='Email', required)
+            .col-sm-6.col-md-offset-3.text-left
+              .form-group
+                label(for='inputCpf') Cpf
+                input#inputCpf.form-control(type='text', name="cliente[cpf]", placeholder='Cpf', required)
+            .col-sm-6.col-md-offset-3.text-left
+              .form-group
+                label(for='inputSenha') Senha
+                input#inputSenha.form-control(type='password', name="cliente[password]", placeholder='Senha', required)
+            .col-sm-6.col-md-offset-3.text-right
+              button.btn.btn-default(type='submit')
+                |  Cadastrar

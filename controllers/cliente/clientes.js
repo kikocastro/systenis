@@ -1,5 +1,6 @@
 module.exports = function(models) {
   var Cliente = models.Cliente;
+  var Carrinho = models.Carrinho;
 
   return {
     new: function(scope) {
@@ -8,11 +9,13 @@ module.exports = function(models) {
     create: function(req, res, next) {
       var cliente = req.body.cliente;
 
-      return Cliente.create(cliente).then(function(cliente) {
+      return Cliente.create(cliente)
+      .then(function(cliente) {
+        return Carrinho.create({cliente_id: cliente.id});
+      })
+      .then(function(a){
         res.redirect("/cliente/sessions/new");
-      }, function(err) {
-        next(err);
-      });
+      })
     }
 
   };
