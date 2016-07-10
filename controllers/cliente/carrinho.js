@@ -20,7 +20,7 @@ module.exports = function(models) {
         })
         .then(function(carrinho) {
           var item = _.find(carrinho.itens, function(item) {
-            return item.productoId === produtoId;
+            return item.produto_id === produtoId;
           });
 
           if(!!item) {
@@ -62,9 +62,13 @@ module.exports = function(models) {
           return cliente.setCarrinho();
         })
         .then(function(cliente) {
+          scope.session.currentUser = cliente;
           return Produto.where(produto_ids)
         })
         .then(function(produtos) {
+          scope.carrinho = scope.session.currentUser.carrinho;
+          scope.itens = scope.carrinho.itens;
+
           _.each(scope.itens, function(item) {
             item.produto = _.find(produtos, {id: item.produto_id});
             item.total = item.produto.preco * item.quantidade;
