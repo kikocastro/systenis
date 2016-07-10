@@ -31,6 +31,12 @@ module.exports = function(conf) {
   app.post("/cliente/itens/:id/update", AuthenticationCliente(controllers.Cliente.Item.update));
   app.get("/cliente/itens/:id/delete", AuthenticationCliente(controllers.Cliente.Item.destroy));
   
+  //Perfil
+  app.get("/cliente/perfil", AuthenticationCliente(controllers.Cliente.Perfil.show));
+  app.get("/cliente/perfil/edit", AuthenticationCliente(controllers.Cliente.Perfil.edit));
+  app.post("/cliente/perfil", AuthenticationCliente(controllers.Cliente.Perfil.update));
+
+
   ////////////////////
   // Funcionario
   ////////////////////
@@ -43,6 +49,11 @@ module.exports = function(conf) {
   app.get("/funcionario/sessions/delete", controllers.Funcionario.Sessions.delete);
 
   // Intranet
+
+  // perfil
+  app.get("/intranet/perfil", AuthenticationFuncionario(controllers.Funcionario.Perfil.show));
+  app.get("/intranet/perfil/edit", AuthenticationFuncionario(controllers.Funcionario.Perfil.edit));
+  app.post("/intranet/perfil", AuthenticationFuncionario(controllers.Funcionario.Perfil.update));
 
   // clientes
   app.get("/intranet/clientes", AuthenticationFuncionario(controllers.Funcionario.Clientes.index));

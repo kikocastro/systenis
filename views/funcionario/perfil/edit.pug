@@ -1,0 +1,78 @@
+extends ../funcionario_layout
+
+block page_title
+  | Perfil
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Editar dados cadastrais
+      .col-md-8.col-md-offset-2
+        form(action="/intranet/perfil", method="POST")
+          .row
+            .col-sm-12
+              .form-group
+                input#inputId.form-control(type='hidden', name="funcionario[id]", value=(funcionario ? funcionario.id : null))
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputNome') Nome
+                input#inputNome.form-control(type='text', name="funcionario[nome]", value=(funcionario ? funcionario.nome : null), placeholder='Nome', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputSobrenome') Sobrenome
+                input#inputSobrenome.form-control(type='text', name="funcionario[sobrenome]", value=(funcionario ? funcionario.sobrenome : null), placeholder='Sobrenome', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputSenha') Senha
+                input#inputSenha.form-control(type='password', name="funcionario[password]", value=(funcionario ? funcionario.password : null), placeholder='Senha', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputEmail') Email
+                input#inputEmail.form-control(type='email', name="funcionario[email]", value=(funcionario ? funcionario.email : null), placeholder='Email', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputCpf') CPF
+                input#inputCpf.form-control(type='text', name="funcionario[cpf]", value=(funcionario ? funcionario.cpf : null), placeholder='CPF', required)
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputRg') RG
+                input#inputRg.form-control(type='text', name="funcionario[rg]", value=(funcionario ? funcionario.rg : null), placeholder='RG')
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputTelefone') Telefone
+                input#inputTelefone.form-control(type='text', name="funcionario[telefone]", value=(funcionario ? funcionario.telefone : null), placeholder='Telefone')
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputCarteira') Número da Carteira de Trabalho
+                input#inputTelefone.form-control(type='text', name="funcionario[carteira_de_trabalho]", value=(funcionario ? funcionario.carteira_de_trabalho : null), placeholder='Número da Carteira de Trabalho')
+
+            .col-sm-6.text-left
+              .form-group
+                label(for='inputData') Data de Nascimento
+                input#inputData.form-control(type='date', name="funcionario[data_de_nascimento]", value=(funcionario ? funcionario.data_de_nascimento : null), placeholder='Data de Nascimento')
+
+            .col-sm-6.text-left
+              label(for='inputSexo') Sexo
+                .form-group
+                    select#sexo.form-control
+                      option(name="funcionario[sexo]", value='Feminino') Feminino
+                      option(name="funcionario[sexo]", value='Masculino') Masculino
+
+            .col-sm-12.text-right
+              a.btn.btn-default(href="/intranet/perfil")
+                i.fa.fa-close
+                |  Cancelar
+              | &nbsp; &nbsp;
+              button.btn.btn-template-main(type='submit')
+                i.fa.fa-save
+                |  Salvar

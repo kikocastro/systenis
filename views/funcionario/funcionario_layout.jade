@@ -2,7 +2,7 @@ extends ../main_layout
 
 block nav_menu
   if !!currentUser
-    a(href="#")
+    a(href="/intranet/perfil")
       i.fa.fa-user
       span.hidden-xs.text-uppercase Olá #{currentUser['nome']}
     a(href='/funcionarios/sessions/delete')
@@ -21,3 +21,5 @@ block main_menu
       a(href='#') Funcionários
     li
       a(href='#') Pedidos
+    li
+      a(href='/intranet/perfil') Perfil

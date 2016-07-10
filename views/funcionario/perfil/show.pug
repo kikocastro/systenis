@@ -1,0 +1,31 @@
+extends ../funcionario_layout
+
+block page_title
+  | Perfil
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Dados cadastrais
+      .col-md-8.col-md-offset-2
+        .row
+          .col-sm-6.text-left
+            p.lead Nome: #{funcionario.nome}
+            p.lead Sobrenome: #{funcionario.sobrenome}
+            p.lead Email: #{funcionario.email}
+            p.lead CPF: #{funcionario.cpf}
+            p.lead RG: #{funcionario.rg}
+            p.lead Telefone: #{funcionario.telefone}
+            p.lead Data de Nascimento: #{funcionario.data_de_nascimento}
+            p.lead Carteira de Trabalho: #{funcionario.carteira_de_trabalho}
+            p.lead Papel: #{funcionario.papel}
+        .row
+          a.btn.btn-template-main(href="/")
+            i.fa.fa-toggle-left
+            |  Voltar
+          | &nbsp; &nbsp;
+          a.btn.btn-template-main(href="/intranet/perfil/edit/")
+            i.fa.fa-pencil-square-o
+            |  Editar
