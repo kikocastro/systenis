@@ -1,5 +1,4 @@
 App.Cliente.Carrinho.show = function(carrinho, currentUser) {
-  console.log("!!!!!", carrinho);
 
   $(function() {
     $("form.form-carrinho").submit(function(e) {
