@@ -49,31 +49,21 @@ module.exports = function(models) {
         });
     },
     show: function(scope) {
-      scope.carrinho = scope.session.currentUser.carrinho;
-      scope.itens = scope.carrinho.itens;
-      scope.produtos = [];
-
-      var produto_ids = _.map(scope.itens, function(item) {
-        return {id: item.produto_id};
-      });
-
+      
       return Cliente.find(scope.currentUser.id)
         .then(function(cliente) {
           return cliente.setCarrinho();
         })
         .then(function(cliente) {
           scope.session.currentUser = cliente;
-          return Produto.where(produto_ids)
-        })
-        .then(function(produtos) {
           scope.carrinho = scope.session.currentUser.carrinho;
-          scope.itens = scope.carrinho.itens;
-
-          _.each(scope.itens, function(item) {
-            item.produto = _.find(produtos, {id: item.produto_id});
-            item.total = item.produto.preco * item.quantidade;
-          });
-          scope.totalDaCompra = _.sum(_.map(scope.itens, 'total'));
+          console.log("!!! antes", scope.carrinho);
+          return scope.carrinho.populateItems();
+        })
+        .then(function(carrinho) {
+          console.log("!!!", carrinho);
+          scope.carrinho = carrinho;
+          scope.totalDaCompra = _.sum(_.map(carrinho.itens, 'total'));
         });
     },
     destroy: function(req, res, next) {

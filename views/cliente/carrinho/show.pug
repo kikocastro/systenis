@@ -22,7 +22,7 @@ block main_content
                       th Desconto
                       th(colspan='2') Total
                   tbody
-                    each item in itens
+                    each item in carrinho.itens
                       tr
                         td
                           a(href='#')
@@ -78,4 +78,4 @@ block main_content
                     th $456.00
 
   script.
-    App.Cliente.Carrinho.show(!{JSON.stringify(carrinho)});
+    App.Cliente.Carrinho.show(!{JSON.stringify(carrinho, currentUser)});

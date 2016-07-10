@@ -1,4 +1,4 @@
-App.Cliente.Carrinho.show = function(carrinho) {
+App.Cliente.Carrinho.show = function(carrinho, currentUser) {
   console.log("!!!!!", carrinho);
 
   $(function() {
@@ -26,4 +26,4 @@ App.Cliente.Carrinho.show = function(carrinho) {
       $(this).attr("clicked", "true");
     });
   });
-}();
+};
