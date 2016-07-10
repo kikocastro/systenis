@@ -65,17 +65,14 @@ block main_content
               table.table
                 tbody
                   tr
-                    td Order subtotal
-                    th $446.00
+                    td Subtotal
+                    th R$ #{totalDaCompra}
                   tr
-                    td Shipping and handling
+                    td Frete
                     th $10.00
-                  tr
-                    td Tax
-                    th $0.00
                   tr.total
                     td Total
-                    th $456.00
+                    th R$ #{totalDaCompra}
 
   script.
     App.Cliente.Carrinho.show(!{JSON.stringify(carrinho, currentUser)});
