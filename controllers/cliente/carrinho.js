@@ -57,13 +57,11 @@ module.exports = function(models) {
         .then(function(cliente) {
           scope.session.currentUser = cliente;
           scope.carrinho = scope.session.currentUser.carrinho;
-          console.log("!!! antes", scope.carrinho);
           return scope.carrinho.populateItems();
         })
         .then(function(carrinho) {
-          console.log("!!!", carrinho);
           scope.carrinho = carrinho;
-          scope.totalDaCompra = _.sum(_.map(carrinho.itens, 'total'));
+          scope.totalDaCompra = _.sum(_.map(carrinho.itens, 'total')).toFixed(2);
         });
     },
     destroy: function(req, res, next) {

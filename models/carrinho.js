@@ -16,10 +16,10 @@ module.exports = function(daos, BasicModel, models) {
       .then(function(produtos) {
         _.each(self.itens, function(item) {
           item.produto = _.find(produtos, {id: item.produto_id});
-          item.total = item.produto.preco * item.quantidade;
+          item.total = (item.produto.preco * item.quantidade).toFixed(2);
         });
         
-        self.totalDaCompra = _.sum(_.map(self.itens, 'total'));
+        self.totalDaCompra = _.sum(_.map(self.itens, 'total')).toFixed(2);
         
         return self;
       });
