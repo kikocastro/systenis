@@ -1,1 +1,0 @@
-App.Atendente.Agendamentos = {};
