@@ -7,10 +7,10 @@ module.exports = function(models) {
     show: function(scope) {
       scope.cliente = scope.session.currentUser;
     },
-    update: function(req, res, next, scope) {
+    update: function(req, res, next) {
       var editedCliente = req.body.cliente;
       var permittedParams = getPermittedParams();
-      scope.session.currentUser = editedCliente;
+      req.session.currentUser = editedCliente;
 
       return Cliente.find(editedCliente.id)
         .then(function(cliente) {
@@ -22,6 +22,7 @@ module.exports = function(models) {
           return cliente.save();
         })
         .then(function(cliente) {
+          req.session.currentUser = cliente;
           res.redirect("/cliente/perfil");
         });
     },
