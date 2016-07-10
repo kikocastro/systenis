@@ -60,6 +60,7 @@ module.exports = function(models) {
           return scope.carrinho.populateItems();
         })
         .then(function(carrinho) {
+          scope.carrinho.itens = _.sortBy(scope.carrinho.itens, 'id');
           scope.carrinho = carrinho;
           scope.totalDaCompra = _.sum(_.map(carrinho.itens, 'total')).toFixed(2);
         });

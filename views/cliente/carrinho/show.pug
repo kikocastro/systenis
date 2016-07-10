@@ -30,8 +30,8 @@ block main_content
                         td
                           a(href='/produtos/' + item.produto.id)= item.produto.nome
                         td
-                          input#inputItemId.form-control(type='hidden', name="item[id]", value=item.id)
-                          input#inputQuantidade.form-control(type='number', name="item[quantidade]", value=item.quantidade, min="1", required)
+                          input.form-control(type='hidden', name="item[id]", value=item.id, id="inputItemId" + item.id)
+                          input.form-control(type='number', name="item[quantidade]", value=item.quantidade, min="1", id="inputQuantidade" + item.id, required)
 
                         td R$ #{item.produto.preco}
                         td R$ 0.00

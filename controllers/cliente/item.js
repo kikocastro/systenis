@@ -1,4 +1,5 @@
 var _ = require("lodash");
+var q = require("q");
 
 module.exports = function(models) {
   var Item = models.Item;
@@ -6,19 +7,32 @@ module.exports = function(models) {
 
   return {
     update: function(req, res, next) {
-      var itemId = req.params.id;
-      var quantidade = req.body.quantidade;
+      var updatedItem;
+      var updatedItems = req.body.updatedItems;
+      var updatedItemsIds = _.map(updatedItems, function(item) {
+        return {id: item.id};
+      });
 
-      if(quantidade < 1) {
+      if(!updatedItemsIds.length) {
         res.redirect("/cliente/carrinho");
       }
-      
-      return Item.find(itemId)
-        .then(function(item) {
-          item.quantidade = quantidade;
-          return item.save();
+
+      return Item.where(updatedItemsIds)
+        .then(function(items) {
+          var promises = [];
+
+          _.each(items, function(item) {
+            updatedItem = _.find(updatedItems, {id: item.id.toString()});
+
+            if(item.quantidade !== updatedItem.quantidade) {
+              item.quantidade = updatedItem.quantidade;
+              promises.push(item.save());
+            }
+          });
+
+          return q.all(promises);
         })
-        .then(function(item) {
+        .then(function() {
           return Cliente.find(req.session.currentUser.id);
         })
         .then(function(cliente) {

@@ -5,15 +5,28 @@ App.Cliente.Carrinho.show = function(carrinho, currentUser) {
       e.preventDefault();
       
       var clickedButton = $(document.activeElement).val();
-      
-      if(clickedButton === 'update_button') {
-        var itemId = $('#inputItemId').val();
-        var quantidade = $('#inputQuantidade').val();
-        var url = "/cliente/itens/" + itemId + "/update";
-        
-        $.post(url, {quantidade: quantidade}).done(window.location.reload());
+      var updatedItem, url, newQuantidade;
+      var updatedItems = [];
+
+      carrinho.itens.forEach(function(item) {
+        updatedItem = {
+          id: $('#inputItemId' + item.id).val(),
+          quantidade: $('#inputQuantidade' + item.id).val()
+        };
+
+        newQuantidade = parseInt(updatedItem.quantidade);
+
+        if(!!newQuantidade && item.quantidade !== newQuantidade) {
+          updatedItems.push(updatedItem);
+        }
+      });
+
+      if(clickedButton === 'update_button' && !$.isEmptyObject(updatedItems)) {
+        url = "/cliente/itens/update";
+
+        $.post(url, {updatedItems: updatedItems}).done(window.location.reload());
       } else if( clickedButton === 'finish_button') {
-        var url = "/finalizar-compra";
+        url = "/finalizar-compra";
 
         $.post(url);
       }
