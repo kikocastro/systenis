@@ -25,6 +25,7 @@ module.exports = function(models) {
         scope.endereco = endereco;
       });
     }
+    
   };
 };
 
