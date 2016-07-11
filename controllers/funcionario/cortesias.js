@@ -14,16 +14,16 @@ module.exports = function(models) {
 
       return Cortesia.find(cortesiaId)
         .then(function(cortesia) {
-          if(cortesia[ativa] == true) {
-            cortesia[ativa] = false; 
+          if(cortesia.ativa == true) {
+            cortesia.ativa = false; 
           }
           else {
-            cortesia[ativa] = true;
+            cortesia.ativa = true;
           }
           return cortesia.save();
         })
         .then(function(cortesia) {
-          res.redirect("/intranet/cortesias/" + cortesia.id);
+          res.redirect("/intranet/cortesias/");
         });
     },
     show: function(scope) {
