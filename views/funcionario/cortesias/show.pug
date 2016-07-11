@@ -1,0 +1,26 @@
+extends ../funcionario_layout
+
+block page_title
+  | Cortesias
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Detalhes da cortesia
+      .col-md-8.col-md-offset-2
+        .row
+          .col-sm-6.col-md-offset-3.text-left
+            p.lead ID: #{cortesia.id}
+            p.lead Título: #{cortesia.titulo}
+            p.lead Descrição: #{cortesia.descricao}
+            p.lead Ativa: #{cortesia.ativa}
+
+            a.btn.btn-template-main(href="/intranet/cortesias/")
+              i.fa.fa-toggle-left
+              |  Voltar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/cortesias/" + cortesia.id + "/activate")
+              i.fa.fa-pencil-square-o
+              |  Ativar
