@@ -36,6 +36,14 @@ module.exports = function(conf) {
   app.get("/cliente/perfil/edit", AuthenticationCliente(controllers.Cliente.Perfil.edit));
   app.post("/cliente/perfil", AuthenticationCliente(controllers.Cliente.Perfil.update));
 
+  //Enderecos
+  app.get("/cliente/enderecos", AuthenticationCliente(controllers.Cliente.Enderecos.index));
+  app.post("/cliente/enderecos", AuthenticationCliente(controllers.Cliente.Enderecos.create));
+  app.get("/cliente/enderecos/new", AuthenticationCliente(controllers.Cliente.Enderecos.new));
+  app.get("/cliente/enderecos/:id", AuthenticationCliente(controllers.Cliente.Enderecos.show));
+  app.post("/cliente/enderecos/:id", AuthenticationCliente(controllers.Cliente.Enderecos.update));
+  app.get("/cliente/enderecos/:id/edit", AuthenticationCliente(controllers.Cliente.Enderecos.edit));
+  app.get("/cliente/enderecos/:id/delete", AuthenticationCliente(controllers.Cliente.Enderecos.destroy));
 
   ////////////////////
   // Funcionario
