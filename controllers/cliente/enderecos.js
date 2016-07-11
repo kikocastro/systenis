@@ -10,8 +10,21 @@ module.exports = function(models) {
       return Endereco.where({cliente_id:clienteId}).then(function(enderecos) {
         scope.enderecos = enderecos;
       });
-    }
+    },
+    show: function(scope) {
+      var enderecoId = scope.params.id;
 
+      return Endereco.find(enderecoId).then(function(endereco) {
+        scope.endereco = endereco;
+      });
+    },
+    edit: function(scope) {
+      var enderecoId = scope.params.id;
+
+      return Endereco.find(enderecoId).then(function(endereco) {
+        scope.endereco = endereco;
+      });
+    }
   };
 };
 

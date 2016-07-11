@@ -1,0 +1,24 @@
+extends ../layout
+
+block page_title
+  | Perfil
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Edite os dados do endereço
+      .col-md-8.col-md-offset-2
+        form(action="/clientes/enderecos/" + endereco.id, method="POST")
+          .row
+            include partials/form.jade
+
+            .col-sm-12.text-right
+              a.btn.btn-default(href="/cliente/enderecos")
+                i.fa.fa-close
+                |  Cancelar
+              | &nbsp; &nbsp;
+              button.btn.btn-template-main(type='submit')
+                i.fa.fa-save
+                |  Salvar
