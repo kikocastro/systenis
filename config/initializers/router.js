@@ -44,6 +44,9 @@ module.exports = function(conf) {
   app.post("/cliente/enderecos/:id", AuthenticationCliente(controllers.Cliente.Enderecos.update));
   app.get("/cliente/enderecos/:id/edit", AuthenticationCliente(controllers.Cliente.Enderecos.edit));
   app.get("/cliente/enderecos/:id/delete", AuthenticationCliente(controllers.Cliente.Enderecos.destroy));
+  
+  //Transportadora API
+  app.get("/transportadora/calcula-frete", controllers.Transportadora.calculaFrete);
 
   ////////////////////
   // Funcionario

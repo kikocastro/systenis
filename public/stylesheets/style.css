@@ -2,3 +2,13 @@
   font-weight: 300;
   font-size: small;
 }
+
+input.small {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+btn.small {
+    max-height: 26px;
+    line-height: 1;
+}

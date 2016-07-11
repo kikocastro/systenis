@@ -59,20 +59,23 @@ block main_content
           #order-summary.box
             .box-header
               h3 Pedido
-            p.text-muted
-              | Shipping and additional costs are calculated based on the values you have entered.
             .table-responsive
               table.table
                 tbody
+                  tr
+                    td CEP
+                    th(colspan="2")
+                      input#inputCep.small(type="text")
+                      button.btn.btn-default.calculaFrete Ok
                   tr
                     td Subtotal
                     th R$ #{totalDaCompra}
                   tr
                     td Frete
-                    th $10.00
-                  tr.total
+                    th.frete
+                  tr
                     td Total
-                    th R$ #{totalDaCompra}
+                    th.total
 
   script.
-    App.Cliente.Carrinho.show(!{JSON.stringify(carrinho, currentUser)});
+    App.Cliente.Carrinho.show(!{JSON.stringify({carrinho: carrinho, totalDaCompra: totalDaCompra})});
