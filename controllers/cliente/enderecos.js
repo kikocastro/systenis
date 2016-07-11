@@ -6,8 +6,7 @@ module.exports = function(models) {
   return {
     index: function(scope) {
       var clienteId = scope.session.currentUser.id;
-
-
+      
       return Endereco.where({cliente_id:clienteId}).then(function(enderecos) {
         scope.enderecos = enderecos;
       });
