@@ -11,14 +11,23 @@ module.exports = function(models) {
     },
     activate: function(req, res, next) {
       var cortesiaId = req.params.id;
+      var temCortesiaAtiva = false;
 
-      return Cortesia.find(cortesiaId)
+      return Cortesia.where({ativa:true})
+        .then(function(cortesias) {
+          if(cortesias.length > 0) {
+            temCortesiaAtiva = true;
+          }
+        })
+        .then(function() {
+          return Cortesia.find(cortesiaId)
+        })
         .then(function(cortesia) {
-          if(cortesia.ativa == true) {
-            cortesia.ativa = false; 
+          if(cortesia.ativa == false && temCortesiaAtiva == false) {
+            cortesia.ativa = true; 
           }
           else {
-            cortesia.ativa = true;
+            cortesia.ativa = false;
           }
           return cortesia.save();
         })

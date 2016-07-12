@@ -6,6 +6,10 @@ block page_title
 block main_content
   .content
     .container
+      if haPromocao
+        h3
+          p Há promoções em andamento na loja! Confira!
+    .container
       .row.products
         each produto in produtos
           .col-md-3.col-sm-4
