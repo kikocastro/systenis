@@ -23,4 +23,7 @@ block main_content
                     a(href="/produtos/" + produto.id)
                       p= produto.nome
                       p.subtitle= produto.fabricante
-                  p.price R$ #{produto.preco}
+                  if !haPromocao
+                    p.price R$ #{produto.preco}
+                  if haPromocao
+                    p.price R$ #{produto.precoComDesconto}

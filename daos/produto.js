@@ -7,6 +7,7 @@ module.exports = function(db, BasicDao) {
 		"quantidade_estoque",
 		"tamanho",
 		"preco",
+		"precoComDesconto",
 		"imagem"
 	];
 

@@ -3,6 +3,8 @@ module.exports = function(db, BasicDao) {
 		"titulo",
 		"descricao",
 		"ativa",
+		"tipo",
+		"porcentagem"
 	];
 
   return new BasicDao({tableName: "cortesias", fieldNames: fields, db: db});
