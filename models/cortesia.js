@@ -4,13 +4,17 @@ module.exports = function(daos, BasicModel) {
   var cortesiaDao = daos.Cortesia;
   var Cortesia = new BasicModel(cortesiaDao);
 
-  Cortesia.calculaCortesia = function(produtoPreco) {
+  Cortesia.prototype.getPriceWithDiscount = function(produtoPreco) {
   	var self = this;
-  	if(self.tipo == "porcentagem"){
-  		return produtoPreco - self.porcentagem/100 * produtoPreco;
+    produtoPreco =parseFloat(produtoPreco);
+
+    if(self.tipo === "porcentagem"){
+      console.log("@@@", produtos,parseFloat(self.porcentagem)/100 )
+      var newPrice = produtoPreco - (produtoPreco * parseFloat(self.porcentagem)/100);
+  		return newPrice.toFixed(2);
   	}
   	return produtoPreco;
-  }; 
+  };
 
   return Cortesia;
 };
