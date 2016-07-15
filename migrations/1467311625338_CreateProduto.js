@@ -8,7 +8,6 @@ exports.up = function(pgm) {
     "quantidade_estoque INTEGER NOT NULL",
     "tamanho INTEGER NOT NULL",
     "preco NUMERIC(5,2) NOT NULL",
-    "precoComDesconto NUMERIC(5,2)",
     "imagem VARCHAR(255) NOT NULL"
   ];
   pgm.sql('CREATE TABLE IF NOT EXISTS produtos(' + fields.join(", ") + ')');

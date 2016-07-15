@@ -14,10 +14,7 @@ module.exports = function(models) {
       var cortesiaId = req.params.id;
       var temCortesiaAtiva = false;
       
-      return Produto.all()
-        .then(function(produtos) {
-          return Cortesia.where({ativa:true})
-        })
+       return Cortesia.where({ativa:true})
         .then(function(cortesias) {
           if(cortesias.length > 0) {
             temCortesiaAtiva = true;
@@ -29,12 +26,6 @@ module.exports = function(models) {
         .then(function(cortesia) {
           if(cortesia.ativa == false && temCortesiaAtiva == false) {
             cortesia.ativa = true; 
-            if(cortesia.tipo == "porcentagem") {
-                produtos.forEach(function(produto) {
-                produto.setPrecoComDesconto();
-                produto.save();
-              });
-            }
           }
           else {
             cortesia.ativa = false;
