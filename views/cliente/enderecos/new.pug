@@ -8,9 +8,9 @@ block main_content
     .row.text-center
       .col-md-12
         .heading
-          h3 Edite os dados do endereço
+          h3 Insira os dados do endereço
       .col-md-8.col-md-offset-2
-        form(action="/cliente/enderecos/" + endereco.id, method="POST")
+        form(action="/cliente/enderecos/", method="POST")
           .row
             include partials/form.jade
             .col-sm-12.text-right
@@ -20,4 +20,4 @@ block main_content
               | &nbsp; &nbsp;
               button.btn.btn-template-main(type='submit')
                 i.fa.fa-save
-                |  Salvar
+                |  Criar
