@@ -9,6 +9,7 @@ module.exports = function(models) {
       
       return Endereco.where({cliente_id:clienteId}).then(function(enderecos) {
         scope.enderecos = enderecos;
+        scope.showNewEnderecoButton = enderecos.length < 3;
       });
     },
 

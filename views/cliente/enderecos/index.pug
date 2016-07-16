@@ -5,7 +5,8 @@ block page_title
 
 block main_content
   .heading
-    a.btn.btn-template-main.btn-md(href="/cliente/enderecos/new") Cadastrar novo endereço
+    if showNewEnderecoButton
+      a.btn.btn-template-main.btn-md(href="/cliente/enderecos/new") Cadastrar novo endereço
   .row
     #customer-orders.col-md-12
       .box
