@@ -45,6 +45,7 @@ module.exports = function(models) {
 
     create: function(req, res, next) {
       var endereco = req.body.endereco;
+      endereco.cliente_id = req.session.currentUser.id;
 
       return Endereco.create(endereco).then(function(endereco) {
           res.redirect("/cliente/enderecos/" + endereco.id);
