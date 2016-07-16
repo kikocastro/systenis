@@ -57,6 +57,18 @@ module.exports = function(models) {
       return Endereco.find(enderecoId).then(function(endereco) {
         scope.endereco = endereco;
       });
+    },
+
+    destroy: function(req, res, next) {
+      var enderecoId = scope.params.id;
+
+      return Endereco.find(enderecoId)
+        .then(function(endereco) {
+          return endereco.delete();
+        })
+        .then(function(endereco) {
+          res.redirect("/cliente/enderecos");
+        });
     }
 
   };
