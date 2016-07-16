@@ -18,12 +18,12 @@ module.exports = function(models) {
           return Cortesia.where({ativa:true});
         })
         .then(function(cortesia) {
-          cortesia = _.first(cortesia);
+          scope.cortesia = _.first(cortesia);
           scope.haPromocao = false;
 
           if(!_.isEmpty(cortesia) && scope.produtos.length) {
             scope.haPromocao = true;
-            scope.produtos = formatPricesWithDiscount(scope.produtos, cortesia);
+            scope.produtos = formatPricesWithDiscount(scope.produtos, scope.cortesia);
           }
         });
     },

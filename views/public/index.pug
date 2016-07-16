@@ -7,8 +7,8 @@ block main_content
   .content
     .container
       if haPromocao
-        h3
-          p Há promoções em andamento na loja! Confira!
+        h3.promotion
+         | Aproveite a promoção: #{cortesia.descricao}
     .container
       .row.products
         each produto in produtos
@@ -23,7 +23,6 @@ block main_content
                     a(href="/produtos/" + produto.id)
                       p= produto.nome
                       p.subtitle= produto.fabricante
-                  if !haPromocao
-                    p.price R$ #{produto.preco}
+                  p.price(class = haPromocao ? 'has-promotion' : '') R$ #{produto.preco}
                   if haPromocao
                     p.price R$ #{produto.preco_com_desconto}

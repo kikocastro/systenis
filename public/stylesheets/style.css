@@ -2,3 +2,14 @@
   font-weight: 300;
   font-size: small;
 }
+
+p.price.has-promotion {
+    text-decoration: line-through;
+    color: grey;
+    font-size: small !important;
+}
+
+.promotion {
+  color: #FF0000;
+  text-align:center;
+}
