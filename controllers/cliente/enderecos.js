@@ -62,7 +62,7 @@ module.exports = function(models) {
     },
 
     destroy: function(req, res, next) {
-      var enderecoId = scope.params.id;
+      var enderecoId = req.params.id;
 
       return Endereco.find(enderecoId)
         .then(function(endereco) {
