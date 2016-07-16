@@ -54,7 +54,7 @@ module.exports = function(models) {
 function formatPricesWithDiscount(produtos, cortesia) {
 
   _.each(produtos, function(produto) {
-    produto.preco_com_desconto = cortesia.getPriceWithDiscount(produto);
+    produto.preco_com_desconto = cortesia.getPriceWithDiscount(produto.preco);
   });
 
   return produtos;

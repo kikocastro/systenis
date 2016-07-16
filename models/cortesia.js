@@ -6,11 +6,11 @@ module.exports = function(daos, BasicModel) {
 
   Cortesia.prototype.getPriceWithDiscount = function(produtoPreco) {
   	var self = this;
+
     produtoPreco =parseFloat(produtoPreco);
 
     if(self.tipo === "porcentagem"){
-      console.log("@@@", produtos,parseFloat(self.porcentagem)/100 )
-      var newPrice = produtoPreco - (produtoPreco * parseFloat(self.porcentagem)/100);
+      var newPrice = produtoPreco - (produtoPreco * self.porcentagem/100);
   		return newPrice.toFixed(2);
   	}
   	return produtoPreco;
