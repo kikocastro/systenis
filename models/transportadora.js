@@ -1,3 +1,5 @@
+var moment = require("moment");
+
 module.exports = function() {
 
   var Transportadora = {};
@@ -10,8 +12,14 @@ module.exports = function() {
       3: 20,
       4: 25
     };
+    var reference = valores[cep % 5];
+
+    var freteInformation = {
+      price: reference.toFixed(2),
+      arrivalDateEstimation: moment().add(reference, 'days').format('L')
+    };
     
-    return valores[cep % 5].toFixed(2);
+    return freteInformation;
   };
 
   return Transportadora;

@@ -54,6 +54,7 @@ module.exports = function(models) {
       //   });
     },
     create: function(req, res, next) {
+      console.log("@@@", req);
       // var currentUser = req.currentUser;
       //
       // return Carrinho.where({cliente_id: currentUser.id}).then(function(carrinho) {
