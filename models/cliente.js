@@ -33,5 +33,15 @@ module.exports = function(daos, BasicModel, models) {
     });
   };
 
+  Cliente.prototype.setEnderecos = function() {
+    var self = this;
+    var Endereco = models().Endereco;
+    
+    return Endereco.where({cliente_id: self.id})
+      .then(function(enderecos) {
+        return _.merge(self, {enderecos: enderecos});
+      });
+  };
+
   return Cliente;
 };

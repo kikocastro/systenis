@@ -52,9 +52,8 @@ block main_content
                   button.btn.btn-default(type="submit" name='update_button' value='update_button')
                     i.fa.fa-refresh
                     |  Atualizar carrinho
-                  button.btn.btn-template-main(type="submit" name='finish_button' value='finish_button')
+                  a.btn.btn-template-main(href="/cliente/pedidos/new" name='finish_button' value='finish_button')
                     | Finalizar compra
-                    i.fa.fa-chevron-right
         .col-md-3
           #order-summary.box
             .box-header

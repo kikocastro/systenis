@@ -11,7 +11,6 @@ module.exports = function(daos, BasicModel, models) {
     var produto_ids = _.map(self.itens, function(item) {
       return {id: item.produto_id};
     });
-
     return Produto.where(produto_ids)
       .then(function(produtos) {
         _.each(self.itens, function(item) {

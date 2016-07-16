@@ -1,0 +1,97 @@
+extends ../layout
+
+block page_title
+  | Finalizar Compra
+
+block main_content
+  .content
+    .container
+      .row
+        #basket.col-md-8.col-md-offset-2.clearfix
+          form.form-carrinho(method='post', action='#')
+            .row
+              h3 1. Selecione o Endereço de entrega
+              .col-md-6
+                label(for='inputEndereco')
+                  .form-group
+                    select#inputEndereco.form-control(name="pedido[endereco_id]", placeholder='Endereço')
+                      option Selecione o endereço
+                      each endereco in enderecos
+                        option(value='{"endereco_id": ' + endereco.id + ', "cep": ' + endereco.cep + '}') #{endereco.rua}, #{endereco.cidade}
+                      if !enderecos.length
+                        p Não há endereços cadastrados. Cadastre um edereço antes de finalizar a compra.
+              .col-md-6
+                a.btn.btn-template-main(href="/cliente/enderecos" name='enderecos' value='enderecos')
+                  | Meus endereços
+            .row
+              h3 2. Selecione a forma de pagamento
+              .col-sm-12.text-left
+                label(for='inputFormaDePagamento')
+                  .form-group
+                    select#inputFormaDePagamento.form-control(name="pedido[forma_de_pagamento]", placeholder='Forma de pagamento')
+                      option(value='cartao') Cartão de crédito
+                      option(value='boleto') Boleto bancário
+              .form-cartao
+                .col-sm-12.text-left
+                  .form-group
+                    label(for='inputNumeroDoCartao') Número do cartão
+                      input#inputNumeroDoCartao.form-control(type='text', name="pedido[numero_do_cartao]", placeholder='Número do cartão', required)
+                .col-sm-12.text-left
+                  .form-group
+                    label(for='inputNomeNoCartao') Nome no cartão
+                      input#inputNomeNoCartao.form-control(type='text', name="pedido[numero_do_cartao]", placeholder='Nome no cartão', required)
+                .col-sm-12.text-left
+                  .form-group
+                    label(for='dataExpiracao') Data de Expiração
+                      input#dataExpiracao.form-control(type='date', name="pedido[data_de_expiracao_do_cartao]", placeholder='Data de Expiração', required)
+            .row
+              h3 3. Sua compra
+            .box
+              .table-responsive
+                table.table
+                  thead
+                    tr
+                      th(colspan='2') Produto
+                      th Quantidade
+                      th Preço unitário
+                      th Desconto
+                      th(colspan='2') Total
+                  tbody
+                    each item in carrinho.itens
+                      tr
+                        td
+                          a(href='#')
+                            img(src=item.produto.imagem)
+                        td
+                          a(href='/produtos/' + item.produto.id)= item.produto.nome
+                        td
+                          input.form-control(type='hidden', name="item[id]", value=item.id, id="inputItemId" + item.id)
+                          input.form-control(type='number', name="item[quantidade]", value=item.quantidade, min="1", id="inputQuantidade" + item.id, required)
+
+                        td R$ #{item.produto.preco}
+                        td R$ 0.00
+                        td R$ #{item.total}
+                        td
+                          a(href='/cliente/itens/' + item.id + '/delete')
+                            i.fa.fa-trash-o
+                  tfoot
+                    tr
+                      th(colspan='5') Subotal
+                      th(colspan='2') R$ #{totalDaCompra}
+                    tr
+                      th(colspan='5') Frete
+                      th(colspan='2').frete
+                    tr
+                      th(colspan='5') Total
+                      th(colspan='2').total
+              .box-footer
+                .pull-left
+                  a.btn.btn-default(href='/')
+                    i.fa.fa-chevron-left
+                    |  Continuar comprando
+                .pull-right
+                  a.btn.btn-template-main(href="/cliente/pedidos/new" name='finish_button' value='finish_button')
+                    | Finalizar compra
+
+  script.
+    App.Cliente.Pedido.new(!{JSON.stringify({totalDaCompra: totalDaCompra})});

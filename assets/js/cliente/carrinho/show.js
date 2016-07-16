@@ -7,7 +7,7 @@ App.Cliente.Carrinho.show = function(object) {
 
     $("form.form-carrinho").submit(formSubmit);
 
-    $(".calculaFrete").click(calculaFrete);
+    $(".calculaFrete").click(calculateFrete);
 
     $("form input[type=submit]").click(function() {
       $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
@@ -17,7 +17,7 @@ App.Cliente.Carrinho.show = function(object) {
 
   ///////////////
 
-  function calculaFrete() {
+  function calculateFrete() {
     var cep = $('#inputCep').val();
     var url = "/transportadora/calcula-frete";
 
@@ -54,11 +54,7 @@ App.Cliente.Carrinho.show = function(object) {
       url = "/cliente/itens/update";
 
       $.post(url, {updatedItems: updatedItems}).done(window.location.reload());
-    } else if( clickedButton === 'finish_button') {
-      url = "/finalizar-compra";
-
-      $.post(url);
-    }
+    } 
 
   }
 };

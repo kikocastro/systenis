@@ -45,6 +45,13 @@ module.exports = function(conf) {
   app.get("/cliente/enderecos/:id/edit", AuthenticationCliente(controllers.Cliente.Enderecos.edit));
   app.get("/cliente/enderecos/:id/delete", AuthenticationCliente(controllers.Cliente.Enderecos.destroy));
   
+  //Pedidos
+  app.get("/cliente/pedidos", AuthenticationCliente(controllers.Cliente.Pedidos.index));
+  app.post("/cliente/pedidos", AuthenticationCliente(controllers.Cliente.Pedidos.create));
+  app.get("/cliente/pedidos/new", AuthenticationCliente(controllers.Cliente.Pedidos.new));
+  app.get("/cliente/pedidos/:id", AuthenticationCliente(controllers.Cliente.Pedidos.show));
+  app.post("/cliente/pedidos/:id", AuthenticationCliente(controllers.Cliente.Pedidos.update));
+  
   //Transportadora API
   app.get("/transportadora/calcula-frete", controllers.Transportadora.calculaFrete);
 
