@@ -20,7 +20,9 @@ block main_content
                 p Cores: #{produto.cores}
                 p Peso com Embalagem: #{produto.peso} Kg
                 p Tamanho: #{produto.tamanho}
-                p.price R$ 124,00
+                p.price(class = haPromocao ? 'has-promotion-show' : '') R$ #{produto.preco}
+                if haPromocao
+                  p.price R$ #{produto.preco_com_desconto}
 
                 form(action="/cliente/carrinho/update", method="POST")
                   .col-md-6.col-md-offset-3

@@ -9,6 +9,12 @@ p.price.has-promotion {
     font-size: small !important;
 }
 
+p.price.has-promotion-show {
+    text-decoration: line-through;
+    color: grey;
+    font-size: x-large !important;
+}
+
 .promotion {
   color: #FF0000;
   text-align:center;

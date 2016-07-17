@@ -32,7 +32,19 @@ module.exports = function(models) {
 
       return Produto.find(produtoId).then(function(produto) {
         scope.produto = produto;
-      });
+      })
+      .then(function() {
+        return Cortesia.where({ativa:true});
+      })
+      .then(function(cortesia) {
+        scope.cortesia = _.first(cortesia);
+        scope.haPromocao = false;
+
+        if(!_.isEmpty(cortesia)) {
+            scope.haPromocao = true;
+            scope.produto.preco_com_desconto = scope.cortesia.getPriceWithDiscount(scope.produto.preco);
+          }
+        });
     },
     createCarrinho: function(scope) {
     },
