@@ -1,4 +1,5 @@
 var _ = require("lodash");
+var q = require("q");
 
 module.exports = function(models) {
   var Pedido = models.Pedido;
@@ -54,15 +55,49 @@ module.exports = function(models) {
       //   });
     },
     create: function(req, res, next) {
-      console.log("@@@", req);
-      // var currentUser = req.currentUser;
-      //
-      // return Carrinho.where({cliente_id: currentUser.id}).then(function(carrinho) {
-      //   console.log("@@@", carrinho);
-      //
-      // }, function(err) {
-      //   next(err);
-      // });
+      var currentUser = req.currentUser;
+      var pedido = req.body.pedido;
+      var endereco = JSON.parse(pedido.endereco_id);
+      var scope = {};
+
+      pedido.endereco_id = endereco.endereco_id;
+      pedido.status = Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION;
+
+      return Cliente.find(currentUser.id)
+        .then(function(cliente) {
+          return cliente.setEnderecos();
+        })
+        .then(function(cliente) {
+          return cliente.setCarrinho();
+        })
+        .then(function(cliente) {
+          currentUser = cliente;
+          scope.carrinho = currentUser.carrinho;
+          return scope.carrinho.populateItems();
+        })
+        .then(function(carrinho) {
+          scope.carrinho = carrinho;
+          var totalDaCompra = _.sum(_.map(carrinho.itens, 'total')).toFixed(2);
+          pedido.valor_total = parseFloat(totalDaCompra);
+
+          return Pedido.create(pedido);
+        })
+        .then(function(pedido) {
+          scope.pedido = pedido;
+
+          var promises = _.map(scope.carrinho.itens, function(item) {
+            item.pedido_id = pedido.id;
+            item.carrinho_id = null;
+            return item.save();
+          });
+
+          return q.all(promises);
+        })
+        .then(function() {
+          res.redirect("/cliente/pedidos/" + scope.pedido.id);
+        })
+
+
     },
     show: function(scope) {
       // var produtoId = scope.params.id;
@@ -83,7 +118,6 @@ module.exports = function(models) {
 function getPermittedParams() {
 
   var permittedParams = [
-
     "id",
     "funcionario_id",
     "endereco_id",

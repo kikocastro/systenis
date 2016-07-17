@@ -8,7 +8,7 @@ block main_content
     .container
       .row
         #basket.col-md-8.col-md-offset-2.clearfix
-          form.form-carrinho(method='post', action='cliente/pedidos')
+          form.form-carrinho(method='post', action='/cliente/pedidos')
             .row
               .heading
                 h3 1. Selecione o Endereço de entrega
@@ -42,7 +42,7 @@ block main_content
                 .col-sm-12.text-left
                   .form-group
                     label(for='inputNomeNoCartao') Nome no cartão
-                      input#inputNomeNoCartao.form-control(type='text', name="pedido[numero_do_cartao]", placeholder='Nome no cartão')
+                      input#inputNomeNoCartao.form-control(type='text', name="pedido[nome_no_cartao]", placeholder='Nome no cartão')
                 .col-sm-12.text-left
                   .form-group
                     label(for='dataExpiracao') Data de Expiração
@@ -88,8 +88,8 @@ block main_content
                     i.fa.fa-chevron-left
                     |  Continuar comprando
                 .pull-right
-                  button.btn.btn-template-main(type='submit' name='finish_button' value='finish_button')
-                    | Finalizar compra
+                  button.btn.btn-template-main(type='submit')
+                    | Finalizar pedido
 
   script.
     App.Cliente.Pedido.new(!{JSON.stringify({totalDaCompra: totalDaCompra})});
