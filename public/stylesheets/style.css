@@ -16,3 +16,7 @@ btn.small {
 #get-it.error {
   background-color: #cc0000;
 }
+
+.img-responsive.image1 {
+    height: 256px;
+}
