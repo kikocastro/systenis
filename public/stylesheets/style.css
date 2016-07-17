@@ -12,3 +12,7 @@ btn.small {
     max-height: 26px;
     line-height: 1;
 }
+
+#get-it.error {
+  background-color: #cc0000;
+}

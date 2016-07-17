@@ -1,0 +1,37 @@
+.col-sm-12
+  .form-group
+    input#inputId.form-control(type='hidden', name="endereco[id]", value=(endereco ? endereco.id : null))
+
+.col-sm-12
+  .form-group
+    input#inputId.form-control(type='hidden', name="endereco[cliente_id]", value=(endereco ? endereco.cliente_id : null))
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputCep') CEP
+    input#inputCep.form-control(type='number', name="endereco[cep]", value=(endereco ? endereco.cep : null), placeholder='CEP', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputRua') Rua
+    input#inputRua.form-control(type='text', name="endereco[rua]", value=(endereco ? endereco.rua : null), placeholder='Rua', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputNumero') Numero
+    input#inputNumero.form-control(type='number', name="endereco[numero]", value=(endereco ? endereco.numero : null), placeholder='Numero', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputComplemento') Complemento
+    input#inputComplemento.form-control(type='text', name="endereco[complemento]", value=(endereco ? endereco.complemento : null), placeholder='Complemento', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputCidade') Cidade
+    input#inputCidade.form-control(type='text', name="endereco[cidade]", value=(endereco ? endereco.cidade : null), placeholder='Cidade', required)
+
+.col-sm-6.text-left
+  .form-group
+    label(for='inputEstado') Estado
+    input#inputEstado.form-control(type='text', name="endereco[estado]", value=(endereco ? endereco.estado : null), placeholder='Estado', required)

@@ -1,0 +1,32 @@
+extends ../layout
+
+block page_title
+  | Perfil
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Endereço
+      .col-md-8.col-md-offset-2
+        .row
+          .col-sm-6.text-left
+            p.lead CEP: #{endereco.cep}
+            p.lead Rua: #{endereco.rua}
+            p.lead Numero: #{endereco.numero}
+            p.lead Complemento: #{endereco.complemento}
+            p.lead Cidade: #{endereco.cidade}
+            p.lead Estado: #{endereco.estado}
+        .row
+          a.btn.btn-template-main(href="/cliente/enderecos")
+            i.fa.fa-toggle-left
+            |  Voltar
+          | &nbsp; &nbsp;
+          a.btn.btn-template-main(href="/cliente/enderecos/" + endereco.id + "/edit")
+            i.fa.fa-pencil-square-o
+            |  Editar
+          | &nbsp; &nbsp;
+          a.btn.btn-template-main(href="/cliente/enderecos/" + endereco.id + "/delete")
+            i.fa.fa-trash-o
+            |  Remover

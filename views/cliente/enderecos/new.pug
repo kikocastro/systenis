@@ -1,24 +1,23 @@
-extends ../funcionario_layout
+extends ../layout
 
 block page_title
-  | Clientes
+  | Perfil
 
 block main_content
   section
     .row.text-center
       .col-md-12
         .heading
-          h2 Insira os dados do cliente
+          h3 Insira os dados do endereço
       .col-md-8.col-md-offset-2
-        form(action="/intranet/clientes", method="POST")
+        form(action="/cliente/enderecos/", method="POST")
           .row
             include partials/form.jade
             .col-sm-12.text-right
-              a.btn.btn-default(href="/intranet/clientes")
+              a.btn.btn-default(href="/cliente/enderecos")
                 i.fa.fa-close
                 |  Cancelar
               | &nbsp; &nbsp;
               button.btn.btn-template-main(type='submit')
                 i.fa.fa-save
                 |  Criar
-
