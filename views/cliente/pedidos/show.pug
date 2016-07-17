@@ -1,0 +1,58 @@
+extends ../layout
+
+block page_title
+  | Pedido número #{pedido.id}
+
+block main_content
+  .content
+    .container
+      .row
+        .col-md-12
+          p.text-muted.lead Você possui #{pedido.totalItens} ítem(s) em seu pedido.
+        #basket.col-md-9.clearfix
+          .box
+            form.form-pedido(method='post', action='#')
+              .table-responsive
+                table.table
+                  thead
+                    tr
+                      th(colspan='2') Produto
+                      th Quantidade
+                      th Preço unitário
+                      th Desconto
+                      th Total
+                  tbody
+                    each item in pedido.itens
+                      tr
+                        td
+                          a(href='#')
+                            img(src=item.produto.imagem)
+                        td
+                          a(href='/produtos/' + item.produto.id)= item.produto.nome
+                        td
+                          | #{item.quantidade}
+                        td R$ #{item.produto.preco}
+                        td R$ 0.00
+                        td R$ #{item.total}
+                  tfoot
+                    tr
+                      th(colspan='5') Total
+                      th(colspan='2') R$ #{pedido.valor_total}
+              .box-footer
+                .pull-left
+                  a.btn.btn-default(href='/')
+                    i.fa.fa-chevron-left
+                    |  Voltar para a loja
+        .col-md-3
+          #order-summary.box
+            .box-header
+              h3 Pedido
+            .table-responsive
+              table.table
+                tbody
+                  tr
+                    td Status
+                    th #{pedido.status}
+
+  script.
+    App.Cliente.Carrinho.show(!{JSON.stringify({pedido: pedido})});

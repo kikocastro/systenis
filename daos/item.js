@@ -2,6 +2,7 @@ module.exports = function(db, BasicDao) {
   var fields = [
 		"carrinho_id",
     "produto_id",
+    "pedido_id",
     "quantidade"
 	];
 

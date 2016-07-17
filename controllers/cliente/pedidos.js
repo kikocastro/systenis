@@ -62,6 +62,7 @@ module.exports = function(models) {
 
       pedido.endereco_id = endereco.endereco_id;
       pedido.status = Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION;
+      pedido.cliente_id = currentUser.id;
 
       return Cliente.find(currentUser.id)
         .then(function(cliente) {
@@ -94,17 +95,33 @@ module.exports = function(models) {
           return q.all(promises);
         })
         .then(function() {
-          res.redirect("/cliente/pedidos/" + scope.pedido.id);
-        })
+          res.redirect("/cliente/pedidos/" + scope.pedido.id + "?msg=created");
+        });
 
 
     },
     show: function(scope) {
-      // var produtoId = scope.params.id;
-      //
-      // return Produto.find(produtoId).then(function(produto) {
-      //   scope.produto = produto;
-      // });
+      var pedidoId = scope.params.id;
+      return Pedido.find(pedidoId)
+        .then(function(pedido) {
+
+          if(scope.currentUser.id === pedido.cliente_id) {
+            return pedido.setItems();
+          }
+          return false;
+        })
+        .then(function(pedido) {
+          if(!!pedido) {
+            scope.pedido = pedido;
+          }
+          return Cliente.find(scope.currentUser.id);
+        })
+        .then(function(cliente) {
+          return cliente.setCarrinho();
+        })
+        .then(function(cliente) {
+          scope.currentUser = cliente;
+        })
     }
 
   };
@@ -121,6 +138,7 @@ function getPermittedParams() {
     "id",
     "funcionario_id",
     "endereco_id",
+    "cliente_id",
     "status",
     "valor_total",
     "entrega_parcial"
