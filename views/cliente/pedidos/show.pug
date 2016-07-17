@@ -7,6 +7,12 @@ block main_content
   .content
     .container
       .row
+        if successMessage
+          .alert.alert-success.alert-dismissible(role="alert")
+            button.close(data-dismiss="alert" type="button")
+              span(aria-hidden="true")  ×
+              span.sr-only Fechar
+            | #{successMessage}
         .col-md-12
           p.text-muted.lead Você possui #{pedido.totalItens} ítem(s) em seu pedido.
         #basket.col-md-9.clearfix

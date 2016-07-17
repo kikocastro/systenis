@@ -102,6 +102,12 @@ module.exports = function(models) {
     },
     show: function(scope) {
       var pedidoId = scope.params.id;
+      scope.successMessage = _.result(scope, 'query.msg');
+
+      if(scope.successMessage === 'created') {
+        scope.successMessage = "Seu pedido foi criado com sucesso :-)";
+      }
+      
       return Pedido.find(pedidoId)
         .then(function(pedido) {
 
