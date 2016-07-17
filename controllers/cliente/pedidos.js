@@ -126,8 +126,9 @@ module.exports = function(models) {
           return cliente.setCarrinho();
         })
         .then(function(cliente) {
+          scope.session.currentUser = cliente;
           scope.currentUser = cliente;
-        })
+        });
     }
 
   };
