@@ -22,9 +22,9 @@ App.Cliente.Carrinho.show = function(object) {
     var url = "/transportadora/calcula-frete";
 
     $.get(url, {cep: cep}).then(function(newFrete) {
-      $('.frete').text("R$ " + newFrete);
+      $('.frete').text("R$ " + newFrete.price);
 
-      var total = parseFloat(newFrete)+ parseFloat(totalDaCompra);
+      var total = parseFloat(newFrete.price)+ parseFloat(totalDaCompra);
       $('.total').text("R$ " + total.toFixed(2));
     });
     
