@@ -7,6 +7,14 @@ block main_content
   .heading
     if showNewEnderecoButton
       a.btn.btn-template-main.btn-md(href="/cliente/enderecos/new") Cadastrar novo endereço
+  if maxError
+    #get-it.error
+      .container.text-center
+        h4.text-mute #{maxError}
+  .row
+    .col-md-12
+      .heading
+        h2 Meus endereços
   .row
     #customer-orders.col-md-12
       .box

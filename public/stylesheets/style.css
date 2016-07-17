@@ -2,3 +2,7 @@
   font-weight: 300;
   font-size: small;
 }
+
+#get-it.error {
+  background-color: #cc0000;
+}
