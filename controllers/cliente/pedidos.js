@@ -6,6 +6,7 @@ module.exports = function(models) {
   var Item = models.Item;
   var Carrinho = models.Carrinho;
   var Cliente = models.Cliente;
+  var Cortesia = models.Cortesia;
 
   return {
     new: function(scope) {
@@ -64,7 +65,16 @@ module.exports = function(models) {
       pedido.status = Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION;
       pedido.cliente_id = currentUser.id;
 
-      return Cliente.find(currentUser.id)
+      return Cortesia.where({ativa:true})
+        .then(function(cortesias) {
+          var cortesia = _.first(cortesias);        
+          if(!_.isEmpty(cortesia)) {
+              pedido.cortesia_id = cortesia.id;
+          }
+        })
+        .then(function() {
+          return Cliente.find(currentUser.id)
+        })      
         .then(function(cliente) {
           return cliente.setEnderecos();
         })
@@ -89,6 +99,7 @@ module.exports = function(models) {
           var promises = _.map(scope.carrinho.itens, function(item) {
             item.pedido_id = pedido.id;
             item.carrinho_id = null;
+            item.preco_unitario = item.produto.preco - item.desconto;
             return item.save();
           });
 

@@ -4,6 +4,7 @@ exports.up = function(pgm) {
     "funcionario_id INT references funcionarios(id)",
     "endereco_id INT references enderecos(id)",
     "cliente_id INT references clientes(id)",
+    "cortesia_id INT references cortesias(id)",
     "status varchar(50) NOT NULL",
     "valor_total NUMERIC(20,2)",
     "entrega_parcial boolean"

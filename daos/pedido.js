@@ -3,6 +3,7 @@ module.exports = function(db, BasicDao) {
     "funcionario_id",
     "endereco_id",
     "cliente_id",
+    "cortesia_id",
     "status",
     "valor_total",
     "entrega_parcial"

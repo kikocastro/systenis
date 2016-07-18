@@ -14,7 +14,7 @@ block main_content
               span.sr-only Fechar
             | #{successMessage}
         .col-md-12
-          p.text-muted.lead Você possui #{pedido.totalItens} ítem(s) em seu pedido.
+          p.text-muted.lead Você possui #{pedido.totalItens} item(s) em seu pedido.
         #basket.col-md-9.clearfix
           .box
             form.form-pedido(method='post', action='#')
@@ -24,8 +24,7 @@ block main_content
                     tr
                       th(colspan='2') Produto
                       th Quantidade
-                      th Preço unitário
-                      th Desconto
+                      th Preço unitário cobrado
                       th Total
                   tbody
                     each item in pedido.itens
@@ -37,12 +36,11 @@ block main_content
                           a(href='/produtos/' + item.produto.id)= item.produto.nome
                         td
                           | #{item.quantidade}
-                        td R$ #{item.produto.preco}
-                        td R$ 0.00
-                        td R$ #{item.total}
+                        td R$ #{item.preco_unitario}
+                        td R$ #{(item.preco_unitario * item.quantidade).toFixed(2)}
                   tfoot
                     tr
-                      th(colspan='5') Total
+                      th(colspan='4') Total
                       th(colspan='2') R$ #{pedido.valor_total}
               .box-footer
                 .pull-left
