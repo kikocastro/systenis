@@ -34,7 +34,7 @@ block main_content
                           input.form-control(type='number', name="item[quantidade]", value=item.quantidade, min="1", id="inputQuantidade" + item.id, required)
 
                         td R$ #{item.produto.preco}
-                        td R$ 0.00
+                        td R$ #{item.desconto}
                         td R$ #{item.total}
                         td
                           a(href='/cliente/itens/' + item.id + '/delete')
