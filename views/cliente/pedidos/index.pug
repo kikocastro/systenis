@@ -1,0 +1,28 @@
+extends ../layout
+
+block page_title
+  | Pedidos
+
+block main_content
+  .row
+    .col-md-12
+      .heading
+        h2 Meus pedidos
+  .row
+    #customer-orders.col-md-12
+      .box
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th Status
+                th Valor total
+                th Número do pedido
+            tbody
+              each pedido in pedidos
+                tr
+                  td= pedido.status
+                  td= pedido.valor_total
+                  td= pedido.id
+                  td
+                    a.btn.btn-template-main.btn-sm(href="/cliente/pedidos/" + pedido.id) Ver

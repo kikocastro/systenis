@@ -34,9 +34,11 @@ module.exports = function(models) {
         });
     },
     index: function(scope) {
-      // return Produto.all().then(function(produtos) {
-      //   scope.produtos = produtos;
-      // });
+      var clienteId = scope.session.currentUser.id;
+
+      return Pedido.where({cliente_id:clienteId}).then(function(pedidos) {
+        scope.pedidos = pedidos;
+      });
     },
     update: function(req, res) {
       // var editedProduto = req.body.produto;
