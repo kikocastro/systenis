@@ -6,6 +6,10 @@ block page_title
 block main_content
   .content
     .container
+      if haPromocao
+        h3.promotion
+         | Aproveite a promoção: #{cortesia.descricao}
+    .container
       .row.products
         each produto in produtos
           .col-md-3.col-sm-4
@@ -19,4 +23,6 @@ block main_content
                     a(href="/produtos/" + produto.id)
                       p= produto.nome
                       p.subtitle= produto.fabricante
-                  p.price R$ #{produto.preco}
+                  p.price(class = haPromocao ? 'has-promotion' : '') R$ #{produto.preco}
+                  if haPromocao
+                    p.price R$ #{produto.preco_com_desconto}

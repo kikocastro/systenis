@@ -3,6 +3,24 @@
   font-size: small;
 }
 
+p.price.has-promotion {
+    text-decoration: line-through;
+    color: grey;
+    font-size: small !important;
+}
+
+p.price.has-promotion-show {
+    text-decoration: line-through;
+    color: grey;
+    font-size: x-large !important;
+}
+
+.promotion {
+  color: #FF0000;
+  text-align:center;
+}
+
+
 input.small {
     max-width: 100px;
     margin-right: 20px;

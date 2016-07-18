@@ -91,4 +91,9 @@ module.exports = function(conf) {
   app.get("/intranet/produtos/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Produtos.edit));
   app.get("/intranet/produtos/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Produtos.destroy));
 
+  // cortesias
+  app.get("/intranet/cortesias", AuthenticationFuncionario(controllers.Funcionario.Cortesias.index));
+  app.get("/intranet/cortesias/:id", AuthenticationFuncionario(controllers.Funcionario.Cortesias.show));
+  app.get("/intranet/cortesias/:id/activate", AuthenticationFuncionario(controllers.Funcionario.Cortesias.activate));
+
 };

@@ -1,0 +1,40 @@
+.subtitle {
+  font-weight: 300;
+  font-size: small;
+}
+
+<<<<<<< HEAD
+input.small {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+btn.small {
+    max-height: 26px;
+    line-height: 1;
+}
+
+#get-it.error {
+  background-color: #cc0000;
+}
+
+.img-responsive.image1 {
+    height: 256px;
+=======
+p.price.has-promotion {
+    text-decoration: line-through;
+    color: grey;
+    font-size: small !important;
+}
+
+p.price.has-promotion-show {
+    text-decoration: line-through;
+    color: grey;
+    font-size: x-large !important;
+}
+
+.promotion {
+  color: #FF0000;
+  text-align:center;
+>>>>>>> cortesias
+}

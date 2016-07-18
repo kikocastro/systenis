@@ -1,0 +1,25 @@
+extends ../funcionario_layout
+
+block page_title
+  | Cortesias
+
+block main_content
+  .row
+    #customer-orders.col-md-12
+      .box
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th ID
+                th Título
+                th Ativa
+            tbody
+              each cortesia in cortesias
+                tr
+                  th= cortesia.id
+                  td= cortesia.titulo
+                  td= cortesia.ativa
+                  td
+                    a.btn.btn-template-main.btn-sm(href="/intranet/cortesias/" + cortesia.id) Ver
+                    a.btn.btn-template-main.btn-sm(href="/intranet/cortesias/" + cortesia.id + "/activate") Ativar/Desativar
