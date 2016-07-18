@@ -58,7 +58,7 @@ block main_content
                       th(colspan='2') Produto
                       th Quantidade
                       th Preço unitário
-                      th Desconto
+                      th Desconto por unidade
                       th Total
                   tbody
                     each item in carrinho.itens
@@ -70,17 +70,17 @@ block main_content
                           a(href='/produtos/' + item.produto.id)= item.produto.nome
                         td #{item.quantidade}
                         td R$ #{item.produto.preco}
-                        td R$ 0.00
+                        td R$ #{item.desconto}
                         td R$ #{item.total}
                   tfoot
                     tr
-                      th(colspan='4') Subotal
+                      th(colspan='5') Subotal
                       th(colspan='2') R$ #{totalDaCompra}
                     tr
-                      th(colspan='4') Frete
+                      th(colspan='5') Frete
                       th(colspan='2').frete
                     tr
-                      th(colspan='4') Total
+                      th(colspan='5') Total
                       th(colspan='2').total
               .box-footer
                 .pull-left

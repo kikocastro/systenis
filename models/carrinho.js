@@ -9,25 +9,26 @@ module.exports = function(daos, BasicModel, models) {
     var Produto = models().Produto;
     var Cortesia = models().Cortesia;
     
+    var porcentagem = 0;
+
     var produto_ids = _.map(self.itens, function(item) {
       return {id: item.produto_id};
     });
 
-    var porcentagem = Cortesia.where({ativa:true})
+    return Cortesia.where({ativa:true})
       .then(function(cortesias) {
           var cortesia = _.first(cortesias);        
           if(!_.isEmpty(cortesia)) {
-              return cortesia.porcentagem;
+              porcentagem = cortesia.porcentagem;
           }
-          return 0;
-      });
-
-    return Produto.where(produto_ids)
+      })
+      .then(function() {
+        return Produto.where(produto_ids)
+      })
       .then(function(produtos) {
         _.each(self.itens, function(item) {
           item.produto = _.find(produtos, {id: item.produto_id});
           item.desconto = (porcentagem/100 * item.produto.preco).toFixed(2);
-          console.log("porcentagem:" + porcentagem);
           item.total = ((item.produto.preco - item.desconto) * item.quantidade).toFixed(2);
         });
         
