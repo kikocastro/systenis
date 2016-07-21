@@ -96,4 +96,7 @@ module.exports = function(conf) {
   app.get("/intranet/cortesias/:id", AuthenticationFuncionario(controllers.Funcionario.Cortesias.show));
   app.get("/intranet/cortesias/:id/activate", AuthenticationFuncionario(controllers.Funcionario.Cortesias.activate));
 
+  //Pedidos
+  app.get("/intranet/pedidos", AuthenticationCliente(controllers.Funcionario.Pedidos.index));
+  app.get("/intranet/pedidos/:id", AuthenticationCliente(controllers.Funcionario.Pedidos.show));
 };

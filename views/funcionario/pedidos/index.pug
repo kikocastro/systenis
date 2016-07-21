@@ -1,13 +1,9 @@
-extends ../layout
+extends ../funcionario_layout
 
 block page_title
   | Pedidos
 
 block main_content
-  .row.text-center
-    .col-md-12
-      .heading
-        h2 Meus pedidos
   .row
     #customer-orders.col-md-12
       .box
@@ -15,14 +11,16 @@ block main_content
           table.table.table-hover
             thead
               tr
+                th Cliente
+                th Funcionário responsável
                 th Status
                 th Valor total
-                th Número do pedido
             tbody
               each pedido in pedidos
                 tr
+                  td= pedido.cliente_id
+                  td= pedido.funcionario_id
                   td= pedido.status
                   td= pedido.valor_total
-                  td= pedido.id
                   td
-                    a.btn.btn-template-main.btn-sm(href="/cliente/pedidos/" + pedido.id) Ver
+                    a.btn.btn-template-main.btn-sm(href="/intranet/pedidos/" + pedido.id) Ver
