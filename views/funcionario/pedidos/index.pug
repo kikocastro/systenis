@@ -11,6 +11,7 @@ block main_content
           table.table.table-hover
             thead
               tr
+                th Id
                 th Cliente
                 th Funcionário responsável
                 th Status
@@ -18,6 +19,7 @@ block main_content
             tbody
               each pedido in pedidos
                 tr
+                  td= pedido.id
                   td= pedido.cliente_id
                   td= pedido.funcionario_id
                   td= pedido.status

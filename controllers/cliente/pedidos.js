@@ -114,7 +114,7 @@ module.exports = function(models) {
         })
         .then(function() {
           pagamento.pedido_id = scope.pedido.id;
-          pagamento.criado_em =  moment().format('"YYYY-MM-DD');
+          pagamento.criado_em = moment().format('YYYY-MM-DD');
           return Pagamento.create(pagamento);
         })
         .then(function() {
