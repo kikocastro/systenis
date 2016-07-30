@@ -12,11 +12,11 @@ App.Cliente.Pedido.new= function(object) {
   function handleFormaSelection() {
     var forma = $('#inputFormaDePagamento').val();
 
-    if(forma === 'boleto') {
+    if(forma === 'BOLETO') {
       $('.form-cartao').hide();
     }
 
-    if(forma === 'cartao') {
+    if(forma === 'CARTAO') {
       $('.form-cartao').show();
     }
   }

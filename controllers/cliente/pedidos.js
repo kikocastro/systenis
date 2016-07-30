@@ -1,5 +1,6 @@
 var _ = require("lodash");
 var q = require("q");
+var moment = require("moment");
 
 module.exports = function(models) {
   var Pedido = models.Pedido;
@@ -7,10 +8,10 @@ module.exports = function(models) {
   var Carrinho = models.Carrinho;
   var Cliente = models.Cliente;
   var Cortesia = models.Cortesia;
+  var Pagamento = models.Pagamento;
 
   return {
     new: function(scope) {
-
       return Cliente.find(scope.currentUser.id)
         .then(function(cliente) {
           return cliente.setEnderecos();
@@ -62,6 +63,10 @@ module.exports = function(models) {
       var pedido = req.body.pedido;
       var endereco = JSON.parse(pedido.endereco_id);
       var scope = {};
+      var pagamento = {
+        forma: pedido.forma_de_pagamento,
+        parcelas: pedido.parcelas
+      };
 
       pedido.endereco_id = endereco.endereco_id;
       pedido.status = Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION;
@@ -108,6 +113,11 @@ module.exports = function(models) {
           return q.all(promises);
         })
         .then(function() {
+          pagamento.pedido_id = scope.pedido.id;
+          pagamento.criado_em =  moment().format('"YYYY-MM-DD');
+          return Pagamento.create(pagamento);
+        })
+        .then(function() {
           res.redirect("/cliente/pedidos/" + scope.pedido.id + "?msg=created");
         });
 
@@ -116,6 +126,7 @@ module.exports = function(models) {
     show: function(scope) {
       var pedidoId = scope.params.id;
       scope.successMessage = _.result(scope, 'query.msg');
+      var Banco = models.Banco;
 
       if(scope.successMessage === 'created') {
         scope.successMessage = "Seu pedido foi criado com sucesso :-)";
@@ -141,6 +152,21 @@ module.exports = function(models) {
         .then(function(cliente) {
           scope.session.currentUser = cliente;
           scope.currentUser = cliente;
+          if(!!scope.pedido) {
+            return Pagamento.where({pedido_id: scope.pedido.id});
+          }
+        })
+        .then(function(pagamento) {
+          if(!!scope.pedido && !!pagamento) {
+            scope.pagamento = _.first(pagamento);
+            scope.pagamento.forma = Pagamento.FORMAS[scope.pagamento.forma];
+
+            if(scope.pedido.status === Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION && scope.pagamento.forma === Pagamento.FORMAS.BOLETO) {
+              scope.boleto = Banco.geraBoleto(scope.pedido);
+              console.log("@@", scope.boleto);
+            }
+
+          }
         });
     }
 

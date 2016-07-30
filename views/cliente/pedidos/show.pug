@@ -57,6 +57,39 @@ block main_content
                   tr
                     td Status
                     th #{pedido.status}
+                  tr
+                    td Forma de Pagamento
+                    th #{pagamento.forma}
+                  if !!boleto
+                    tr
+                      td
+                      th
+                        button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
+                          | Abrir boleto
+
+  #myModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Boleto
+        .modal-body
+          if !!boleto
+            table.table
+              tbody
+                tr
+                  td Favorecido
+                  th #{boleto.favorecido}
+                tr
+                  td Vencimento
+                  th #{boleto.vencimento}
+                tr
+                  td Código de barras
+                  th #{boleto.codigoDeBarras}
+                tr
+                  td Valor
+                  th R$ #{boleto.valorTotal}
 
   script.
     App.Cliente.Carrinho.show(!{JSON.stringify({pedido: pedido})});

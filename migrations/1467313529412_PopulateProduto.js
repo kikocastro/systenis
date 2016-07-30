@@ -63,7 +63,7 @@ exports.up = function(pgm) {
   ];
   produtos.forEach(function (produto){
     pgm.sql('INSERT INTO produtos (nome, cores, fabricante, peso, quantidade_estoque, tamanho, preco, imagem) VALUES ( {nome}, {cores}, {fabricante}, {peso}, {quantidade_estoque}, {tamanho}, {preco}, {imagem});', produto);
-  })
+  });
 };
 
 exports.down = function(pgm) {
