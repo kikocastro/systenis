@@ -5,7 +5,7 @@ block nav_menu
     a(href="/intranet/perfil")
       i.fa.fa-user
       span.hidden-xs.text-uppercase Olá #{currentUser['nome']}
-    a(href='/funcionarios/sessions/delete')
+    a(href='/funcionario/sessions/delete')
       i.fa.fa-sign-out
       span.hidden-xs.text-uppercase Sair
   else
@@ -16,12 +16,18 @@ block main_menu
     li
       a(href='/intranet/clientes') Clientes
     li
-      a(href='/intranet/produtos') Produtos
-    li
-      a(href='#') Funcionários
-    li
       a(href='/intranet/pedidos') Pedidos
-    li
-      a(href='/intranet/cortesias') Cortesias
+    if (currentUser.papel === 'admin' || currentUser.papel === 'comercial')
+      li
+        a(href='/intranet/produtos') Produtos
+      li
+        a(href='#') Devoluções
+    if currentUser.papel === 'admin'
+      li
+        a(href='/intranet/cortesias') Cortesias
+      li
+        a(href='#') Relatórios
+      li
+        a(href='#') Funcionários
     li
       a(href='/intranet/perfil') Perfil
