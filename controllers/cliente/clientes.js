@@ -11,11 +11,12 @@ module.exports = function(models) {
       return Cliente.create(cliente)
       .then(function(cliente) {
         res.redirect("/cliente/sessions/new");
+      }, function(error) {
+        console.log(error);
+        res.redirect("/cliente/clientes/new");
       });
     }
 
   };
 
 };
-
-
