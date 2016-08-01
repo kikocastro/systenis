@@ -4,7 +4,7 @@
 
 .col-sm-12
   .form-group
-    input#inputId.form-control(type='hidden', name="endereco[cliente_id]", value=(endereco ? endereco.cliente_id : null))
+    input#inputClienteId.form-control(type='hidden', name="endereco[cliente_id]", value=(endereco ? endereco.cliente_id : null))
 
 .col-sm-6.text-left
   .form-group
@@ -24,7 +24,7 @@
 .col-sm-6.text-left
   .form-group
     label(for='inputComplemento') Complemento
-    input#inputComplemento.form-control(type='text', name="endereco[complemento]", value=(endereco ? endereco.complemento : null), placeholder='Complemento', required)
+    input#inputComplemento.form-control(type='text', name="endereco[complemento]", value=(endereco ? endereco.complemento : null), placeholder='Complemento')
 
 .col-sm-6.text-left
   .form-group
