@@ -73,7 +73,7 @@ module.exports = function(models) {
           console.log(errorMsg)
           res.redirect("/cliente/enderecos?error=" + encodeURIComponent(errorMsg));
         }
-        res.redirect("/cliente/enderecos/new" + endereco.id);
+        res.redirect("/cliente/enderecos/" + endereco.id);
       });
     },
 
