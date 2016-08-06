@@ -163,7 +163,6 @@ module.exports = function(models) {
 
             if(scope.pedido.status === Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION && scope.pagamento.forma === Pagamento.FORMAS.BOLETO) {
               scope.boleto = Banco.geraBoleto(scope.pedido);
-              console.log("@@", scope.boleto);
             }
 
           }
