@@ -13,18 +13,36 @@ module.exports = function(models) {
         console.log(pedidos);
       });
     },
-
     show: function(scope) {
       var pedidoId = scope.params.id;
 
       return Pedido.find(pedidoId)
       .then(function(pedido) {
         scope.pedido = pedido;
+        scope.statuses = Pedido.STATUS;
+
         return Pagamento.where({pedido_id: pedido.id});
       })
       .then(function(pagamento) {
         scope.pagamento = _.first(pagamento);
       });
+    },
+    updateStatus: function(req, res) {
+      var pedidoId = req.params.id;
+      var status = Pedido.STATUS[req.body.status];
+
+      if(!status.length) {
+        return null;
+      }
+      
+      return Pedido.find(pedidoId)
+        .then(function(pedido) {
+          pedido.status = status;
+          return pedido.save();
+        })
+        .then(function(pedido) {
+          res.json({pedido: pedido, status: "Status atualizado com sucesso"});
+        });
     },
 
     confirmPayment: function(req, res, next) {

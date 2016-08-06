@@ -100,4 +100,5 @@ module.exports = function(conf) {
   app.get("/intranet/pedidos", AuthenticationFuncionario(controllers.Funcionario.Pedidos.index));
   app.get("/intranet/pedidos/:id", AuthenticationFuncionario(controllers.Funcionario.Pedidos.show));
   app.post("/intranet/pedidos/:id/confirm-payment", AuthenticationFuncionario(controllers.Funcionario.Pedidos.confirmPayment));
+  app.post("/intranet/pedidos/:id/update-status", AuthenticationFuncionario(controllers.Funcionario.Pedidos.updateStatus));
 };

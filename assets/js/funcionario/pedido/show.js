@@ -1,8 +1,10 @@
 App.Funcionario.Pedido.show= function(object) {
   var pagamento = object.pagamento;
+  var pedido = object.pedido;
 
   $(function() {
     $('.confirm-payment').click(confirmPayment);
+    $('#inputStatus').change(updateStatus);
   });
 
   ///////////////
@@ -14,6 +16,15 @@ App.Funcionario.Pedido.show= function(object) {
       $('.pedido-status').text(pedido.status);
       $('.confirm-payment').hide();
     });
+
+  }
+
+  function updateStatus() {
+    var url = "/intranet/pedidos/" + pedido.id + "/update-status";
+
+    $.post(url, {status: $('#inputStatus').val()}).then(function(res) {
+      $('.pedido-status').text(res.pedido.status);
+      });
 
   }
 };
