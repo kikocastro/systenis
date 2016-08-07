@@ -68,8 +68,10 @@ module.exports = function(models) {
         if(!!_.result(scope, 'entrega.entregue_em')) {
           scope.entrega.entregue_em = moment(scope.entrega.entregue_em).format('LLL');
         }
-        if(!_.isEmpty(_.result(scope.pedido, 'funcionario_id'))) {
-          return Funcionario.find(scope.pedido.funcionario_id);
+        var funcionario_id = _.result(scope.pedido, 'funcionario_id');
+
+        if(!!funcionario_id) {
+          return Funcionario.find(funcionario_id);
         }
         return null;
       })
