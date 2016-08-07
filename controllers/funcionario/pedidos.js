@@ -23,12 +23,19 @@ module.exports = function(models) {
       });
     },
     show: function(scope) {
+      var currentUser = scope.session.currentUser;
       var pedidoId = scope.params.id;
 
       return Pedido.find(pedidoId)
       .then(function(pedido) {
         scope.pedido = pedido;
         scope.statuses = Pedido.STATUS;
+
+        if(currentUser.papel === 'saida') {
+          scope.statuses = _.filter(scope.statuses, function(status, key) {
+            return key === "DELIVERED" || key === "PARTIALLY_DELIVERED" || key === "IN_TRANSIT";
+          });
+        }
 
         return pedido.setItems();
       })
@@ -51,7 +58,6 @@ module.exports = function(models) {
         return Funcionario.find(scope.pedido.funcionario_id);
       })
       .then(function(funcionario) {
-        console.log("@@2", funcionario);
         scope.funcionario = funcionario;
       });
     },
