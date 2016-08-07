@@ -9,8 +9,17 @@ module.exports = function(models) {
 
   return {
     index: function(scope) {
-      return Pedido.all().then(function(pedidos) {
+      var currentUser = scope.session.currentUser;
+
+      return Pedido.all()
+      .then(function(pedidos) {
         scope.pedidos = pedidos;
+
+        if(currentUser.papel === 'saida') {
+          scope.pedidos = _.filter(scope.pedidos, function(pedido) {
+            return pedido.funcionario_id === currentUser.id;
+          });
+        }
       });
     },
     show: function(scope) {
