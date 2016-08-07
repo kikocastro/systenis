@@ -14,6 +14,34 @@ exports.up = function(pgm) {
     papel: "'admin'"
   },
   {
+    nome: "'Mr Supervisor 1'",
+    sobrenome: "'Systenis'",
+    telefone: "'12345672'",
+    sexo: "'masculino'",
+    email: "'supervisor@systenis.com'",
+    cpf: "'999999992-00'",
+    rg: "'999999992'",
+    data_de_nascimento: "'1989-01-08'",
+    password: "'123123'",
+    carteira_de_trabalho: "'1235'",
+    data_de_inicio_do_contrato: "'2015-04-02'",
+    papel: "'supervisor_saida'"
+  },
+  {
+    nome: "'Mr Supervisor 2'",
+    sobrenome: "'Systenis'",
+    telefone: "'123456722'",
+    sexo: "'masculino'",
+    email: "'supervisor2@systenis.com'",
+    cpf: "'9999999922-00'",
+    rg: "'9999999192'",
+    data_de_nascimento: "'1989-01-08'",
+    password: "'123123'",
+    carteira_de_trabalho: "'12325'",
+    data_de_inicio_do_contrato: "'2015-04-02'",
+    papel: "'supervisor_saida'"
+  },
+  {
     nome: "'Saida'",
     sobrenome: "'Systenis'",
     telefone: "'12345671'",
@@ -28,18 +56,18 @@ exports.up = function(pgm) {
     papel: "'saida'"
   },
   {
-    nome: "'Supervisor'",
+    nome: "'Saida2'",
     sobrenome: "'Systenis'",
-    telefone: "'12345672'",
+    telefone: "'12345671'",
     sexo: "'masculino'",
-    email: "'supervisor@systenis.com'",
-    cpf: "'999999992-00'",
-    rg: "'999999992'",
+    email: "'saida2@systenis.com'",
+    cpf: "'9999999691-00'",
+    rg: "'9999969991'",
     data_de_nascimento: "'1989-01-08'",
-    password: "'123123'",
-    carteira_de_trabalho: "'1235'",
+    password: "'1236123'",
+    carteira_de_trabalho: "'16234'",
     data_de_inicio_do_contrato: "'2015-04-02'",
-    papel: "'supervisor_saida'"
+    papel: "'saida'"
   },
   {
     nome: "'Comercial'",
