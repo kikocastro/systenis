@@ -5,6 +5,7 @@ module.exports = function(models) {
   var Funcionario = models.Funcionario;
   var Pedido = models.Pedido;
   var Pagamento = models.Pagamento;
+  var Entrega = models.Entrega;
 
   return {
     index: function(scope) {
@@ -29,7 +30,9 @@ module.exports = function(models) {
     },
     updateStatus: function(req, res) {
       var pedidoId = req.params.id;
-      var status = Pedido.STATUS[req.body.status];
+      var status = req.body.status;
+      var statusValue = Pedido.STATUS[status];
+      var pedido, oldStatus;
 
       if(!status.length) {
         return null;
@@ -37,11 +40,31 @@ module.exports = function(models) {
       
       return Pedido.find(pedidoId)
         .then(function(pedido) {
-          pedido.status = status;
+          pedido.status = statusValue;
           return pedido.save();
         })
-        .then(function(pedido) {
-          res.json({pedido: pedido, status: "Status atualizado com sucesso"});
+        .then(function(updatedPedido) {
+          pedido = updatedPedido;
+
+          if(status === 'IN_TRANSIT') {
+            console.log("@@2", pedido);
+
+            var entrega = {pedido_id: pedido.id, postado_em: moment().format('YYYY-MM-DD hh:mm:ss')}
+            return Entrega.create(entrega);
+          }
+          return null;
+        })
+        .then(function(entrega) {
+
+          var response = {
+            pedido: pedido,
+            status: "Status atualizado com sucesso"
+          };
+          
+          if(!!entrega) {
+            response.entrega = entrega;
+          }
+          res.json(response);
         });
     },
 
