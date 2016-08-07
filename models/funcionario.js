@@ -14,11 +14,35 @@ module.exports = function(daos, BasicModel, models) {
 
   Funcionario.getAvailable = function() {
     var self = this;
-    var query = "SELECT funcionario_id, COUNT(funcionario_id) FROM pedidos GROUP BY funcionario_id ORDER BY SUM(funcionario_id) DESC LIMIT 1;"
+    var query = "SELECT funcionarios.id as func_id, COUNT (*) as total FROM funcionarios LEFT OUTER JOIN pedidos ON (funcionarios.id = pedidos.funcionario_id) WHERE papel = 'saida' GROUP BY func_id ORDER BY total LIMIT 1;"
 
-    return self._dao.query(query).then(function(result) {
-      console.log("@@", result);
-      return _.result(_.first(_.result(result, 'rows')), 'funcionario_id');
+    return self._dao.query(query)
+    .then(function(result) {
+      console.log("$$A", result.rows);
+      return _.result(_.first(_.result(result, 'rows')), 'func_id');
+    })
+    .then(function(id) {
+      if(!id) {
+        console.log("$$B");
+        return self._dao.where({papel: 'saida'});
+      }
+      console.log("$$C");
+
+      return id;
+    })
+    .then(function(res) {
+      console.log("$$D");
+      if(_.isNumber(res)) {
+        // id
+        console.log("$$E");
+        return res;
+      }
+
+      var funcionarios = _.first(_.result(res, 'rows'));
+      // funcionario
+      console.log("$$F",funcionarios);
+
+      return _.result(funcionarios, 'id');
     });
   };
 

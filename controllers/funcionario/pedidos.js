@@ -20,6 +20,20 @@ module.exports = function(models) {
             return pedido.funcionario_id === currentUser.id;
           });
         }
+
+        if(currentUser.papel === 'supervisor_saida') {
+          return Funcionario.where({supervisor_id: currentUser.id});
+        }
+      })
+      .then(function(funcionarios) {
+        console.log("@@2", funcionarios);
+        if(!_.isEmpty(funcionarios)) {
+          var funcionarioIds = _.pluck(funcionarios, 'id');
+          
+          scope.pedidos = _.filter(scope.pedidos, function(pedido) {
+            return _.includes(funcionarioIds, pedido.funcionario_id);
+          });
+        }
       });
     },
     show: function(scope) {
@@ -55,7 +69,10 @@ module.exports = function(models) {
         if(!!_.result(scope, 'entrega.entregue_em')) {
           scope.entrega.entregue_em = moment(scope.entrega.entregue_em).format('LLL');
         }
-        return Funcionario.find(scope.pedido.funcionario_id);
+        if(!_.isEmpty(_.result(scope.pedido, 'funcionario_id'))) {
+          return Funcionario.find(scope.pedido.funcionario_id);
+        }
+        return null;
       })
       .then(function(funcionario) {
         scope.funcionario = funcionario;
