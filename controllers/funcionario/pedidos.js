@@ -22,6 +22,9 @@ module.exports = function(models) {
         scope.pedido = pedido;
         scope.statuses = Pedido.STATUS;
 
+        return pedido.setItems();
+      })
+      .then(function(pedido) {
         return Pagamento.where({pedido_id: pedido.id});
       })
       .then(function(pagamento) {
