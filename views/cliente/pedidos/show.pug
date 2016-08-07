@@ -57,6 +57,15 @@ block main_content
             .table-responsive
               table.table
                 tbody
+                  if !!entrega
+                    if !!entrega.postado_em
+                      tr
+                        td Postado em
+                        th.postado_em #{entrega.postado_em}
+                    if !!entrega.entregue_em
+                      tr
+                        td Entregue em
+                        th.entregue_em #{entrega.entregue_em }
                   tr
                     td Status
                     th #{pedido.status}

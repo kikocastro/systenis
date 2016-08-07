@@ -11,6 +11,7 @@ module.exports = function(models) {
   var Pagamento = models.Pagamento;
   var Transportadora = models.Transportadora;
   var Funcionario = models.Funcionario;
+  var Entrega = models.Entrega;
 
   return {
     new: function(scope) {
@@ -173,7 +174,17 @@ module.exports = function(models) {
             if(scope.pedido.status === Pedido.STATUS.WAITING_PAYMENT_CONFIRMATION && scope.pagamento.forma === Pagamento.FORMAS.BOLETO) {
               scope.boleto = Banco.geraBoleto(scope.pedido);
             }
+            return Entrega.where({pedido_id: scope.pedido.id});
+          }
+        })
+        .then(function(entrega) {
+          scope.entrega = _.first(entrega);
 
+          if(!!_.result(scope, 'entrega.postado_em')) {
+            scope.entrega.postado_em = moment(scope.entrega.postado_em).format('LLL');
+          }
+          if(!!_.result(scope, 'entrega.entregue_em')) {
+            scope.entrega.entregue_em = moment(scope.entrega.entregue_em).format('LLL');
           }
         });
     }
