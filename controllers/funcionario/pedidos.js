@@ -44,7 +44,7 @@ module.exports = function(models) {
         scope.pedido = pedido;
         scope.statuses = Pedido.STATUS;
 
-        if(currentUser.papel === 'saida') {
+        if(currentUser.papel === 'saida' || currentUser.papel === 'supervisor_saida') {
           scope.statuses = _.filter(scope.statuses, function(status, key) {
             return key === "DELIVERED" || key === "PARTIALLY_DELIVERED" || key === "IN_TRANSIT";
           });
