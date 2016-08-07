@@ -13,7 +13,7 @@ module.exports = function(models) {
 
       return Pedido.all()
       .then(function(pedidos) {
-        scope.pedidos = pedidos;
+        scope.pedidos = _.sortBy(pedidos, 'id').reverse();
 
         if(currentUser.papel === 'saida') {
           scope.pedidos = _.filter(scope.pedidos, function(pedido) {
@@ -26,7 +26,6 @@ module.exports = function(models) {
         }
       })
       .then(function(funcionarios) {
-        console.log("@@2", funcionarios);
         if(!_.isEmpty(funcionarios)) {
           var funcionarioIds = _.pluck(funcionarios, 'id');
           

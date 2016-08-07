@@ -40,7 +40,7 @@ module.exports = function(models) {
       var clienteId = scope.session.currentUser.id;
 
       return Pedido.where({cliente_id:clienteId}).then(function(pedidos) {
-        scope.pedidos = pedidos;
+        scope.pedidos = _.sortBy(pedidos, 'id').reverse();
       });
     },
     update: function(req, res) {

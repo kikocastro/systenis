@@ -18,29 +18,23 @@ module.exports = function(daos, BasicModel, models) {
 
     return self._dao.query(query)
     .then(function(result) {
-      console.log("$$A", result.rows);
       return _.result(_.first(_.result(result, 'rows')), 'func_id');
     })
     .then(function(id) {
       if(!id) {
-        console.log("$$B");
         return self._dao.where({papel: 'saida'});
       }
-      console.log("$$C");
 
       return id;
     })
     .then(function(res) {
-      console.log("$$D");
       if(_.isNumber(res)) {
         // id
-        console.log("$$E");
         return res;
       }
 
       var funcionarios = _.first(_.result(res, 'rows'));
       // funcionario
-      console.log("$$F",funcionarios);
 
       return _.result(funcionarios, 'id');
     });
