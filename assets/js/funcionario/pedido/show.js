@@ -24,6 +24,9 @@ App.Funcionario.Pedido.show= function(object) {
 
     $.post(url, {status: $('#inputStatus').val()}).then(function(res) {
       $('.pedido-status').text(res.pedido.status);
+      if(res.shouldReload) {
+        location.reload();
+      }
       console.log("RES", res);
       });
 
