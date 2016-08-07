@@ -13,7 +13,7 @@ exports.up = function(pgm) {
     "data_de_nascimento TIMESTAMP",
     "data_de_inicio_do_contrato TIMESTAMP",
     "data_de_fim_do_contrato TIMESTAMP",
-    "papel VARCHAR(20) UNIQUE"
+    "papel VARCHAR(20)"
   ];
   pgm.sql('CREATE TABLE IF NOT EXISTS funcionarios(' + fields.join(", ") + ')');
 };

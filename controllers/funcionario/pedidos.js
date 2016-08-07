@@ -11,7 +11,6 @@ module.exports = function(models) {
     index: function(scope) {
       return Pedido.all().then(function(pedidos) {
         scope.pedidos = pedidos;
-        console.log(pedidos);
       });
     },
     show: function(scope) {
@@ -40,6 +39,11 @@ module.exports = function(models) {
         if(!!_.result(scope, 'entrega.entregue_em')) {
           scope.entrega.entregue_em = moment(scope.entrega.entregue_em).format('LLL');
         }
+        return Funcionario.find(scope.pedido.funcionario_id);
+      })
+      .then(function(funcionario) {
+        console.log("@@2", funcionario);
+        scope.funcionario = funcionario;
       });
     },
     updateStatus: function(req, res) {

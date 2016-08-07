@@ -10,6 +10,7 @@ module.exports = function(models) {
   var Cortesia = models.Cortesia;
   var Pagamento = models.Pagamento;
   var Transportadora = models.Transportadora;
+  var Funcionario = models.Funcionario;
 
   return {
     new: function(scope) {
@@ -96,11 +97,16 @@ module.exports = function(models) {
         })
         .then(function(carrinho) {
           scope.carrinho = carrinho;
+          return Funcionario.getAvailable();
+        })
+        .then(function(funcionarioId) {
+          console.log("@@1", funcionarioId);
           var frete = Transportadora.calculaFrete(endereco.cep).price;
-          var totalDaCompra = +_.sum(_.map(carrinho.itens, 'total')).toFixed(2) + +frete;
+          var totalDaCompra = +_.sum(_.map(scope.carrinho.itens, 'total')).toFixed(2) + +frete;
           pedido.valor_total = parseFloat(totalDaCompra);
           pedido.frete = parseFloat(frete);
-
+          pedido.funcionario_id = funcionarioId;
+          
           return Pedido.create(pedido);
         })
         .then(function(pedido) {
