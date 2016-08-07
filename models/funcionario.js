@@ -14,7 +14,7 @@ module.exports = function(daos, BasicModel, models) {
 
   Funcionario.getAvailable = function() {
     var self = this;
-    var query = "SELECT funcionario_id, COUNT(funcionario_id) FROM pedidos GROUP BY funcionario_id ORDER BY SUM(funcionario_id) LIMIT 1;"
+    var query = "SELECT funcionario_id, COUNT(funcionario_id) FROM pedidos GROUP BY funcionario_id ORDER BY SUM(funcionario_id) DESC LIMIT 1;"
 
     return self._dao.query(query).then(function(result) {
       console.log("@@", result);
