@@ -7,6 +7,7 @@ exports.up = function(pgm) {
     "cortesia_id INT references cortesias(id)",
     "status varchar(50) NOT NULL",
     "valor_total NUMERIC(20,2)",
+    "frete NUMERIC(20,2)",
     "entrega_parcial boolean"
   ];
   pgm.sql('CREATE TABLE IF NOT EXISTS pedidos(' + fields.join(", ") + ')');
