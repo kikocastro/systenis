@@ -9,6 +9,7 @@ module.exports = function(models) {
   var Cliente = models.Cliente;
   var Cortesia = models.Cortesia;
   var Pagamento = models.Pagamento;
+  var Transportadora = models.Transportadora;
 
   return {
     new: function(scope) {
@@ -95,8 +96,10 @@ module.exports = function(models) {
         })
         .then(function(carrinho) {
           scope.carrinho = carrinho;
-          var totalDaCompra = _.sum(_.map(carrinho.itens, 'total')).toFixed(2);
+          var frete = Transportadora.calculaFrete(endereco.cep).price;
+          var totalDaCompra = +_.sum(_.map(carrinho.itens, 'total')).toFixed(2) + +frete;
           pedido.valor_total = parseFloat(totalDaCompra);
+          pedido.frete = parseFloat(frete);
 
           return Pedido.create(pedido);
         })

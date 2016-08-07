@@ -40,6 +40,9 @@ block main_content
                         td R$ #{(item.preco_unitario * item.quantidade).toFixed(2)}
                   tfoot
                     tr
+                      th(colspan='4') Frete
+                      th(colspan='2') R$ #{pedido.frete}
+                    tr
                       th(colspan='4') Total
                       th(colspan='2') R$ #{pedido.valor_total}
               .box-footer

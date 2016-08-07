@@ -6,6 +6,7 @@ module.exports = function(db, BasicDao) {
     "cortesia_id",
     "status",
     "valor_total",
+    "frete",
     "entrega_parcial"
   ];
 
