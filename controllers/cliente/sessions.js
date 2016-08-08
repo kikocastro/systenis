@@ -4,8 +4,10 @@ module.exports = function(models, services) {
   var Authentication = services.AuthenticationFor("Cliente");
 
   return {
-    new: function(scope) {
-
+    new: function(scope) {  
+      if(scope.query.error === 'wrong_information') {
+        scope.loginError = "Email e/ou senha incorretos";
+      }
     },
     create: function(req, res, next) {
       var email = req.body.cliente.email;
@@ -17,7 +19,7 @@ module.exports = function(models, services) {
           return cliente;
           }, function() {
           // Authentication fail
-          res.redirect("/cliente/sessions/new");
+          res.redirect("/cliente/sessions/new?error=wrong_information");
         })
         .then(function(cliente) {
           return cliente.setCarrinho();

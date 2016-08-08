@@ -3,7 +3,9 @@ module.exports = function(models, services) {
 
   return {
     new: function(scope) {
-
+      if(scope.query.error === 'wrong_information') {
+        scope.loginError = "Email e/ou senha incorretos";
+      }
     },
     create: function(req, res, next) {
       var email = req.body.funcionario.email;
@@ -14,7 +16,7 @@ module.exports = function(models, services) {
         res.redirect("/intranet/clientes/");
       }, function() {
         // Authentication fail
-        res.redirect("/intranet/");
+        res.redirect("/intranet?error=wrong_information");
       });
     },
     delete: function(req, res, next) {
