@@ -5,6 +5,13 @@ block page_title
 
 block main_content
   section
+    .row
+      if inUseError
+        .alert.alert-danger.alert-dismissible(role="alert")
+          button.close(data-dismiss="alert" type="button")
+            span(aria-hidden="true")  ×
+            span.sr-only Fechar
+          | #{inUseError}
     .row.text-center
       .col-md-12
         .heading
@@ -54,7 +61,7 @@ block main_content
             .col-sm-6.text-left
               .form-group
                 label(for='inputCarteira') Número da Carteira de Trabalho
-                input#inputTelefone.form-control(type='text', name="funcionario[carteira_de_trabalho]", value=(funcionario ? funcionario.carteira_de_trabalho : null), placeholder='Número da Carteira de Trabalho')
+                input#inputTelefone.form-control(type='text', name="funcionario[carteira_de_trabalho]", value=(funcionario ? funcionario.carteira_de_trabalho : null), placeholder='Número da Carteira de Trabalho', required)
 
             .col-sm-6.text-left
               .form-group

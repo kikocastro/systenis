@@ -23,10 +23,16 @@ module.exports = function(models) {
         .then(function(funcionario) {
           req.session.currentUser = funcionario;
           res.redirect("/intranet/perfil");
+        }, function(error) {
+          console.log(error);
+          res.redirect("/intranet/perfil/edit?error=already_used");
         });
     },
     edit: function(scope) {
       scope.funcionario = scope.session.currentUser;
+      if(scope.query.error === 'already_used') {
+        scope.inUseError = "Email, CPF, RG ou Número da Carteira de Trabalho já cadastrados";
+      }
     }
   };
 };

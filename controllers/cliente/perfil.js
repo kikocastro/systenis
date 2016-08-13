@@ -10,7 +10,6 @@ module.exports = function(models) {
     update: function(req, res, next) {
       var editedCliente = req.body.cliente;
       var permittedParams = getPermittedParams();
-      req.session.currentUser = editedCliente;
 
       return Cliente.find(editedCliente.id)
         .then(function(cliente) {
@@ -24,10 +23,16 @@ module.exports = function(models) {
         .then(function(cliente) {
           req.session.currentUser = cliente;
           res.redirect("/cliente/perfil");
+        }, function(error) {
+          console.log(error);
+          res.redirect("/cliente/perfil/edit?error=already_used");
         });
     },
     edit: function(scope) {
       scope.cliente = scope.session.currentUser;
+      if(scope.query.error === 'already_used') {
+        scope.inUseError = "Email, CPF ou RG já cadastrados";
+      }
     }
   };
 };
