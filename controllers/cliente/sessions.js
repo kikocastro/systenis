@@ -17,8 +17,9 @@ module.exports = function(models, services) {
       return Authentication.login(email, password, session)
         .then(function(cliente) {
           return cliente;
-          }, function() {
+          }, function(error) {
           // Authentication fail
+          console.log(error);
           res.redirect("/cliente/sessions/new?error=wrong_information");
         })
         .then(function(cliente) {

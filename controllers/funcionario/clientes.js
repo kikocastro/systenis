@@ -10,7 +10,9 @@ module.exports = function(models) {
       });
     },
     new: function(scope) {
-
+      if(scope.query.error === 'already_used') {
+        scope.inUseError = "Email e/ou CPF já cadastrados";
+      }
     },
     edit: function(scope) {
       var clienteId = scope.params.id;
@@ -45,6 +47,9 @@ module.exports = function(models) {
       return Cliente.create(cliente)
         .then(function(cliente) {
           res.redirect("/intranet/clientes/" + cliente.id);
+        }, function(error) {
+          console.log(error);
+          res.redirect("/intranet/clientes/new?error=already_used");
         });
     },
     show: function(scope) {

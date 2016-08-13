@@ -14,8 +14,9 @@ module.exports = function(models, services) {
 
       return Authentication.login(email, password, session).then(function(user) {
         res.redirect("/intranet/clientes/");
-      }, function() {
+      }, function(error) {
         // Authentication fail
+        console.log(error);
         res.redirect("/intranet?error=wrong_information");
       });
     },
