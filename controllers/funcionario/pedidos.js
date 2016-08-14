@@ -46,9 +46,11 @@ module.exports = function(models) {
         scope.statuses = Pedido.STATUS;
 
         if(currentUser.papel === 'saida' || currentUser.papel === 'supervisor_saida') {
-          scope.statuses = _.filter(scope.statuses, function(status, key) {
-            return key === "DELIVERED" || key === "PARTIALLY_DELIVERED" || key === "IN_TRANSIT";
-          });
+          scope.statuses = {
+            IN_TRANSIT: "Em trânsito",
+            DELIVERED: "Entregue",
+            PARTIALLY_DELIVERED: "Parcialmente entregue",
+          };
         }
 
         return pedido.setItems();
