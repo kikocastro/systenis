@@ -5,6 +5,13 @@ block page_title
 
 block main_content
   .row
+      if cortesiaError
+        .alert.alert-danger.alert-dismissible(role="alert")
+          button.close(data-dismiss="alert" type="button")
+            span(aria-hidden="true")  ×
+            span.sr-only Fechar
+          | #{cortesiaError}
+  .row
     #customer-orders.col-md-12
       .box
         .table-responsive

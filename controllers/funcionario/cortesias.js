@@ -6,8 +6,12 @@ module.exports = function(models) {
 
   return {
     index: function(scope) {
-      return Cortesia.all().then(function(cortesias) {
+      return Cortesia.all()
+      .then(function(cortesias) {
         scope.cortesias = cortesias;
+        if(scope.query.error === 'cortesia_ativa') {
+          scope.cortesiaError = "Já existe uma cortesia ativa";
+        }
       });
     },
     activate: function(req, res, next) {
@@ -24,15 +28,21 @@ module.exports = function(models) {
           return Cortesia.find(cortesiaId)
         })
         .then(function(cortesia) {
-          if(cortesia.ativa == false && temCortesiaAtiva == false) {
+          if(!cortesia.ativa && !temCortesiaAtiva) {
             cortesia.ativa = true; 
-          }
-          else {
+          } else if (cortesia.ativa && temCortesiaAtiva) {
+            //se a cortesia selecionada é a ativa
+            cortesia.ativa = false;
+            temCortesiaAtiva = false;
+          } else {
             cortesia.ativa = false;
           }
           return cortesia.save();
         })
         .then(function(cortesia) {
+          if (temCortesiaAtiva) {
+            res.redirect("/intranet/cortesias?error=cortesia_ativa");
+          }
           res.redirect("/intranet/cortesias/");
         });
     },
