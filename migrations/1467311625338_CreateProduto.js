@@ -1,7 +1,7 @@
 exports.up = function(pgm) {
   var fields = [
     "id SERIAL PRIMARY KEY",
-    "nome VARCHAR(100) NOT NULL UNIQUE",
+    "nome VARCHAR(100) NOT NULL",
     "cores VARCHAR(50)",
     "fabricante VARCHAR(50) NOT NULL",
     "peso NUMERIC",
