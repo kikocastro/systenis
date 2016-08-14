@@ -6,6 +6,7 @@ module.exports = function(models) {
   var Pedido = models.Pedido;
   var Pagamento = models.Pagamento;
   var Entrega = models.Entrega;
+  var Nota = models.Nota;
 
   return {
     index: function(scope) {
@@ -77,11 +78,20 @@ module.exports = function(models) {
       })
       .then(function(funcionario) {
         scope.funcionario = funcionario;
+        return Nota.where({entrega_id: _.result(scope, 'entrega.id')});
+      })
+      .then(function(nota) {
+        scope.notaFiscal = _.first(nota);
+
+        if(scope.notaFiscal) {
+          scope.notaFiscal.emissao =  moment(scope.notaFiscal.emissao).format('LLL')
+        }
       });
     },
     updateStatus: function(req, res) {
       var pedidoId = req.params.id;
       var status = req.body.status;
+      var currentUser = req.session.currentUser;
       var statusValue = Pedido.STATUS[status];
       var pedido, oldStatus;
       var response = {};
@@ -103,10 +113,10 @@ module.exports = function(models) {
             status: "Status atualizado com sucesso"
           };
 
-          if(oldStatus ===  Pedido.STATUS['READY_TO_SHIP'] && status === 'IN_TRANSIT') {
+          if(oldStatus ===  Pedido.STATUS['PAYMENT_CONFIRMED'] && status === 'READY_TO_SHIP') {
             var entrega = {pedido_id: pedido.id, postado_em: moment().format('YYYY-MM-DD hh:mm:ss')};
             response.shouldReload = true;
-            return Entrega.create(entrega);
+            return Entrega.createWithNotaFiscal(entrega, updatedPedido);
           }
 
           return Entrega.where({pedido_id: pedido.id});

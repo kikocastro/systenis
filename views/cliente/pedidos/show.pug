@@ -72,12 +72,41 @@ block main_content
                   tr
                     td Forma de Pagamento
                     th #{pagamento.forma}
-                  if !!boleto
-                    tr
-                      td
-                      th
-                        button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
-                          | Abrir boleto
+          if !!boleto
+            .box
+              button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
+                | Abrir boleto
+          if !!notaFiscal
+            .box
+              button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#notaFiscalModal')
+                | Abrir Nota Fiscal
+
+  #notaFiscalModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Nota Fiscal
+        .modal-body
+          if !!notaFiscal
+            table.table
+              tbody
+                tr
+                  td Nome
+                  th #{notaFiscal.nome}
+                tr
+                  td cpf
+                  th #{notaFiscal.cpf}
+                tr
+                  td Data de Emissão
+                  th #{notaFiscal.emissao}
+                tr
+                  td Valor
+                  th R$ #{notaFiscal.valor}
+                tr
+                  td Descrição
+                  th #{notaFiscal.descricao}
 
   #myModal.modal.fade(tabindex='-1', role='dialog')
     .modal-dialog(role='document')
