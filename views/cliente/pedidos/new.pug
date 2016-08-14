@@ -15,12 +15,12 @@ block main_content
               .col-md-6
                 label(for='inputEndereco')
                   .form-group
-                    select#inputEndereco.form-control(name="pedido[endereco_id]", placeholder='Endereço')
-                      option Selecione o endereço
+                    select#inputEndereco.form-control(name="pedido[endereco_id]", placeholder='Endereço', required)
+                      option(value='') Selecione o endereço
                       each endereco in enderecos
-                        option(value='{"endereco_id": ' + endereco.id + ', "cep": ' + endereco.cep + '}') #{endereco.rua}, #{endereco.cidade}
+                        option(value='{"endereco_id": ' + endereco.id + ', "cep": ' + endereco.cep + '}') #{endereco.rua}, #{endereco.numero}, #{endereco.cidade}
                       if !enderecos.length
-                        p Não há endereços cadastrados. Cadastre um edereço antes de finalizar a compra.
+                        p Não há endereços cadastrados. Cadastre um endereço antes de finalizar a compra.
                 .box-simple.box-white.frete-information.hide
               .col-md-6
                 a.btn.btn-template-main(href="/cliente/enderecos" name='enderecos' value='enderecos')
@@ -46,15 +46,15 @@ block main_content
                 .col-sm-12.text-left
                   .form-group
                     label(for='inputNumeroDoCartao') Número do cartão
-                      input#inputNumeroDoCartao.form-control(type='text', name="pedido[numero_do_cartao]", placeholder='Número do cartão')
+                      input#inputNumeroDoCartao.form-control(type='text', name="pedido[numero_do_cartao]", placeholder='Número do cartão', required)
                 .col-sm-12.text-left
                   .form-group
                     label(for='inputNomeNoCartao') Nome no cartão
-                      input#inputNomeNoCartao.form-control(type='text', name="pedido[nome_no_cartao]", placeholder='Nome no cartão')
+                      input#inputNomeNoCartao.form-control(type='text', name="pedido[nome_no_cartao]", placeholder='Nome no cartão', required)
                 .col-sm-12.text-left
                   .form-group
                     label(for='dataExpiracao') Data de Expiração
-                      input#dataExpiracao.form-control(type='date', name="pedido[data_de_expiracao_do_cartao]", placeholder='Data de Expiração')
+                      input#dataExpiracao.form-control(type='date', name="pedido[data_de_expiracao_do_cartao]", placeholder='Data de Expiração', required)
             .row
               .heading
                 h3 3. Sua compra
