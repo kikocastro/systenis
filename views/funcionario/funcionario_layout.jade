@@ -13,8 +13,9 @@ block nav_menu
 
 block main_menu
   if !!currentUser
-    li
-      a(href='/intranet/clientes') Clientes
+    if currentUser.papel === 'admin'
+      li
+        a(href='/intranet/clientes') Clientes
     li
       a(href='/intranet/pedidos') Pedidos
     if (currentUser.papel === 'admin' || currentUser.papel === 'comercial')
@@ -28,6 +29,6 @@ block main_menu
       //li
       //  a(href='#') Relatórios
       li
-        a(href='#') Funcionários
+        a(href='/intranet/funcionarios') Funcionários
     li
       a(href='/intranet/perfil') Perfil

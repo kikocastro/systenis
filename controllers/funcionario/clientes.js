@@ -18,8 +18,10 @@ module.exports = function(models) {
       var clienteId = scope.params.id;
 
       return Cliente.find(clienteId).then(function(cliente) {
-
         scope.cliente = cliente;
+        if(scope.query.error === 'already_used') {
+          scope.inUseError = "Email e/ou CPF já cadastrados";
+        }
       });
     },
     update: function(req, res) {
@@ -37,6 +39,9 @@ module.exports = function(models) {
         })
         .then(function(cliente) {
           res.redirect("/intranet/clientes/" + cliente.id);
+        }, function(error) {
+          console.log(error);
+          res.redirect("/intranet/clientes/" + editedCliente.id + "/edit?error=already_used");
         });
     },
     create: function(req, res, next) {

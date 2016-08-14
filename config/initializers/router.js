@@ -82,6 +82,16 @@ module.exports = function(conf) {
   app.get("/intranet/clientes/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Clientes.edit));
   app.get("/intranet/clientes/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Clientes.destroy));
 
+  // funcionarios
+  app.get("/intranet/funcionarios", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.index));
+  app.post("/intranet/funcionarios", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.create));
+  app.get("/intranet/funcionarios/new", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.new));
+  app.get("/intranet/funcionarios/:id", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.show));
+  app.post("/intranet/funcionarios/:id", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.update));
+  app.get("/intranet/funcionarios/:id/edit", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.edit));
+  app.get("/intranet/funcionarios/:id/delete", AuthenticationFuncionario(controllers.Funcionario.Funcionarios.destroy));
+
+
   // produtos
   app.get("/intranet/produtos", AuthenticationFuncionario(controllers.Funcionario.Produtos.index));
   app.post("/intranet/produtos", AuthenticationFuncionario(controllers.Funcionario.Produtos.create));

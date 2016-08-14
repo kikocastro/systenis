@@ -1,0 +1,33 @@
+extends ../funcionario_layout
+
+block page_title
+  | Funcionários
+
+block main_content
+  .heading
+    a.btn.btn-template-main.btn-md(href="/intranet/funcionarios/new") Cadastrar novo funcionário
+  .row
+    #customer-orders.col-md-12
+      .box
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th ID
+                th Nome
+                th Email
+                th CPF
+                th Papel
+                th Ações
+            tbody
+              each funcionario in funcionarios
+                tr
+                  th= funcionario.id
+                  td= funcionario.nome
+                  td= funcionario.email
+                  td= funcionario.cpf
+                  td= funcionario.papel
+                  td
+                    a.btn.btn-template-main.btn-sm(href="/intranet/funcionarios/" + funcionario.id) Ver
+                    a.btn.btn-template-main.btn-sm(href="/intranet/funcionarios/" + funcionario.id + "/edit") Editar
+                    a.btn.btn-template-main.btn-sm(href="/intranet/funcionarios/" + funcionario.id + "/delete") Remover

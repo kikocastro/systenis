@@ -39,7 +39,7 @@ exports.up = function(pgm) {
     password: "'123123'",
     carteira_de_trabalho: "'12325'",
     data_de_inicio_do_contrato: "'2015-04-02'",
-    papel: "'supervisor_saida'"
+    papel: "'supervisor saida'"
   },
   {
     nome: "'Saida'",

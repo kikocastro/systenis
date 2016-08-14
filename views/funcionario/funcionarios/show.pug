@@ -1,0 +1,33 @@
+extends ../funcionario_layout
+
+block page_title
+  | Funcionários
+
+block main_content
+  section
+    .row.text-center
+      .col-md-12
+        .heading
+          h2 Detalhes do funcionário
+      .col-md-8.col-md-offset-2
+        .row
+          .col-sm-6.col-md-offset-3.text-left
+            p.lead ID: #{funcionario.id}
+            p.lead Nome: #{funcionario.nome}
+            p.lead Sobrenome: #{funcionario.sobrenome}
+            p.lead Telefone: #{funcionario.telefone}
+            p.lead CPF: #{funcionario.cpf}
+            p.lead Carteira de Trabalho: #{funcionario.carteira_de_trabalho}
+            p.lead Papel: #{funcionario.papel}
+
+            a.btn.btn-template-main(href="/intranet/funcionarios/")
+              i.fa.fa-toggle-left
+              |  Voltar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/funcionarios/" + funcionario.id + "/edit")
+              i.fa.fa-pencil-square-o
+              |  Editar
+            | &nbsp; &nbsp;
+            a.btn.btn-template-main(href="/intranet/funcionarios/" + funcionario.id + "/delete")
+              i.fa.fa-trash-o
+              |  Remover

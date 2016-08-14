@@ -1,7 +1,7 @@
 extends ../funcionario_layout
 
 block page_title
-  | Clientes
+  | Funcionarios
 
 block main_content
   section
@@ -15,17 +15,17 @@ block main_content
     .row.text-center
       .col-md-12
         .heading
-          h2 Edite os dados do cliente
+          h2 Insira os dados do funcionário
       .col-md-8.col-md-offset-2
-        form(action="/intranet/clientes/" + cliente.id, method="POST")
+        form(action="/intranet/funcionarios", method="POST")
           .row
             include partials/form.jade
             .col-sm-12.text-right
-              a.btn.btn-default(href="/intranet/clientes/")
+              a.btn.btn-default(href="/intranet/funcionarios")
                 i.fa.fa-close
                 |  Cancelar
               | &nbsp; &nbsp;
               button.btn.btn-template-main(type='submit')
                 i.fa.fa-save
-                |  Salvar
+                |  Criar
 
