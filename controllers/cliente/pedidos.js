@@ -102,7 +102,6 @@ module.exports = function(models) {
           return Funcionario.getAvailable();
         })
         .then(function(funcionarioId) {
-          console.log("@@1", funcionarioId);
           var frete = Transportadora.calculaFrete(endereco.cep).price;
           var totalDaCompra = +_.sum(_.map(scope.carrinho.itens, 'total')).toFixed(2) + +frete;
           pedido.valor_total = parseFloat(totalDaCompra);
