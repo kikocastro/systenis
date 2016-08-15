@@ -29,16 +29,6 @@
 
 .col-sm-6.text-left
   .form-group
-    label(for='inputDataInicio') Data de Início do Contrato
-    input#inputDataInicio.form-control(type='date', name="funcionario[data_de_inicio_do_contrato]", value=(funcionario ? funcionario.data_de_inicio_do_contrato : null), placeholder='Data de Início do Contrato', required)
-
-.col-sm-6.text-left
-  .form-group
-    label(for='inputDataFim') Data de Fim do Contrato
-    input#inputDataFim.form-control(type='date', name="funcionario[data_de_fim_do_contrato]", value=(funcionario ? funcionario.data_de_fim_do_contrato : null), placeholder='Data de Fim do Contrato')
-
-.col-sm-6.text-left
-  .form-group
     label(for='inputPapel') Papel
       select#inputPapel.form-control(name="funcionario[papel]", placeholder='Papel', required)
         option(value='') Selecione
